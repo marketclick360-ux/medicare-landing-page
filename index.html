@@ -303,7 +303,19 @@
                 <h2>Get Your Free Medicare Guide</h2>
                 <p>Fill out the form below and we'll help you find the best plan for your needs.</p>
                 
-                <form id="medicareForm" name="contact" method="POST" netlify>
+                <form 
+    id="medicareForm"
+    name="medicare-guide-signup"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+>
+    <input type="hidden" name="form-name" value="medicare-guide-signup" />
+
+    <p style="display:none;">
+        <label>Don’t fill this out: <input name="bot-field" /></label>
+    </p>
+
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
