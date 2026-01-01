@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Perfect Medicare Plan - Quick Assessment</title>
+    <link rel="stylesheet" href="questionnaire.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Medicare Guidance Texas</div>
+        </div>
+    </header>
+
+    <div class="questionnaire-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="step-indicator">
+            <span id="currentStep">1</span> of <span id="totalSteps">7</span>
+        </div>
+
+        <form id="questionnaireForm">
+            <!-- Step 1: Health Status -->
+            <div class="question-step active" data-step="1">
+                <h2>Let's find your ideal Medicare plan</h2>
+                <p class="question">How would you describe your current health?</p>
+                <div class="options">
+                    <label class="option-card">
+                        <input type="radio" name="health" value="excellent" required>
+                        <span class="option-content">
+                            <strong>Excellent</strong>
+                            <small>Rarely see doctors, no medications</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="health" value="good" required>
+                        <span class="option-content">
+                            <strong>Good</strong>
+                            <small>Occasional visits, 1-2 medications</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="health" value="fair" required>
+                        <span class="option-content">
+                            <strong>Fair</strong>
+                            <small>Regular visits, 3-5 medications</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="health" value="managing" required>
+                        <span class="option-content">
+                            <strong>Managing Conditions</strong>
+                            <small>Frequent care, 6+ medications</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 2: Doctor Preference -->
+            <div class="question-step" data-step="2">
+                <h2>Doctor & Hospital Preferences</h2>
+                <p class="question">Do you have doctors you want to keep seeing?</p>
+                <div class="options">
+                    <label class="option-card">
+                        <input type="radio" name="doctors" value="yes-specific" required>
+                        <span class="option-content">
+                            <strong>Yes, specific doctors/hospitals</strong>
+                            <small>I want to keep my current providers</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="doctors" value="flexible" required>
+                        <span class="option-content">
+                            <strong>Flexible</strong>
+                            <small>Open to new providers</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="doctors" value="no-current" required>
+                        <span class="option-content">
+                            <strong>No current doctors</strong>
+                            <small>New to Medicare or area</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 3: Budget -->
+            <div class="question-step" data-step="3">
+                <h2>Budget Considerations</h2>
+                <p class="question">What's most important to you regarding costs?</p>
+                <div class="options">
+                    <label class="option-card">
+                        <input type="radio" name="budget" value="low-premium" required>
+                        <span class="option-content">
+                            <strong>Low Monthly Premium</strong>
+                            <small>Willing to pay more when I use care</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="budget" value="predictable" required>
+                        <span class="option-content">
+                            <strong>Predictable Costs</strong>
+                            <small>Balance between premium and out-of-pocket</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="budget" value="comprehensive" required>
+                        <span class="option-content">
+                            <strong>Comprehensive Coverage</strong>
+                            <small>Higher premium for maximum coverage</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 4: Travel -->
+            <div class="question-step" data-step="4">
+                <h2>Travel & Location</h2>
+                <p class="question">Do you travel or spend time in multiple states?</p>
+                <div class="options">
+                    <label class="option-card">
+                        <input type="radio" name="travel" value="snowbird" required>
+                        <span class="option-content">
+                            <strong>Yes, I'm a snowbird</strong>
+                            <small>6+ months outside Texas</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="travel" value="frequent" required>
+                        <span class="option-content">
+                            <strong>Frequent traveler</strong>
+                            <small>Travel often, need coverage everywhere</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="travel" value="local" required>
+                        <span class="option-content">
+                            <strong>Mostly local</strong>
+                            <small>Stay in Texas most of the year</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 5: Prescriptions -->
+            <div class="question-step" data-step="5">
+                <h2>Prescription Medications</h2>
+                <p class="question">How many prescription medications do you take regularly?</p>
+                <div class="options">
+                    <label class="option-card">
+                        <input type="radio" name="prescriptions" value="none" required>
+                        <span class="option-content">
+                            <strong>None</strong>
+                            <small>No regular medications</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="prescriptions" value="1-3" required>
+                        <span class="option-content">
+                            <strong>1-3 medications</strong>
+                            <small>Minimal prescription needs</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="prescriptions" value="4-6" required>
+                        <span class="option-content">
+                            <strong>4-6 medications</strong>
+                            <small>Moderate prescription needs</small>
+                        </span>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="prescriptions" value="7+" required>
+                        <span class="option-content">
+                            <strong>7+ medications</strong>
+                            <small>High prescription needs</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 6: Additional Coverage -->
+            <div class="question-step" data-step="6">
+                <h2>Additional Coverage Needs</h2>
+                <p class="question">What additional benefits are important to you?</p>
+                <div class="options-checkboxes">
+                    <label class="checkbox-card">
+                        <input type="checkbox" name="extras" value="dental">
+                        <span class="checkbox-content">Dental Coverage</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" name="extras" value="vision">
+                        <span class="checkbox-content">Vision Coverage</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" name="extras" value="hearing">
+                        <span class="checkbox-content">Hearing Coverage</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" name="extras" value="gym">
+                        <span class="checkbox-content">Gym Membership</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" name="extras" value="otc">
+                        <span class="checkbox-content">OTC Drug Card</span>
+                    </label>
+                    <label class="checkbox-card">
+                        <input type="checkbox" name="extras" value="none">
+                        <span class="checkbox-content">None needed</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 7: Results & Contact Info -->
+            <div class="question-step" data-step="7">
+                <div id="recommendation" class="recommendation-box">
+                    <h2>Your Recommended Plan Type</h2>
+                    <div id="planRecommendation" class="plan-result"></div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Get Your Personalized Plan Options</h3>
+                    <p>Enter your information to receive customized plan recommendations</p>
+                    
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone *</label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>ZIP Code *</label>
+                        <input type="text" name="zipCode" pattern="[0-9]{5}" required>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Navigation Buttons -->
+        <div class="button-container">
+            <button type="button" id="prevBtn" class="btn btn-secondary">← Previous</button>
+            <button type="button" id="nextBtn" class="btn btn-primary">Next →</button>
+            <button type="submit" id="submitBtn" class="btn btn-success" style="display:none;">Get My Plan Options</button>
+        </div>
+    </div>
+
+    <script src="questionnaire.js"></script>
+</body>
+</html>
