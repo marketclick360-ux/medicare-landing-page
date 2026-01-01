@@ -225,14 +225,57 @@
           <button type="submit" class="btn-primary">See my Medicare options</button>
         </div>
       </div>
-      <!-- END OF STEPS -->
+           </div> <!-- end of STEP 7 -->
 
     </form>
-  </div>
+  </div> <!-- end of .questionnaire-container -->
 
-  <!-- your <script> block should be here -->
   <script>
-    // existing JS for steps / validation / submission
+    // Step logic for the questionnaire
+
+    const steps = Array.from(document.querySelectorAll('.question-step'));
+    let currentStepIndex = 0;
+
+    function showStep(index) {
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i === index);
+      });
+      currentStepIndex = index;
+    }
+
+    function validateCurrentStep() {
+      const activeStep = steps[currentStepIndex];
+      const requiredInputName = activeStep.querySelector('input[type="radio"]')?.name;
+      if (!requiredInputName) return true; // nothing to validate (e.g., checkboxes or text inputs)
+
+      const checked = activeStep.querySelector('input[name="' + requiredInputName + '"]:checked');
+      if (!checked) {
+        alert('Please choose an option to continue.');
+        return false;
+      }
+      return true;
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.matches('[data-next]')) {
+        if (!validateCurrentStep()) return;
+
+        if (currentStepIndex < steps.length - 1) {
+          showStep(currentStepIndex + 1);
+        } else {
+          document.getElementById('questionnaireForm').submit();
+        }
+      }
+
+      if (e.target.matches('[data-prev]')) {
+        if (currentStepIndex > 0) {
+          showStep(currentStepIndex - 1);
+        }
+      }
+    });
+
+    // Start on first step
+    showStep(0);
   </script>
 </body>
 </html>
