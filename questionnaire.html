@@ -69,10 +69,11 @@
         </div>
       </div>
 
-            <!-- STEP 3 -->
+                <!-- STEP 3 -->
       <div class="question-step" data-step="3">
         <p>3 of 7</p>
         <h2>What matters most about your monthly costs?</h2>
+        <p>Choose the option that best matches your budget comfort level.</p>
 
         <div class="answers">
           <label>
@@ -94,50 +95,133 @@
           <button type="button" class="btn-primary" data-next>Next →</button>
         </div>
       </div>
-<!-- TODO: add steps 3–7 here in the same pattern -->
 
-    </form>
-  </div>
+      <!-- STEP 4 -->
+      <div class="question-step" data-step="4">
+        <p>4 of 7</p>
+        <h2>How often do you travel outside your home area?</h2>
+        <p>This helps us understand how important nationwide access is for you.</p>
 
-  <script>
-    const steps = Array.from(document.querySelectorAll('.question-step'));
-    let currentStepIndex = 0;
+        <div class="answers">
+          <label>
+            <input type="radio" name="travel" value="local">
+            I mostly stay in my local area
+          </label>
+          <label>
+            <input type="radio" name="travel" value="occasional">
+            I take a few trips each year
+          </label>
+          <label>
+            <input type="radio" name="travel" value="frequent">
+            I travel frequently
+          </label>
+          <label>
+            <input type="radio" name="travel" value="snowbird">
+            I live in two states during the year (snowbird)
+          </label>
+        </div>
 
-    function showStep(index) {
-      steps.forEach((step, i) => {
-        step.classList.toggle('active', i === index);
-      });
-      currentStepIndex = index;
-    }
+        <div class="nav-buttons">
+          <button type="button" class="btn-secondary" data-prev>← Previous</button>
+          <button type="button" class="btn-primary" data-next>Next →</button>
+        </div>
+      </div>
 
-    function validateCurrentStep() {
-      const activeStep = steps[currentStepIndex];
-      const requiredInputName = activeStep.querySelector('input[type="radio"]')?.name;
-      if (!requiredInputName) return true; // nothing to validate
+      <!-- STEP 5 -->
+      <div class="question-step" data-step="5">
+        <p>5 of 7</p>
+        <h2>How many prescription medications do you take regularly?</h2>
 
-      const checked = activeStep.querySelector('input[name="' + requiredInputName + '"]:checked');
-      if (!checked) {
-        alert('Please choose an option to continue.');
-        return false;
-      }
-      return true;
-    }
+        <div class="answers">
+          <label>
+            <input type="radio" name="prescriptions" value="0-3">
+            0–3 medications
+          </label>
+          <label>
+            <input type="radio" name="prescriptions" value="4-6">
+            4–6 medications
+          </label>
+          <label>
+            <input type="radio" name="prescriptions" value="7+">
+            7 or more medications
+          </label>
+        </div>
 
-    document.addEventListener('click', function (e) {
-      if (e.target.matches('[data-next]')) {
-        if (!validateCurrentStep()) return;
-        if (currentStepIndex < steps.length - 1) {
-          showStep(currentStepIndex + 1);
-        } else {
-          document.getElementById('questionnaireForm').submit();
-        }
-      }
-      if (e.target.matches('[data-prev]')) {
-        if (currentStepIndex > 0) {
-          showStep(currentStepIndex - 1);
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+        <div class="nav-buttons">
+          <button type="button" class="btn-secondary" data-prev>← Previous</button>
+          <button type="button" class="btn-primary" data-next>Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6 (extras – checkboxes, optional) -->
+      <div class="question-step" data-step="6">
+        <p>6 of 7</p>
+        <h2>Which extra benefits are most important to you?</h2>
+        <p>Select all that apply. This step is optional.</p>
+
+        <div class="answers">
+          <label>
+            <input type="checkbox" name="extras" value="dental">
+            Dental coverage
+          </label>
+          <label>
+            <input type="checkbox" name="extras" value="vision">
+            Vision coverage
+          </label>
+          <label>
+            <input type="checkbox" name="extras" value="hearing">
+            Hearing benefits
+          </label>
+          <label>
+            <input type="checkbox" name="extras" value="gym">
+            Fitness or gym membership
+          </label>
+          <label>
+            <input type="checkbox" name="extras" value="transportation">
+            Transportation to medical appointments
+          </label>
+        </div>
+
+        <div class="nav-buttons">
+          <button type="button" class="btn-secondary" data-prev>← Previous</button>
+          <button type="button" class="btn-primary" data-next>Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 7 (contact info + summary) -->
+      <div class="question-step" data-step="7">
+        <p>7 of 7</p>
+        <h2>Where should we send your plan options?</h2>
+        <p>We’ll use this to share your personalized Medicare recommendations.</p>
+
+        <div class="answers">
+          <label for="fullName">
+            Full name
+          </label>
+          <input type="text" id="fullName" name="fullName" required>
+
+          <label for="email">
+            Email
+          </label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">
+            Phone number
+          </label>
+          <input type="tel" id="phone" name="phone" required>
+
+          <label for="zipCode">
+            ZIP code
+          </label>
+          <input type="text" id="zipCode" name="zipCode" inputmode="numeric" required>
+        </div>
+
+        <!-- Where JS will write the recommendation and Medicare.gov link -->
+        <div id="planRecommendation" style="margin-top: 20px;"></div>
+        <div id="plans-results" style="margin-top: 20px;"></div>
+
+        <div class="nav-buttons">
+          <button type="button" class="btn-secondary" data-prev>← Previous</button>
+          <button type="submit" class="btn-primary">See my Medicare options</button>
+        </div>
+      </div>
