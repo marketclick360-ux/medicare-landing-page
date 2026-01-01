@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Advantage Plans - Expert Guidance in Texas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        
+        }
+        
+        .contact-info {
+            font-size: 0.9rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(8,145,178,0.95) 0%, rgba(14,116,144,0.95) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background: white;
+            padding: 60px 0;
+        }
+        
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-container h2 {
+            color: #0891b2;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+        
+        .form-container p {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0891b2;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .submit-btn {
+            background: #f97316;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: #ea580c;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 60px 0;
+            background: #f8fafc;
+        }
+        
+        .benefits h2 {
+            text-align: center;
+            color: #0891b2;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        .benefit-card h3 {
+            color: #0891b2;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .benefit-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        /* Trust Section */
+        .trust {
+            background: white;
+            padding: 40px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .trust-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0891b2;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Medicare Guidance Texas</div>
+                <div class="contact-info">📞 Call: (555) 123-4567</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Find the Perfect Medicare Advantage Plan</h1>
+            <p>Expert guidance for Texas seniors. Free consultation, unbiased advice.</p>
+        </div>
+    </section>
+
+    <section class="form-section" id="signup">
+        <div class="container">
+            <div class="form-container">
+                <div id="successMessage" class="success-message">Thank you! We'll contact you soon.</div>
+                <h2>Get Your Free Medicare Guide</h2>
+                <p>Fill out the form below and we'll help you find the best plan for your needs.</p>
+                
+                <form id="medicareForm" name="contact" method="POST" netlify>
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Age *</label>
+                        <select id="age" name="age" required>
+                            <option value="">Select your age range</option>
+                            <option value="under-65">Under 65</option>
+                            <option value="65-70">65-70</option>
+                            <option value="71-75">71-75</option>
+                            <option value="76-80">76-80</option>
+                            <option value="over-80">Over 80</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Texas County/City *</label>
+                        <input type="text" id="location" name="location" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="medicare-status">Current Medicare Status *</label>
+                        <select id="medicare-status" name="medicare-status" required>
+                            <option value="">Select your status</option>
+                            <option value="not-enrolled">Not yet enrolled</option>
+                            <option value="part-a-b">Have Part A & B only</option>
+                            <option value="have-advantage">Currently have Medicare Advantage</option>
+                            <option value="have-supplement">Have Medicare Supplement</option>
+                            <option value="medicaid">Have Medicaid</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>What are you interested in? (Select all that apply)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="advantage" name="interest[]" value="Medicare Advantage">
+                                <label for="advantage">Medicare Advantage</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="supplement" name="interest[]" value="Medicare Supplement">
+                                <label for="supplement">Medicare Supplement</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="partd" name="interest[]" value="Part D Prescription">
+                                <label for="partd">Part D Prescription</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="dental" name="interest[]" value="Dental Coverage">
+                                <label for="dental">Dental Coverage</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="vision" name="interest[]" value="Vision Coverage">
+                                <label for="vision">Vision Coverage</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hearing" name="interest[]" value="Hearing Coverage">
+                                <label for="hearing">Hearing Coverage</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Get My Free Guide</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust">
+        <div class="container">
+            <div class="trust-stats">
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$5M+</div>
+                    <div class="stat-label">Saved in Premiums</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>✔️ Independent Advice</h3>
+                    <p>We work with all major carriers to find you the best plan, not what pays us the most.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>💰 Zero Cost Service</h3>
+                    <p>Our guidance is 100% free. We're paid by insurance companies, never by you.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>🎯 Local Expertise</h3>
+                    <p>Specialized knowledge of Texas Medicare plans and county-specific options.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>📞 Personal Support</h3>
+                    <p>Direct access to your agent - no call centers, no automated systems.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>📅 Year-Round Help</h3>
+                    <p>Not just during enrollment - we're here for you 365 days a year.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>📄 Compare All Options</h3>
+                    <p>We'll help you compare dozens of plans to find the perfect fit for your needs and budget.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>Medicare Guidance Texas</strong></p>
+            <p>Licensed Medicare Insurance Agent | Texas Resident License</p>
+            <p>Serving all Texas counties</p>
+            <p style="font-size: 0.85rem; margin-top: 20px;">
+                We do not offer every plan available in your area. Any information we provide is limited to those plans we do offer in your area. 
+                Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options.
+            </p>
+            <p>&copy; 2026 Medicare Guidance Texas. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('medicareForm').addEventListener('submit', function(e) {
+            // For demo purposes, show success message
+            // In production with Netlify, this will handle the submission
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    </script>
+</body>
+</html>
