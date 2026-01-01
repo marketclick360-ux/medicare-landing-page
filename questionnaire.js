@@ -51,25 +51,24 @@ document.addEventListener('DOMContentLoaded', function() {
         timestamp: new Date().toISOString()
     };
     
-    // Fetch real Medicare plans from API
-    try {
-        const results = await searchPlans({
-            zipCode: formData.zipCode,
-            planType: userAnswers.recommendation === 'Medicare Advantage' ? 'advantage' : 'supplement'
-        });
-        
-        if (results.success && results.plans.length > 0) {
-            // Display real Medicare plans
-            displayPlans(results.plans, 'plans-results');
-        } else {
-            // Fallback: show Medicare.gov link
-            document.getElementById('plans-results').innerHTML = `
-                <p>View available plans on <a href="https://www.medicare.gov/plan-compare/?zip=${formData.zipCode}" target="_blank">Medicare.gov Plan Compare</a></p>
+            // Show Medicare.gov plan link for users to view options
+        const resultsContainer = document.getElementById('plans-results');
+        if (resultsContainer) {
+            resultsContainer.innerHTML = `
+                <div style="padding: 20px; background: #f0f9ff; border-radius: 8px; margin: 20px 0;">
+                    <h3 style="color: #0066cc; margin-bottom: 10px;">View Your Personalized Plan Options</h3>
+                    <p style="color: #334155; margin-bottom: 15px;">
+                        Based on your answers, we recommend ${formData.recommendation}. 
+                        Click below to view available plans in your area:
+                    </p>
+                    <a href="https://www.medicare.gov/plan-compare/?zip=${formData.zipCode}" 
+                       target="_blank" 
+                       style="display: inline-block; background: #0066cc; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+                        View Plans on Medicare.gov
+                    </a>
+                </div>
             `;
-        }
-    } catch (error) {
-        console.error('Error fetching plans:', error);
-    }
+        }}
     
     // Send lead to your email/CRM
     // Option 1: FormSubmit.co (free email forwarding)
