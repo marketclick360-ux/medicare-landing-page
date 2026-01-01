@@ -36,13 +36,63 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Form submission
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         saveCurrentAnswer();
-        // Here you would send data to your backend/Netlify forms
-        alert('Thank you! We\'ll contact you soon with personalized plan options.');
-        console.log('User answers:', userAnswers);
-    });
+            
+    // Get form data
+    const formData = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        zipCode: document.getElementById('zipCode').value,
+        answers: userAnswers,
+        recommendation: userAnswers.recommendation,
+        timestamp: new Date().toISOString()
+    };
+    
+    // Fetch real Medicare plans from API
+    try {
+        const results = await searchPlans({
+            zipCode: formData.zipCode,
+            planType: userAnswers.recommendation === 'Medicare Advantage' ? 'advantage' : 'supplement'
+        });
+        
+        if (results.success && results.plans.length > 0) {
+            // Display real Medicare plans
+            displayPlans(results.plans, 'plans-results');
+        } else {
+            // Fallback: show Medicare.gov link
+            document.getElementById('plans-results').innerHTML = `
+                <p>View available plans on <a href="https://www.medicare.gov/plan-compare/?zip=${formData.zipCode}" target="_blank">Medicare.gov Plan Compare</a></p>
+            `;
+        }
+    } catch (error) {
+        console.error('Error fetching plans:', error);
+    }
+    
+    // Send lead to your email/CRM
+    // Option 1: FormSubmit.co (free email forwarding)
+    fetch('https://formsubmit.co/ajax/marketclick360@gmail.com', {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            zip: formData.zipCode,
+            recommendation: formData.recommendation,
+            _subject: 'New Medicare Lead from ' + formData.fullName,
+            _template: 'table'
+        })
+    }).then(response => console.log('Lead sent successfully'))
+      .catch(error => console.error('Error sending lead:', error));
+    
+    alert('Thank you! We\'ll contact you soon with personalized plan options.');
+    console.log('User data:', formData)
 });
 
 function showStep(step) {
