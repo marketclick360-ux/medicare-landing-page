@@ -5,7 +5,7 @@
   <title>Find Your Perfect Medicare Plan - Quick Assessment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Shared site styles (same CSS as your main page; adjust path if needed) -->
+  <!-- Shared site styles (same CSS as your main landing page) -->
   <link rel="stylesheet" href="/styles.css">
 
   <!-- Questionnaire-specific layout -->
@@ -73,6 +73,20 @@
       background: #e5e7eb;
       color: #111827;
     }
+
+    .site-footer {
+      background: #020617;
+      color: #e5e7eb;
+      padding: 1.5rem 1.25rem;
+      font-size: 0.85rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-text {
+      margin: 0.25rem 0;
+    }
   </style>
 </head>
 <body>
@@ -80,18 +94,235 @@
     <section class="questionnaire-section">
       <div class="questionnaire-container">
         <form id="questionnaireForm">
-          <!-- STEP 1–7 content goes here -->
+          <!-- STEP 1 -->
+          <div class="question-step active" data-step="1">
+            <p>1 of 7</p>
+            <h1>Let's find your ideal Medicare plan</h1>
+            <p>How would you describe your current health?</p>
+
+            <div class="answers">
+              <label>
+                <input type="radio" name="health" value="excellent">
+                Excellent – Rarely see doctors, no medications
+              </label>
+              <label>
+                <input type="radio" name="health" value="good">
+                Good – Occasional visits, 1–2 medications
+              </label>
+              <label>
+                <input type="radio" name="health" value="fair">
+                Fair – Regular visits, 3–5 medications
+              </label>
+              <label>
+                <input type="radio" name="health" value="managing">
+                Managing Conditions – Frequent care, 6+ medications
+              </label>
+            </div>
+
+            <div class="nav-buttons">
+              <button type="button" class="btn-secondary" data-prev disabled>← Previous</button>
+              <button type="button" class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="question-step" data-step="2">
+            <p>2 of 7</p>
+            <h2>Which doctors are most important to keep?</h2>
+            <p>Select the best description; we’ll confirm exact doctors later.</p>
+
+            <div class="answers">
+              <label>
+                <input type="radio" name="doctors" value="pcp-only">
+                Just my primary doctor
+              </label>
+              <label>
+                <input type="radio" name="doctors" value="pcp-specialists">
+                PCP + a few specialists
+              </label>
+              <label>
+                <input type="radio" name="doctors" value="any">
+                I’m flexible on doctors
+              </label>
+            </div>
+
+            <div class="nav-buttons">
+              <button type="button" class="btn-secondary" data-prev>← Previous</button>
+              <button type="button" class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="question-step" data-step="3">
+            <p>3 of 7</p>
+            <h2>What matters most about your monthly costs?</h2>
+            <p>Choose the option that best matches your budget comfort level.</p>
+
+            <div class="answers">
+              <label>
+                <input type="radio" name="budget" value="low-premium">
+                Lowest possible monthly premium, even if I pay more when I use care
+              </label>
+              <label>
+                <input type="radio" name="budget" value="balanced">
+                A balance between premium and what I pay when I use care
+              </label>
+              <label>
+                <input type="radio" name="budget" value="comprehensive">
+                I’m okay with a higher premium for more predictable, lower bills when I need care
+              </label>
+            </div>
+
+            <div class="nav-buttons">
+              <button type="button" class="btn-secondary" data-prev>← Previous</button>
+              <button type="button" class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="question-step" data-step="4">
+            <p>4 of 7</p>
+            <h2>How often do you travel outside your home area?</h2>
+            <p>This helps us understand how important nationwide access is for you.</p>
+
+            <div class="answers">
+              <label>
+                <input type="radio" name="travel" value="local">
+                I mostly stay in my local area
+              </label>
+              <label>
+                <input type="radio" name="travel" value="occasional">
+                I take a few trips each year
+              </label>
+              <label>
+                <input type="radio" name="travel" value="frequent">
+                I travel frequently
+              </label>
+              <label>
+                <input type="radio" name="travel" value="snowbird">
+                I live in two states during the year (snowbird)
+              </label>
+            </div>
+
+            <div class="nav-buttons">
+              <button type="button" class="btn-secondary" data-prev>← Previous</button>
+              <button type="button" class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="question-step" data-step="5">
+            <p>5 of 7</p>
+            <h2>How many prescription medications do you take regularly?</h2>
+
+            <div class="answers">
+              <label>
+                <input type="radio" name="prescriptions" value="0-3">
+                0–3 medications
+              </label>
+              <label>
+                <input type="radio" name="prescriptions" value="4-6">
+                4–6 medications
+              </label>
+              <label>
+                <input type="radio" name="prescriptions" value="7+">
+                7 or more medications
+              </label>
+            </div>
+
+            <div class="nav-buttons">
+              <button type="button" class="btn-secondary" data-prev>← Previous</button>
+              <button type="button" class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+
+          <!-- STEP 6 -->
+          <div class="question-step" data-step="6">
+            <p>6 of 7</p>
+            <h2>Which extra benefits are most important to you?</h2>
+            <p>Select all that apply. This step is optional.</p>
+
+            <div class="answers">
+              <label>
+                <input type="checkbox" name="extras" value="dental">
+                Dental coverage
+              </label>
+              <label>
+                <input type="checkbox" name="extras" value="vision">
+                Vision coverage
+              </label>
+              <label>
+                <input type="checkbox" name="extras" value="hearing">
+                Hearing benefits
+              </label>
+              <label>
+                <input type="checkbox" name="extras" value="gym">
+                Fitness or gym membership
+              </label>
+              <label>
+                <input type="checkbox" name="extras" value="transportation">
+                Transportation to medical appointments
+              </label>
+            </div>
+
+            <div class="nav-buttons">
+              <button type="button" class="btn-secondary" data-prev>← Previous</button>
+              <button type="button" class="btn-primary" data-next>Next →</button>
+            </div>
+          </div>
+
+          <!-- STEP 7 -->
+          <div class="question-step" data-step="7">
+            <p>7 of 7</p>
+            <h2>Where should we send your plan options?</h2>
+            <p>We’ll use this to share your personalized Medicare recommendations.</p>
+
+            <div class="answers">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" name="fullName" required>
+
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" required>
+
+              <label for="zipCode">ZIP code</label>
+              <input type="text" id="zipCode" name="zipCode" inputmode="numeric" required>
+            </div>
+
+            <div id="planRecommendation" style="margin-top: 20px;"></div>
+            <div id="plans-results" style="margin-top: 20px;"></div>
+
+            <div class="nav-buttons">
+              <button type="button" class="btn-secondary" data-prev>← Previous</button>
+              <button type="submit" class="btn-primary">See my Medicare options</button>
+            </div>
+          </div>
         </form>
       </div>
     </section>
   </main>
-  
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">
+        Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.
+      </p>
+      <p class="footer-text">
+        For accommodation of persons with special needs at meetings, please call the number provided in your plan information.
+      </p>
+      <p class="footer-text">
+        © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
+      </p>
+    </div>
+  </footer>
 
   <script>
-    // Simple footer year
+    // Footer year
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-    // Step logic for the questionnaire
+    // Step logic
     const steps = Array.from(document.querySelectorAll('.question-step'));
     let currentStepIndex = 0;
 
@@ -105,7 +336,7 @@
     function validateCurrentStep() {
       const activeStep = steps[currentStepIndex];
       const requiredInputName = activeStep.querySelector('input[type="radio"]')?.name;
-      if (!requiredInputName) return true; // no radios to validate on this step
+      if (!requiredInputName) return true; // no radios on this step
 
       const checked = activeStep.querySelector('input[name="' + requiredInputName + '"]:checked');
       if (!checked) {
@@ -138,282 +369,3 @@
   </script>
 </body>
 </html>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-text">
-        Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.
-      </p>
-      <p class="footer-text">
-        For accommodation of persons with special needs at meetings, please call the number provided in your plan information.
-      </p>
-      <p class="footer-text">
-        © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
-      </p>
-    </div>
-  </footer>
-
-  <script>
-    // Simple footer year
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-    // your questionnaire JS (step logic) can follow here
-  </script>
-</body>
-</html>
-
-
-      <!-- STEP 1 -->
-      <div class="question-step active" data-step="1">
-        <p>1 of 7</p>
-        <h1>Let's find your ideal Medicare plan</h1>
-        <p>How would you describe your current health?</p>
-
-        <div class="answers">
-          <label>
-            <input type="radio" name="health" value="excellent">
-            Excellent – Rarely see doctors, no medications
-          </label>
-          <label>
-            <input type="radio" name="health" value="good">
-            Good – Occasional visits, 1–2 medications
-          </label>
-          <label>
-            <input type="radio" name="health" value="fair">
-            Fair – Regular visits, 3–5 medications
-          </label>
-          <label>
-            <input type="radio" name="health" value="managing">
-            Managing Conditions – Frequent care, 6+ medications
-          </label>
-        </div>
-
-        <div class="nav-buttons">
-          <button type="button" class="btn-secondary" data-prev disabled>← Previous</button>
-          <button type="button" class="btn-primary" data-next>Next →</button>
-        </div>
-      </div>
-
-      <!-- STEP 2 (example placeholder, copy/edit for steps 3–7) -->
-      <div class="question-step" data-step="2">
-        <p>2 of 7</p>
-        <h2>Which doctors are most important to keep?</h2>
-        <p>Select the best description; we’ll confirm exact doctors later.</p>
-
-        <div class="answers">
-          <label><input type="radio" name="doctors" value="pcp-only"> Just my primary doctor</label>
-          <label><input type="radio" name="doctors" value="pcp-specialists"> PCP + a few specialists</label>
-          <label><input type="radio" name="doctors" value="any"> I’m flexible on doctors</label>
-        </div>
-
-        <div class="nav-buttons">
-          <button type="button" class="btn-secondary" data-prev>← Previous</button>
-          <button type="button" class="btn-primary" data-next>Next →</button>
-        </div>
-      </div>
-
-                <!-- STEP 3 -->
-      <div class="question-step" data-step="3">
-        <p>3 of 7</p>
-        <h2>What matters most about your monthly costs?</h2>
-        <p>Choose the option that best matches your budget comfort level.</p>
-
-        <div class="answers">
-          <label>
-            <input type="radio" name="budget" value="low-premium">
-            Lowest possible monthly premium, even if I pay more when I use care
-          </label>
-          <label>
-            <input type="radio" name="budget" value="balanced">
-            A balance between premium and what I pay when I use care
-          </label>
-          <label>
-            <input type="radio" name="budget" value="comprehensive">
-            I’m okay with a higher premium for more predictable, lower bills when I need care
-          </label>
-        </div>
-
-        <div class="nav-buttons">
-          <button type="button" class="btn-secondary" data-prev>← Previous</button>
-          <button type="button" class="btn-primary" data-next>Next →</button>
-        </div>
-      </div>
-
-      <!-- STEP 4 -->
-      <div class="question-step" data-step="4">
-        <p>4 of 7</p>
-        <h2>How often do you travel outside your home area?</h2>
-        <p>This helps us understand how important nationwide access is for you.</p>
-
-        <div class="answers">
-          <label>
-            <input type="radio" name="travel" value="local">
-            I mostly stay in my local area
-          </label>
-          <label>
-            <input type="radio" name="travel" value="occasional">
-            I take a few trips each year
-          </label>
-          <label>
-            <input type="radio" name="travel" value="frequent">
-            I travel frequently
-          </label>
-          <label>
-            <input type="radio" name="travel" value="snowbird">
-            I live in two states during the year (snowbird)
-          </label>
-        </div>
-
-        <div class="nav-buttons">
-          <button type="button" class="btn-secondary" data-prev>← Previous</button>
-          <button type="button" class="btn-primary" data-next>Next →</button>
-        </div>
-      </div>
-
-      <!-- STEP 5 -->
-      <div class="question-step" data-step="5">
-        <p>5 of 7</p>
-        <h2>How many prescription medications do you take regularly?</h2>
-
-        <div class="answers">
-          <label>
-            <input type="radio" name="prescriptions" value="0-3">
-            0–3 medications
-          </label>
-          <label>
-            <input type="radio" name="prescriptions" value="4-6">
-            4–6 medications
-          </label>
-          <label>
-            <input type="radio" name="prescriptions" value="7+">
-            7 or more medications
-          </label>
-        </div>
-
-        <div class="nav-buttons">
-          <button type="button" class="btn-secondary" data-prev>← Previous</button>
-          <button type="button" class="btn-primary" data-next>Next →</button>
-        </div>
-      </div>
-
-      <!-- STEP 6 (extras – checkboxes, optional) -->
-      <div class="question-step" data-step="6">
-        <p>6 of 7</p>
-        <h2>Which extra benefits are most important to you?</h2>
-        <p>Select all that apply. This step is optional.</p>
-
-        <div class="answers">
-          <label>
-            <input type="checkbox" name="extras" value="dental">
-            Dental coverage
-          </label>
-          <label>
-            <input type="checkbox" name="extras" value="vision">
-            Vision coverage
-          </label>
-          <label>
-            <input type="checkbox" name="extras" value="hearing">
-            Hearing benefits
-          </label>
-          <label>
-            <input type="checkbox" name="extras" value="gym">
-            Fitness or gym membership
-          </label>
-          <label>
-            <input type="checkbox" name="extras" value="transportation">
-            Transportation to medical appointments
-          </label>
-        </div>
-
-        <div class="nav-buttons">
-          <button type="button" class="btn-secondary" data-prev>← Previous</button>
-          <button type="button" class="btn-primary" data-next>Next →</button>
-        </div>
-      </div>
-
-            <!-- STEP 7 (contact info + summary) -->
-      <div class="question-step" data-step="7">
-        <p>7 of 7</p>
-        <h2>Where should we send your plan options?</h2>
-        <p>We’ll use this to share your personalized Medicare recommendations.</p>
-
-        <div class="answers">
-          <label for="fullName">
-            Full name
-          </label>
-          <input type="text" id="fullName" name="fullName" required>
-
-          <label for="email">
-            Email
-          </label>
-          <input type="email" id="email" name="email" required>
-
-          <label for="phone">
-            Phone number
-          </label>
-          <input type="tel" id="phone" name="phone" required>
-
-          <label for="zipCode">
-            ZIP code
-          </label>
-          <input type="text" id="zipCode" name="zipCode" inputmode="numeric" required>
-        </div>
-
-        <!-- Where JS will write the recommendation and Medicare.gov link -->
-        <div id="planRecommendation" style="margin-top: 20px;"></div>
-        <div id="plans-results" style="margin-top: 20px;"></div>
-
-        <div class="nav-buttons">
-          <button type="button" class="btn-secondary" data-prev>← Previous</button>
-          <button type="submit" class="btn-primary">See my Medicare options</button>
-        </div>
-  
-           </div> <!-- end of STEP 7 -->
-
-    </form>
-
-  <script>
-    // Step logic for the questionnaire
-
-    const steps = Array.from(document.querySelectorAll('.question-step'));
-    let currentStepIndex = 0;
-
-    function showStep(index) {
-      steps.forEach((step, i) => {
-        step.classList.toggle('active', i === index);
-      });
-      currentStepIndex = index;
-    }
-
-    function validateCurrentStep() {
-      const activeStep = steps[currentStepIndex];
-      const requiredInputName = activeStep.querySelector('input[type="radio"]')?.name;
-      if (!requiredInputName) return true; // nothing to validate (e.g., checkboxes or text inputs)
-
-      const checked = activeStep.querySelector('input[name="' + requiredInputName + '"]:checked');
-      if (!checked) {
-        alert('Please choose an option to continue.');
-        return false;
-      }
-      return true;
-    }
-
-    document.addEventListener('click', function (e) {
-      if (e.target.matches('[data-next]')) {
-        if (!validateCurrentStep()) return;
-
-        if (currentStepIndex < steps.length - 1) {
-          showStep(currentStepIndex + 1);
-        } else {
-          document.getElementById('questionnaireForm').submit();
-        }
-      }
-
-      if (e.target.matches('[data-prev]')) {
-        if (currentStepIndex > 0) {
-          showStep(currentStepIndex - 1);
-        }
-      }
-    });
-
- 
