@@ -1,5 +1,4 @@
-
-
+<form id="questionnaireForm">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -327,3 +326,11 @@ function generateRecommendation() {
   <script src="questionnaire.js" defer></script>
 </body>
 </html>
+<div class="nav-buttons">
+    <button type="button" id="prevBtn" class="btn-secondary">← Previous</button>
+    <button type="button" id="nextBtn" class="btn-primary">Next →</button>
+    <button type="submit" id="submitBtn" class="btn-primary" style="display:none;">
+      See my Medicare options
+    </button>
+  </div>
+</form>
