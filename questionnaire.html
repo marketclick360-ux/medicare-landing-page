@@ -238,14 +238,7 @@ body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; pa
     </p>
   </div>
 </footer>
-              <!-- SAME FOOTER AS HOME PAGE -->
-</div>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-
+              
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-text">
@@ -256,15 +249,16 @@ body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; pa
       </p>
       <p class="footer-text">
         © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
-      </p>
-    </div>
-  </footer>
-
-
-    </form>
-  </div>
+     
+    <div>
+  <footer>
 
   <script>
+  // Simple footer year
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+<script>
+
+
     const steps = Array.from(document.querySelectorAll('.question-step'));
     let currentStepIndex = 0;
 
