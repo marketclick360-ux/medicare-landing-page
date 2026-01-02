@@ -80,33 +80,78 @@
     <section class="questionnaire-section">
       <div class="questionnaire-container">
         <form id="questionnaireForm">
-          <!-- STEP 1–7 content -->
+          <!-- STEP 1–7 content goes here -->
         </form>
       </div>
     </section>
   </main>
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-text">
-      Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.
-    </p>
-    <p class="footer-text">
-      For accommodation of persons with special needs at meetings, please call the number provided in your plan information.
-    </p>
-    <p class="footer-text">
-      © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
-    </p>
-  </div>
-</footer>
 
-<script>
-  // Simple footer year
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
-</script>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">
+        Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.
+      </p>
+      <p class="footer-text">
+        For accommodation of persons with special needs at meetings, please call the number provided in your plan information.
+      </p>
+      <p class="footer-text">
+        © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
+      </p>
+    </div>
+  </footer>
 
+  <script>
+    // Simple footer year
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
+    // Step logic for the questionnaire
+    const steps = Array.from(document.querySelectorAll('.question-step'));
+    let currentStepIndex = 0;
 
-  <!-- PASTE FOOTER HERE -->
+    function showStep(index) {
+      steps.forEach((step, i) => {
+        step.classList.toggle('active', i === index);
+      });
+      currentStepIndex = index;
+    }
+
+    function validateCurrentStep() {
+      const activeStep = steps[currentStepIndex];
+      const requiredInputName = activeStep.querySelector('input[type="radio"]')?.name;
+      if (!requiredInputName) return true; // no radios to validate on this step
+
+      const checked = activeStep.querySelector('input[name="' + requiredInputName + '"]:checked');
+      if (!checked) {
+        alert('Please choose an option to continue.');
+        return false;
+      }
+      return true;
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.target.matches('[data-next]')) {
+        if (!validateCurrentStep()) return;
+
+        if (currentStepIndex < steps.length - 1) {
+          showStep(currentStepIndex + 1);
+        } else {
+          document.getElementById('questionnaireForm').submit();
+        }
+      }
+
+      if (e.target.matches('[data-prev]')) {
+        if (currentStepIndex > 0) {
+          showStep(currentStepIndex - 1);
+        }
+      }
+    });
+
+    // Start on first step
+    showStep(0);
+  </script>
+</body>
+</html>
+
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-text">
