@@ -241,13 +241,10 @@ body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; pa
   </footer>
 
 
+    </form>
+  </div>
 
-
-   <script>
-    // footer year
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-    // questionnaire step logic
+  <script>
     const steps = Array.from(document.querySelectorAll('.question-step'));
     let currentStepIndex = 0;
 
@@ -270,7 +267,6 @@ body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; pa
       }
       return true;
     }
-
     document.addEventListener('click', function (e) {
       if (e.target.matches('[data-next]')) {
         if (!validateCurrentStep()) return;
