@@ -5,28 +5,36 @@
   <title>Find Your Perfect Medicare Plan - Quick Assessment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Use the same main CSS as your homepage -->
-  <link rel="stylesheet" href="/styles.css"><!-- adjust path if needed -->
+  <!-- Shared site styles (same CSS as your main page; adjust path if needed) -->
+  <link rel="stylesheet" href="/styles.css">
 
-  <!-- Questionnaire-specific tweaks only -->
+  <!-- Questionnaire-specific layout -->
   <style>
+    .site-main {
+      background: #f1f5f9;
+      min-height: 100vh;
+      padding: 2rem 1rem 3rem;
+    }
+
     .questionnaire-section {
-      padding: 2rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
     }
 
     .questionnaire-container {
       max-width: 640px;
-      margin: 0 auto;
+      width: 100%;
       background: #ffffff;
       border-radius: 12px;
-      padding: 1.5rem 1.75rem;
+      padding: 1.75rem 1.75rem 2rem;
       box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
     }
 
     .question-step {
       display: none;
     }
-
     .question-step.active {
       display: block;
     }
@@ -37,32 +45,38 @@
       cursor: pointer;
     }
 
+    .answers input[type="radio"],
+    .answers input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+
     .nav-buttons {
       margin-top: 20px;
       display: flex;
       justify-content: space-between;
       gap: 1rem;
     }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .btn-primary {
+      background: #f97316;
+      color: #ffffff;
+    }
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
   </style>
 </head>
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="footer-text">
-      Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.
-    </p>
-    <p class="footer-text">
-      For accommodation of persons with special needs at meetings, please call the number provided in your plan information.
-    </p>
-    <p class="footer-text">
-      © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
-    </p>
-  </div>
-</footer>
+<body>
 
-<script>
-  // Simple footer year
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
-</script>
 
 <body>
   <main id="main-content" class="site-main">
