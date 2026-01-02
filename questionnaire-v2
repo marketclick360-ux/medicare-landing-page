@@ -1,6 +1,35 @@
 <link rel="stylesheet" href="questionnaire.css">
 <script src="questionnaire.js" defer></script>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Find the Right Medicare Plan for You</title>
+  <!-- same CSS as index -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="header-inner">
+      <div class="logo-area">
+        <span class="logo-mark" aria-hidden="true">✓</span>
+        <span class="logo-text">Medicare Help Center</span>
+      </div>
+
+      <nav class="main-nav" aria-label="Primary">
+        <a href="index.html#how-it-works-heading">How it works</a>
+        <a href="index.html#reviews-heading">Reviews</a>
+        <a href="index.html#faq-heading">FAQ</a>
+        <a href="#questionnaire-start" class="nav-cta">Get started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
 
 // Medicare Questionnaire Logic
 let currentStep = 1;
@@ -277,3 +306,25 @@ function generateRecommendation() {
 
   userAnswers.recommendedPlan = planType;
 }
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">
+        Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.
+      </p>
+      <p class="footer-text">
+        For accommodation of persons with special needs at meetings, please call the number provided in your plan information.
+      </p>
+      <p class="footer-text">
+        © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+  <script src="questionnaire.js" defer></script>
+</body>
+</html>
