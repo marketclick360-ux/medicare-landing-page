@@ -1,0 +1,279 @@
+<link rel="stylesheet" href="questionnaire.css">
+<script src="questionnaire.js" defer></script>
+
+
+// Medicare Questionnaire Logic
+let currentStep = 1;
+const totalSteps = 7;
+const userAnswers = {};
+
+document.addEventListener('DOMContentLoaded', function () {
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const form = document.getElementById('questionnaireForm');
+
+  // Footer year
+  const footerYear = document.getElementById('footer-year');
+  if (footerYear) {
+    footerYear.textContent = new Date().getFullYear();
+  }
+
+  showStep(currentStep);
+  updateProgress();
+  updateButtons();
+
+  nextBtn.addEventListener('click', function () {
+    if (validateCurrentStep()) {
+      saveCurrentAnswer();
+      if (currentStep < totalSteps) {
+        currentStep++;
+        showStep(currentStep);
+        updateProgress();
+        updateButtons();
+      }
+    }
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+      updateProgress();
+      updateButtons();
+    }
+  });
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    saveCurrentAnswer();
+    generateRecommendation(); // ensure recommendation exists
+
+    const formData = {
+      fullName: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      zipCode: document.getElementById('zipCode').value,
+      answers: userAnswers,
+      recommendation: userAnswers.recommendedPlan,
+      timestamp: new Date().toISOString()
+    };
+
+    const resultsContainer = document.getElementById('plans-results');
+    if (resultsContainer) {
+      resultsContainer.innerHTML = `
+        <h3>View Your Personalized Plan Options</h3>
+        <p>Based on your answers, we recommend ${formData.recommendation}.</p>
+        <p>Click below to view available plans in your area:</p>
+        <p>
+          <a href="https://www.medicare.gov/plan-compare/?zip=${encodeURIComponent(
+            formData.zipCode
+          )}" target="_blank" rel="noopener noreferrer">
+            View Plans on Medicare.gov
+          </a>
+        </p>
+      `;
+    }
+
+    try {
+      await fetch('https://formsubmit.co/ajax/marketclick360@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          zip: formData.zipCode,
+          recommendation: formData.recommendation,
+          _subject: 'New Medicare Lead from ' + formData.fullName,
+          _template: 'table'
+        })
+      });
+
+      alert("Thank you! We'll contact you soon with personalized plan options.");
+      console.log('User data:', formData);
+      form.reset();
+      currentStep = 1;
+      showStep(currentStep);
+      updateProgress();
+      updateButtons();
+    } catch (error) {
+      console.error('Error sending lead:', error);
+      alert('Something went wrong sending your request. Please try again.');
+    }
+  });
+});
+
+function showStep(step) {
+  const steps = document.querySelectorAll('.question-step');
+  steps.forEach((s, index) => {
+    s.classList.toggle('active', index === step - 1);
+  });
+
+  if (step === totalSteps) {
+    generateRecommendation();
+  }
+}
+
+function updateProgress() {
+  const progress = document.getElementById('progress');
+  if (progress) {
+    const percentage = (currentStep / totalSteps) * 100;
+    progress.style.width = percentage + '%';
+  }
+
+  const currentStepEl = document.getElementById('currentStep');
+  const totalStepsEl = document.getElementById('totalSteps');
+  if (currentStepEl) currentStepEl.textContent = currentStep;
+  if (totalStepsEl) totalStepsEl.textContent = totalSteps;
+}
+
+function updateButtons() {
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const submitBtn = document.getElementById('submitBtn');
+
+  if (!prevBtn || !nextBtn || !submitBtn) return;
+
+  prevBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
+
+  if (currentStep === totalSteps) {
+    nextBtn.style.display = 'none';
+    submitBtn.style.display = 'inline-block';
+  } else {
+    nextBtn.style.display = 'inline-block';
+    submitBtn.style.display = 'none';
+  }
+}
+
+function validateCurrentStep() {
+  const currentStepEl = document.querySelector('.question-step.active');
+  if (!currentStepEl) return false;
+
+  // Step 6 (checkboxes) and step 7 (contact info) are handled differently
+  if (currentStep === 6) return true;
+  if (currentStep === 7) return true;
+
+  const radios = currentStepEl.querySelectorAll('input[type="radio"]');
+  if (radios.length > 0) {
+    const name = radios[0].name;
+    const checked = currentStepEl.querySelector(`input[name="${name}"]:checked`);
+    if (!checked) {
+      alert('Please select an option to continue.');
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function saveCurrentAnswer() {
+  const currentStepEl = document.querySelector('.question-step.active');
+  if (!currentStepEl) return;
+
+  // radios
+  const radiosChecked = currentStepEl.querySelectorAll('input[type="radio"]:checked');
+  radiosChecked.forEach((radio) => {
+    userAnswers[radio.name] = radio.value;
+  });
+
+  // checkboxes (extras)
+  const checkboxesChecked = currentStepEl.querySelectorAll('input[type="checkbox"]:checked');
+  if (checkboxesChecked.length > 0) {
+    const extras = [];
+    checkboxesChecked.forEach((checkbox) => extras.push(checkbox.value));
+    userAnswers.extras = extras;
+  }
+}
+
+function generateRecommendation() {
+  const health = userAnswers.health;
+  const doctors = userAnswers.doctors;
+  const budget = userAnswers.budget;
+  const travel = userAnswers.travel;
+  const prescriptions = userAnswers.prescriptions;
+
+  let advantageScore = 0;
+  let supplementScore = 0;
+  const reasons = [];
+
+  if (health === 'excellent' || health === 'good') {
+    advantageScore += 2;
+    reasons.push('Your good health makes Medicare Advantage cost-effective.');
+  } else if (health) {
+    supplementScore += 2;
+    reasons.push('Your health needs benefit from comprehensive Medigap coverage.');
+  }
+
+  if (doctors === 'pcp-only' || doctors === 'pcp-specialists') {
+    supplementScore += 2;
+    reasons.push('Keeping specific doctors may fit well with Medigap + Original Medicare.');
+  } else if (doctors === 'any') {
+    advantageScore += 2;
+    reasons.push('Flexibility with doctors opens strong Medicare Advantage options.');
+  }
+
+  if (budget === 'low-premium') {
+    advantageScore += 2;
+    reasons.push('Medicare Advantage often has low or $0 premiums.');
+  } else if (budget === 'comprehensive') {
+    supplementScore += 2;
+    reasons.push('Medigap offers more predictable, lower out-of-pocket costs.');
+  } else if (budget === 'balanced') {
+    advantageScore += 1;
+    supplementScore += 1;
+    reasons.push('A balanced budget can work with either Medigap or Medicare Advantage.');
+  }
+
+  if (travel === 'snowbird' || travel === 'frequent') {
+    supplementScore += 3;
+    reasons.push('Original Medicare + Medigap works nationwide, helpful for frequent travel.');
+  } else if (travel === 'occasional' || travel === 'local') {
+    advantageScore += 1;
+  }
+
+  if (prescriptions === '4-6' || prescriptions === '7+') {
+    advantageScore += 2;
+    reasons.push('Many Medicare Advantage plans include prescription drug coverage.');
+  }
+
+  let planType;
+  let recommendationHtml;
+
+  if (supplementScore > advantageScore) {
+    planType = 'Medicare Supplement (Medigap)';
+    recommendationHtml = `
+      <h3>Recommended: ${planType}</h3>
+      <p>Based on your answers, a Medicare Supplement (Medigap) plan may be a strong fit for you.</p>
+      <ul>
+        ${reasons.map((r) => `<li>${r}</li>`).join('')}
+        <li>No network restrictions – see any doctor that accepts Medicare.</li>
+        <li>Lower and more predictable out-of-pocket costs when you need care.</li>
+        <li>Works anywhere in the United States.</li>
+      </ul>
+    `;
+  } else {
+    planType = 'Medicare Advantage';
+    recommendationHtml = `
+      <h3>Recommended: ${planType}</h3>
+      <p>Based on your answers, a Medicare Advantage plan may be a strong fit for you.</p>
+      <ul>
+        ${reasons.map((r) => `<li>${r}</li>`).join('')}
+        <li>Often low or $0 monthly premiums.</li>
+        <li>Many plans include prescription drug coverage.</li>
+        <li>Extra benefits like dental, vision, and hearing may be available.</li>
+        <li>Annual out-of-pocket maximum for added protection.</li>
+      </ul>
+    `;
+  }
+
+  const recommendationEl = document.getElementById('planRecommendation');
+  if (recommendationEl) {
+    recommendationEl.innerHTML = recommendationHtml;
+  }
+
+  userAnswers.recommendedPlan = planType;
+}
