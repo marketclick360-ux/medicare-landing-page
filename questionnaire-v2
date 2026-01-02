@@ -1,4 +1,4 @@
-<form id="questionnaireForm">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +27,25 @@
     </div>
   </header>
 
-  <main id="main-content">
+<main id="main-content">
+  <section class="hero" aria-labelledby="questionnaire-heading" id="questionnaire-start">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 id="questionnaire-heading">Find your ideal Medicare plan</h1>
+        <p>Answer a few guided questions to see which type of Medicare coverage may fit you best.</p>
+        <ul class="hero-points">
+          <li>Personalized recommendations</li>
+          <li>No obligation to enroll</li>
+          <li>Takes just a few minutes</li>
+        </ul>
+      </div>
+
+      <aside class="hero-form" aria-label="Medicare questionnaire">
+        <form id="questionnaireForm">
+          <!-- ALL your .question-step sections go here -->
+
+          <div id="planRecommendation"></div>
+          <div id="plans-results"></div>
 
 // Medicare Questionnaire Logic
 let currentStep = 1;
@@ -304,7 +322,18 @@ function generateRecommendation() {
 
   userAnswers.recommendedPlan = planType;
 }
-  </main>
+ <div class="nav-buttons">
+            <button type="button" id="prevBtn" class="btn-secondary">← Previous</button>
+            <button type="button" id="nextBtn" class="btn-primary">Next →</button>
+            <button type="submit" id="submitBtn" class="btn-primary" style="display:none;">
+              See my Medicare options
+            </button>
+          </div>
+        </form>
+      </aside>
+    </div>
+  </section>
+</main>
 
   <footer class="site-footer">
     <div class="footer-inner">
@@ -326,11 +355,3 @@ function generateRecommendation() {
   <script src="questionnaire.js" defer></script>
 </body>
 </html>
-<div class="nav-buttons">
-    <button type="button" id="prevBtn" class="btn-secondary">← Previous</button>
-    <button type="button" id="nextBtn" class="btn-primary">Next →</button>
-    <button type="submit" id="submitBtn" class="btn-primary" style="display:none;">
-      See my Medicare options
-    </button>
-  </div>
-</form>
