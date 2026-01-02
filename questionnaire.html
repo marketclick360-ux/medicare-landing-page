@@ -27,14 +27,28 @@
     .btn-primary { background: #f97316; color: #fff; }
     .btn-secondary { background: #e5e7eb; color: #111827; }    
 
-
-
-
-  </style>
+    
+   </style>
 </head>
 <body>
-  <div class="questionnaire-container">
-    <form id="questionnaireForm">
+  <!-- SAME HEADER AS HOME PAGE -->
+  <header class="site-header">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="header-inner">
+      <div class="logo-area">
+        <span class="logo-mark" aria-hidden="true">✓</span>
+        <span class="logo-text">Medicare Help Center</span>
+      </div>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/questionnaire">Questionnaire</a>
+      </nav>
+    </div>
+  </header>
+  
+  <main id="main-content">
+    <div class="questionnaire-container">
+      <form id="questionnaireForm">
 
       <!-- STEP 1 -->
       <div class="question-step active" data-step="1">
@@ -260,10 +274,11 @@
 
 
 
-    </form>
-  </div>
+   <script>
+    // footer year
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-  <script>
+    // questionnaire step logic
     const steps = Array.from(document.querySelectorAll('.question-step'));
     let currentStepIndex = 0;
 
@@ -302,7 +317,8 @@
         }
       }
     });
+
+    showStep(0);
   </script>
 </body>
 </html>
-
