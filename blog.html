@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Insights Blog | Medicare Help Center</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        header { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); color: white; padding: 40px 20px; text-align: center; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        nav { background: #1e293b; padding: 15px 20px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .newsletter-box { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); color: white; padding: 40px; border-radius: 12px; text-align: center; margin-bottom: 50px; }
+        .newsletter-box h2 { margin-bottom: 15px; font-size: 1.8rem; }
+        .newsletter-box p { margin-bottom: 20px; opacity: 0.95; }
+        .newsletter-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .newsletter-form input[type="email"] { padding: 12px 20px; border: none; border-radius: 6px; font-size: 1rem; min-width: 280px; }
+        .newsletter-form button { background: white; color: #0891b2; border: none; padding: 12px 30px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.2s; }
+        .newsletter-form button:hover { transform: translateY(-2px); }
+        .blog-posts { margin-top: 40px; }
+        .blog-posts h2 { color: #0891b2; margin-bottom: 30px; font-size: 1.8rem; }
+        .post-card { background: #f8fafc; padding: 30px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #0891b2; transition: transform 0.2s; }
+        .post-card:hover { transform: translateX(5px); }
+        .post-card h3 { color: #0891b2; margin-bottom: 10px; font-size: 1.4rem; }
+        .post-card h3 a { color: #0891b2; text-decoration: none; }
+        .post-card h3 a:hover { text-decoration: underline; }
+        .post-meta { color: #666; font-size: 0.9rem; margin-bottom: 15px; }
+        .post-excerpt { color: #555; }
+        .read-more { display: inline-block; margin-top: 15px; color: #0891b2; font-weight: 600; text-decoration: none; }
+        .read-more:hover { text-decoration: underline; }
+        footer { background: #1e293b; color: white; padding: 30px 20px; text-align: center; margin-top: 60px; }
+        footer p { opacity: 0.8; }
+        footer a { color: #67e8f9; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Medicare Insights</h1>
+        <p>Your trusted resource for Medicare education and updates</p>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="questionnaire.html">Find Your Plan</a>
+    </nav>
+    <div class="container">
+        <div class="newsletter-box">
+            <h2>Get Medicare Updates in Your Inbox</h2>
+            <p>Stay informed about enrollment deadlines, plan changes, and tips to maximize your benefits.</p>
+            <form class="newsletter-form" action="#" method="post">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe Free</button>
+            </form>
+        </div>
+        <div class="blog-posts">
+            <h2>Latest Articles</h2>
+            <article class="post-card">
+                <h3><a href="blog/medicare-advantage-vs-original.html">Medicare Advantage vs. Original Medicare: Which is Right for You?</a></h3>
+                <p class="post-meta">January 15, 2026 &bull; 5 min read</p>
+                <p class="post-excerpt">Understanding the key differences between Medicare Advantage and Original Medicare can help you make the best choice for your healthcare needs and budget.</p>
+                <a href="blog/medicare-advantage-vs-original.html" class="read-more">Read More &rarr;</a>
+            </article>
+            <article class="post-card">
+                <h3><a href="blog/open-enrollment-checklist.html">Your Complete Open Enrollment Checklist for 2026</a></h3>
+                <p class="post-meta">January 10, 2026 &bull; 4 min read</p>
+                <p class="post-excerpt">Don't miss important deadlines. Use this checklist to ensure you're prepared for Medicare Open Enrollment and make informed decisions about your coverage.</p>
+                <a href="blog/open-enrollment-checklist.html" class="read-more">Read More &rarr;</a>
+            </article>
+            <article class="post-card">
+                <h3><a href="blog/part-d-drug-coverage.html">Understanding Medicare Part D: A Guide to Prescription Drug Coverage</a></h3>
+                <p class="post-meta">January 5, 2026 &bull; 6 min read</p>
+                <p class="post-excerpt">Learn how Medicare Part D works, what it covers, and how to choose a plan that fits your prescription needs.</p>
+                <a href="blog/part-d-drug-coverage.html" class="read-more">Read More &rarr;</a>
+            </article>
+        </div>
+    </div>
+    <footer>
+        <p>Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+        <p>&copy; 2026 Medicare Help Center. All rights reserved. | <a href="index.html">Back to Home</a></p>
+    </footer>
+</body>
+</html>
