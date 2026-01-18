@@ -401,12 +401,36 @@
       }
     });
 
-    // Optional: prevent default submit to handle via JS / API
-    document.getElementById('questionnaireForm').addEventListener('submit', function (e) {
+        // Form submission - show thank you message
+    document.getElementById('questionnaireForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      // TODO: send data to your backend or show summary
-      alert('Form submitted. Connect this to your Medicare plan logic.');
+      
+      // Get the form container
+      const container = document.querySelector('.questionnaire-container .card');
+      
+      // Get user's name for personalized message
+      const userName = document.getElementById('fullName').value || 'there';
+      
+      // Replace form with thank you message
+      container.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px;">
+          <div style="font-size: 4rem; margin-bottom: 20px;">✓</div>
+          <h2 style="color: #0d9488; margin-bottom: 16px;">Thank You, ${userName}!</h2>
+          <p style="color: #4b5563; font-size: 1.1rem; margin-bottom: 24px;">
+            Your Medicare plan request has been submitted successfully.<br><br>
+            A licensed Medicare specialist will contact you within 24 hours to discuss your personalized plan options.
+          </p>
+          <p style="color: #6b7280; font-size: 0.9rem;">
+            Check your email for a confirmation message.
+          </p>
+          <a href="/" style="display: inline-block; margin-top: 24px; padding: 12px 24px; background: #f97316; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">Return to Home</a>
+        </div>
+      `;
+      
+      // Scroll to top of page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
   </script>
 </body>
 </html>
