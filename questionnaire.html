@@ -130,14 +130,6 @@
 <body>
 
   <div class="progress-bar"><div class="progress-fill" style="width: 14%"></div></div>
-<div class="questionnaire-container">
-    <div class="card">
-        <form id="questionnaireForm">
-        ...
-        </form>
-    </div>
-</div>
-
   <div class="questionnaire-container">
     <form id="questionnaireForm">
       <!-- STEP 1 -->
@@ -406,8 +398,7 @@
       e.preventDefault();
       
       // Get the form container
-      const container = document.querySelector('.questionnaire-container .card');
-      
+              const container = document.querySelector('.questionnaire-container');      
       // Get user's name for personalized message
       const userName = document.getElementById('fullName').value || 'there';      
       // Replace form with thank you message
