@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracias | Centro de Ayuda Medicare</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .thank-you-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+        .success-icon::after {
+            content: "\2713";
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        h1 {
+            color: #1e293b;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .next-steps {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .next-steps h3 {
+            color: #0891b2;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+        .next-steps li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #475569;
+        }
+        .next-steps li::before {
+            content: "\2713";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        .home-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+        .home-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="success-icon"></div>
+        <h1>Gracias!</h1>
+        <p class="subtitle">Su informacion ha sido enviada exitosamente. Un agente de Medicare licenciado se comunicara con usted pronto.</p>
+        
+        <div class="next-steps">
+            <h3>Que Sigue:</h3>
+            <ul>
+                <li>Un agente licenciado lo llamara dentro de 24 horas</li>
+                <li>Revisaremos sus necesidades de cobertura especificas</li>
+                <li>Le presentaremos opciones de planes personalizadas</li>
+                <li>Le ayudaremos con el proceso de inscripcion</li>
+            </ul>
+        </div>
+        
+        <a href="index.html" class="home-btn">Volver al Inicio</a>
+    </div>
+</body>
+</html>
