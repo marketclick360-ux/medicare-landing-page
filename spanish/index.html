@@ -155,6 +155,18 @@
                 /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .hero {
+
+                        .footer-links {
+            margin-bottom: 15px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
                 padding: 50px 15px;
             }
             
@@ -325,8 +337,15 @@
 
     <!-- Footer -->
     <footer>
-        <p>Centro de Ayuda Medicare | Sirviendo a Texas y Oregon</p>
-        <p style="margin-top: 10px; font-size: 0.85rem;">Este no es un sitio web del gobierno de EE.UU. Los agentes de seguros licenciados pueden ser compensados segun las inscripciones.</p>
+        <div class="footer-links">
+            <a href="/">Inicio</a>
+            <a href="/about.html">Sobre Nosotros</a>
+            <a href="/privacy-policy.html">Privacidad</a>
+            <a href="/terms.html">Terminos</a>
+            <a href="/contact.html">Contacto</a>
+        </div>
+        <p>Centro de Ayuda Medicare es operado por una agencia de seguros con licencia. No esta conectado ni respaldado por el gobierno de los Estados Unidos o el programa federal de Medicare.</p>
+        <p>&copy; 2026 Centro de Ayuda Medicare. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
