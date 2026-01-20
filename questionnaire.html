@@ -396,10 +396,42 @@
 
     // Optional: prevent default submit to handle via JS / API
     document.getElementById('questionnaireForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      // TODO: send data to your backend or show summary
-      window.location.href = 'thank-you.html';
-    });
+e.preventDefault();
+      
+      // Collect form data
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        zipCode: document.getElementById('zipCode').value,
+        health: document.querySelector('input[name="health"]:checked')?.value || '',
+        doctors: document.querySelector('input[name="doctors"]:checked')?.value || '',
+        budget: document.querySelector('input[name="budget"]:checked')?.value || '',
+        travel: document.querySelector('input[name="travel"]:checked')?.value || '',
+        prescriptions: document.querySelector('input[name="prescriptions"]:checked')?.value || '',
+        extras: Array.from(document.querySelectorAll('input[name="extras"]:checked')).map(cb => cb.value).join(', '),
+        timestamp: new Date().toISOString()
+      };
+      
+      // Send to FormSubmit.co for email notification
+      fetch('https://formsubmit.co/ajax/marketclick360@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Lead submitted:', data);
+        window.location.href = 'thank-you.html';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Still redirect even if email fails
+        window.location.href = 'thank-you.html';
+      });
   </script>
 </body>
 </html>
