@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us | Medicare Help Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d4f5c 0%, #1a6b7a 50%, #0d4f5c 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #0d9488;
+            margin-top: 0;
+        }
+        h2 {
+            color: #1f2937;
+            margin-top: 30px;
+        }
+        p, li {
+            line-height: 1.7;
+            color: #4b5563;
+        }
+        a {
+            color: #0d9488;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .contact-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .contact-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .contact-card h3 {
+            color: #0d9488;
+            margin: 0 0 10px 0;
+        }
+        .contact-card p {
+            margin: 0;
+        }
+        .contact-card a {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .hours-box {
+            background: #f0fdfa;
+            border-left: 4px solid #0d9488;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background: #ea580c;
+            color: white;
+        }
+        .site-footer {
+            padding: 40px 20px;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            background: #0a3d47;
+            margin-top: 40px;
+        }
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+        <div class="card">
+            <h1>Contact Us</h1>
+            <p>Have questions about Medicare? We're here to help. Reach out to us through any of the methods below, and a licensed agent will assist you.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p><a href="tel:+18323155040">(832) 315-5040</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">✉️</div>
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:marketclick360@gmail.com">marketclick360@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <div class="hours-box">
+                <strong>Business Hours:</strong><br>
+                Monday - Friday: 8:00 AM - 6:00 PM CST<br>
+                Saturday: 9:00 AM - 2:00 PM CST<br>
+                Sunday: Closed
+            </div>
+            
+            <h2>Mailing Address</h2>
+            <p>
+                Medicare Help Center<br>
+                Spring, TX 77379
+            </p>
+            
+            <h2>What to Expect</h2>
+            <p>When you contact us, a licensed Medicare insurance agent will:</p>
+            <ul>
+                <li>Listen to your specific healthcare needs</li>
+                <li>Answer your questions about Medicare options</li>
+                <li>Help you understand what plans are available in your area</li>
+                <li>Provide personalized recommendations at no cost to you</li>
+            </ul>
+            
+            <h2>Prefer to Get Started Online?</h2>
+            <p>Complete our short questionnaire and we'll reach out to discuss your Medicare options.</p>
+            <a href="/questionnaire.html" class="cta-button">Start Questionnaire</a>
+            
+            <h2>Important Notice</h2>
+            <p style="font-size: 0.9rem; color: #6b7280;">Medicare Help Center is a licensed insurance agency. We are not connected with or endorsed by the United States government or the federal Medicare program. This is a solicitation of insurance. A licensed agent may contact you.</p>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/about.html">About Us</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Service</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <p>Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+        <p>© <span id="footer-year"></span> Medicare Help Center. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
