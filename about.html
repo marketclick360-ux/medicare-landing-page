@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | Medicare Help Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d4f5c 0%, #1a6b7a 50%, #0d4f5c 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #0d9488;
+            margin-top: 0;
+        }
+        h2 {
+            color: #1f2937;
+            margin-top: 30px;
+        }
+        p, li {
+            line-height: 1.7;
+            color: #4b5563;
+        }
+        a {
+            color: #0d9488;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .highlight-box {
+            background: #f0fdfa;
+            border-left: 4px solid #0d9488;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background: #ea580c;
+            color: white;
+        }
+        .site-footer {
+            padding: 40px 20px;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            background: #0a3d47;
+            margin-top: 40px;
+        }
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+        <div class="card">
+            <h1>About Medicare Help Center</h1>
+            
+            <h2>Who We Are</h2>
+            <p>Medicare Help Center is a licensed insurance agency dedicated to helping seniors and Medicare-eligible individuals find the right Medicare coverage for their needs. We work with multiple insurance carriers to provide you with options tailored to your healthcare requirements and budget.</p>
+            
+            <div class="highlight-box">
+                <strong>Our Mission:</strong> To simplify Medicare by providing free, no-obligation guidance from licensed professionals who put your needs first.
+            </div>
+            
+            <h2>Our Services</h2>
+            <p>We specialize in:</p>
+            <ul>
+                <li><strong>Medicare Advantage Plans (Part C)</strong> - Comprehensive coverage that often includes additional benefits like dental, vision, and prescription drugs</li>
+                <li><strong>Medicare Supplement Plans (Medigap)</strong> - Coverage that helps pay for costs Original Medicare doesn't cover</li>
+                <li><strong>Prescription Drug Plans (Part D)</strong> - Standalone coverage for your medications</li>
+            </ul>
+            
+            <h2>Licensing Information</h2>
+            <p>Medicare Help Center operates as a licensed insurance agency. Our agents are licensed to sell Medicare products in multiple states and maintain all required certifications for Medicare plan sales.</p>
+            
+            <div class="highlight-box">
+                <strong>State Licenses:</strong> Our agency and agents are properly licensed in the states where we conduct business, including Texas and surrounding states. All agents complete annual AHIP (America's Health Insurance Plans) certification and carrier-specific training as required by CMS (Centers for Medicare & Medicaid Services).
+            </div>
+            
+            <h2>Our Commitment to You</h2>
+            <ul>
+                <li><strong>Free Service:</strong> Our Medicare consultation services are provided at no cost to you</li>
+                <li><strong>No Pressure:</strong> We provide information and guidance without high-pressure sales tactics</li>
+                <li><strong>Unbiased Advice:</strong> We work with multiple carriers to find the best fit for your situation</li>
+                <li><strong>Ongoing Support:</strong> We're here to help not just during enrollment, but year-round</li>
+            </ul>
+            
+            <h2>Important Disclosures</h2>
+            <p>Medicare Help Center is not connected with or endorsed by the United States government or the federal Medicare program. We are an independent licensed insurance agency.</p>
+            <p>The Medicare plans we represent are offered by private insurance companies that contract with Medicare. Enrollment in these plans depends on contract renewal.</p>
+            
+            <h2>Ready to Get Started?</h2>
+            <p>Let us help you navigate your Medicare options. Our licensed agents are ready to answer your questions and help you find a plan that fits your needs.</p>
+            <a href="/questionnaire.html" class="cta-button">Find Your Medicare Plan</a>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/about.html">About Us</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Service</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <p>Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+        <p>© <span id="footer-year"></span> Medicare Help Center. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
