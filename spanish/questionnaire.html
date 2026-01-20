@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Cuestionario de Medicare | Centro de Ayuda Medicare</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .questionnaire-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 6px;
+            background: #e5e7eb;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0891b2, #0e7490);
+            transition: width 0.3s ease;
+        }
+        .question-card {
+            padding: 40px;
+            display: none;
+        }
+        .question-card.active { display: block; }
+        .step-indicator {
+            color: #0891b2;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #1e293b;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .option-btn {
+            padding: 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        .option-btn:hover {
+            border-color: #0891b2;
+            background: #f0f9ff;
+        }
+        .option-btn.selected {
+            border-color: #0891b2;
+            background: #0891b2;
+            color: white;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .nav-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .back-btn {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+        .next-btn {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            color: white;
+        }
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        input[type="text"], input[type="email"], input[type="tel"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #0891b2;
+        }
+        .form-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .form-card h3 {
+            color: #0891b2;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="questionnaire-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress" style="width: 14%"></div>
+        </div>
+        
+        <!-- Paso 1 -->
+        <div class="question-card active" data-step="1">
+            <p class="step-indicator">Paso 1 de 7</p>
+            <h2>Cual es su codigo postal?</h2>
+            <input type="text" id="zipcode" placeholder="Ingrese su codigo postal" maxlength="5">
+            <div class="nav-buttons">
+                <button class="nav-btn back-btn" onclick="window.location.href='index.html'">Atras</button>
+                <button class="nav-btn next-btn" onclick="nextStep(1)">Siguiente</button>
+            </div>
+        </div>
+        
+        <!-- Paso 2 -->
+        <div class="question-card" data-step="2">
+            <p class="step-indicator">Paso 2 de 7</p>
+            <h2>Actualmente tiene Medicare?</h2>
+            <div class="options">
+                <button class="option-btn" onclick="selectOption(this, 2)">Si, tengo Medicare</button>
+                <button class="option-btn" onclick="selectOption(this, 2)">No, pero sere elegible pronto</button>
+                <button class="option-btn" onclick="selectOption(this, 2)">No estoy seguro</button>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn back-btn" onclick="prevStep(2)">Atras</button>
+                <button class="nav-btn next-btn" onclick="nextStep(2)" disabled>Siguiente</button>
+            </div>
+        </div>
+        
+        <!-- Paso 3 -->
+        <div class="question-card" data-step="3">
+            <p class="step-indicator">Paso 3 de 7</p>
+            <h2>Que tipo de cobertura le interesa?</h2>
+            <div class="options">
+                <button class="option-btn" onclick="selectOption(this, 3)">Medicare Advantage (Parte C)</button>
+                <button class="option-btn" onclick="selectOption(this, 3)">Suplemento de Medicare (Medigap)</button>
+                <button class="option-btn" onclick="selectOption(this, 3)">Cobertura de Medicamentos (Parte D)</button>
+                <button class="option-btn" onclick="selectOption(this, 3)">No estoy seguro - necesito orientacion</button>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn back-btn" onclick="prevStep(3)">Atras</button>
+                <button class="nav-btn next-btn" onclick="nextStep(3)" disabled>Siguiente</button>
+            </div>
+        </div>
+        
+        <!-- Paso 4 -->
+        <div class="question-card" data-step="4">
+            <p class="step-indicator">Paso 4 de 7</p>
+            <h2>Que beneficios son mas importantes para usted?</h2>
+            <div class="options">
+                <button class="option-btn" onclick="selectOption(this, 4)">Primas mensuales bajas</button>
+                <button class="option-btn" onclick="selectOption(this, 4)">Cobertura dental y de vision</button>
+                <button class="option-btn" onclick="selectOption(this, 4)">Cobertura de medicamentos recetados</button>
+                <button class="option-btn" onclick="selectOption(this, 4)">Mantener mis medicos actuales</button>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn back-btn" onclick="prevStep(4)">Atras</button>
+                <button class="nav-btn next-btn" onclick="nextStep(4)" disabled>Siguiente</button>
+            </div>
+        </div>
+        
+        <!-- Paso 5 -->
+        <div class="question-card" data-step="5">
+            <p class="step-indicator">Paso 5 de 7</p>
+            <h2>Cual es su fecha de nacimiento?</h2>
+            <input type="text" id="birthdate" placeholder="MM/DD/AAAA">
+            <div class="nav-buttons">
+                <button class="nav-btn back-btn" onclick="prevStep(5)">Atras</button>
+                <button class="nav-btn next-btn" onclick="nextStep(5)">Siguiente</button>
+            </div>
+        </div>
+        
+        <!-- Paso 6 -->
+        <div class="question-card" data-step="6">
+            <p class="step-indicator">Paso 6 de 7</p>
+            <h2>Cuando le gustaria que le contactemos?</h2>
+            <div class="options">
+                <button class="option-btn" onclick="selectOption(this, 6)">Lo antes posible</button>
+                <button class="option-btn" onclick="selectOption(this, 6)">Manana</button>
+                <button class="option-btn" onclick="selectOption(this, 6)">Esta semana</button>
+                <button class="option-btn" onclick="selectOption(this, 6)">Solo estoy investigando</button>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn back-btn" onclick="prevStep(6)">Atras</button>
+                <button class="nav-btn next-btn" onclick="nextStep(6)" disabled>Siguiente</button>
+            </div>
+        </div>
+        
+        <!-- Paso 7 -->
+        <div class="question-card" data-step="7">
+            <p class="step-indicator">Paso 7 de 7</p>
+            <h2>Casi listo! Ingrese su informacion de contacto</h2>
+            <div class="form-card">
+                <h3>Informacion de Contacto</h3>
+                <input type="text" id="fullName" placeholder="Nombre completo" required>
+                <input type="tel" id="phone" placeholder="Numero de telefono" required>
+                <input type="email" id="email" placeholder="Correo electronico" required>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn back-btn" onclick="prevStep(7)">Atras</button>
+                <button class="nav-btn next-btn" onclick="submitForm()">Enviar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentStep = 1;
+        const totalSteps = 7;
+        
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+        
+        function showStep(step) {
+            document.querySelectorAll('.question-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`[data-step="${step}"]`).classList.add('active');
+            updateProgress();
+        }
+        
+        function nextStep(step) {
+            if (step < totalSteps) {
+                currentStep = step + 1;
+                showStep(currentStep);
+            }
+        }
+        
+        function prevStep(step) {
+            if (step > 1) {
+                currentStep = step - 1;
+                showStep(currentStep);
+            }
+        }
+        
+        function selectOption(btn, step) {
+            const card = btn.closest('.question-card');
+            card.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            card.querySelector('.next-btn').disabled = false;
+        }
+        
+        function submitForm() {
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && phone && email) {
+                window.location.href = 'thank-you.html';
+            } else {
+                alert('Por favor complete todos los campos');
+            }
+        }
+    </script>
+</body>
+</html>
