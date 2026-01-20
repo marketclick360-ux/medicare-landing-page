@@ -151,6 +151,116 @@
         footer p {
             opacity: 0.8;
         }
+
+                /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 1.75rem;
+                line-height: 1.3;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            
+            .cta-button {
+                display: block;
+                width: 90%;
+                max-width: 320px;
+                margin: 0 auto;
+                padding: 18px 20px;
+                font-size: 1.1rem;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                padding: 0 15px;
+            }
+            
+            .benefits-grid,
+            .steps,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 10px;
+            }
+            
+            .benefit-card,
+            .step,
+            .testimonial {
+                padding: 25px 20px;
+            }
+            
+            .benefits {
+                margin: 40px auto;
+                padding: 0 15px;
+            }
+            
+            .how-it-works {
+                padding: 40px 15px;
+            }
+            
+            .testimonials {
+                margin: 40px auto;
+                padding: 0 15px;
+            }
+            
+            .footer-cta {
+                padding: 40px 15px;
+            }
+            
+            .footer-cta h2 {
+                font-size: 1.5rem;
+            }
+            
+            .lang-selector {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .lang-selector a {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            footer {
+                padding: 25px 15px;
+            }
+            
+            footer p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .cta-button {
+                width: 95%;
+                padding: 16px 15px;
+            }
+            
+            .benefit-icon {
+                font-size: 2.5rem;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
