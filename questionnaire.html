@@ -305,23 +305,22 @@
       <!-- STEP 7 -->
       <div class="question-step" data-step="7">
         <p>7 of 7</p>
-        <h2>Where should we send your plan options?</h2>
-        <p>We’ll use this to share your personalized Medicare recommendations.</p>
-
-        <div class="answers">
-          <label for="fullName">Full name</label>
-          <input type="text" id="fullName" name="fullName" required>
-
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-
-          <label for="phone">Phone number</label>
-          <input type="tel" id="phone" name="phone" required>
-
-          <label for="zipCode">ZIP code</label>
-          <input type="text" id="zipCode" name="zipCode" inputmode="numeric" required>
+        <h2>Almost done! Enter your contact info</h2>
+        <p>A licensed agent will reach out to discuss your options.</p>
+<div class="answers">
+          <label>
+            <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+          </label>
+          <label>
+            <input type="email" id="email" name="email" placeholder="Email address" required>
+          </label>
+          <label>
+            <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
+          </label>
+          <label>
+            <input type="text" id="zipCode" name="zipCode" placeholder="ZIP code" inputmode="numeric" required>
+          </label>
         </div>
-
         <div id="planRecommendation" style="margin-top: 20px;"></div>
         <div id="plans-results" style="margin-top: 20px;"></div>
 
