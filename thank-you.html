@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You - Medicare Help Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d4f5c 0%, #1a6b7a 50%, #0d4f5c 100%);
+    }
+    .container {
+      max-width: 640px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      background: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .checkmark svg {
+      width: 40px;
+      height: 40px;
+      fill: white;
+    }
+    h1 {
+      color: #0d9488;
+      margin: 0 0 16px 0;
+      font-size: 1.75rem;
+    }
+    .message {
+      color: #4b5563;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0 0 24px 0;
+    }
+    .next-steps {
+      background: #f0fdfa;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 24px;
+      text-align: left;
+    }
+    .next-steps h3 {
+      color: #0d9488;
+      margin: 0 0 12px 0;
+      font-size: 1rem;
+    }
+    .next-steps ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #4b5563;
+    }
+    .next-steps li {
+      margin-bottom: 8px;
+    }
+    .btn-home {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 14px 28px;
+      background: #f97316;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-home:hover {
+      background: #ea580c;
+    }
+    .site-footer {
+      padding: 40px 20px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      background: #0a3d47;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="checkmark">
+        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+      </div>
+      <h1>Thank You!</h1>
+      <p class="message">
+        Your information has been received. A licensed Medicare agent will contact you within 24 hours to discuss your personalized plan options.
+      </p>
+      <div class="next-steps">
+        <h3>What happens next?</h3>
+        <ul>
+          <li>A licensed agent will call you at the number provided</li>
+          <li>They'll review your answers and discuss plan options</li>
+          <li>No obligation - just helpful information</li>
+        </ul>
+      </div>
+      <a href="index.html" class="btn-home">Return to Home</a>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <p>Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+    <p>&copy; 2026 Medicare Help Center. All rights reserved.</p>
+  </footer>
+</body>
+</html>
