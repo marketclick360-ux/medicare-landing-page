@@ -109,16 +109,65 @@
             color: #64748b;
             margin-bottom: 20px;
         }
-        .iframe-container {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .plan-header {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+            color: white;
+            padding: 30px;
+            border-radius: 16px 16px 0 0;
+            text-align: center;
         }
-        .iframe-container iframe {
+        .plan-header h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+        .plan-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        .plan-search-form {
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .plan-search-form label {
             display: block;
+            color: #0891b2;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
+        .search-input-group {
+            display: flex;
+            gap: 12px;
+        }
+        .search-input-group input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .search-input-group input:focus {
+            outline: none;
+            border-color: #0891b2;
+        }
+        .search-input-group button {
+            padding: 14px 24px;
+            background: #0891b2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .search-input-group button:hover {
+            background: #0e7490;
+                    }
     </style>
-</head>
+    </head>
 <body>
     <div class="thank-you-container">
         <div class="success-icon"></div>
@@ -135,22 +184,31 @@
             </ul>
         </div>
 
-                    <!-- Plan Search Section -->
+            <!-- Seccion de Busqueda de Planes -->
             <div class="plan-search-section">
-                <h3>Mientras Espera, Explore Sus Opciones de Planes</h3>
-                <p>Ingrese su codigo postal para ver los planes Medicare Advantage disponibles en su area:</p>
-                <div class="iframe-container">
-                    <iframe 
-                        src="https://medicare-plan-search.vercel.app/?unlocked=true" 
-                        title="Comparador de Planes Medicare"
-                        width="100%" 
-                        height="600" 
-                        frameborder="0"
-                        loading="lazy">
-                    </iframe>
+                <div class="plan-header">
+                    <h2>Compare Planes Medicare Advantage en Su Area</h2>
+                    <p>Comparacion de Medicare gratuita y sin compromiso. Encuentre planes con mejores beneficios y costos mas bajos.</p>
+                </div>
+                <div class="plan-search-form">
+                    <label for="zipcode">Ingrese Su Codigo Postal</label>
+                    <div class="search-input-group">
+                        <input type="text" id="zipcode" placeholder="Codigo postal" maxlength="5" pattern="[0-9]{5}">
+                        <button type="button" onclick="searchPlans()">Ver Mis Opciones de Planes</button>
+                    </div>
                 </div>
             </div>
-        
+            
+            <script>
+            function searchPlans() {
+                var zip = document.getElementById('zipcode').value;
+                if (zip && zip.length === 5) {
+                    window.open('https://www.medicare.gov/plan-compare/#/?year=2025&lang=es&zipcode=' + zip, '_blank');
+                } else {
+                    alert('Por favor ingrese un codigo postal valido de 5 digitos.');
+                }
+            }
+            </script>        
         <a href="index.html" class="home-btn">Volver al Inicio</a>
     </div>
 </body>
