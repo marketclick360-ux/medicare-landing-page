@@ -267,14 +267,44 @@
             btn.classList.add('selected');
             card.querySelector('.next-btn').disabled = false;
         }
-        
-        function submitForm() {
+
+
+                function submitForm() {
             const name = document.getElementById('fullName').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
-            
+            const zipcode = document.getElementById('zipcode').value;
+
             if (name && phone && email) {
-                window.location.href = 'thank-you.html';
+                // Collect form data
+                const formData = {
+                    fullName: name,
+                    email: email,
+                    phone: phone,
+                    zipCode: zipcode,
+                    language: 'Spanish',
+                    timestamp: new Date().toISOString()
+                };
+
+                // Send to FormSubmit.co for email notification
+                fetch('https://formsubmit.co/ajax/marketclick360@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Lead submitted:', data);
+                    window.location.href = 'thank-you.html';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Still redirect even if email fails
+                    window.location.href = 'thank-you.html';
+                });
             } else {
                 alert('Por favor complete todos los campos');
             }
