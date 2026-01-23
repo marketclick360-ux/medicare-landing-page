@@ -94,6 +94,29 @@
         .home-btn:hover {
             transform: translateY(-2px);
         }
+
+                .plan-search-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .plan-search-section h3 {
+            color: #1e293b;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .plan-search-section p {
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .iframe-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .iframe-container iframe {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -111,6 +134,22 @@
                 <li>Le ayudaremos con el proceso de inscripcion</li>
             </ul>
         </div>
+
+                    <!-- Plan Search Section -->
+            <div class="plan-search-section">
+                <h3>Mientras Espera, Explore Sus Opciones de Planes</h3>
+                <p>Ingrese su codigo postal para ver los planes Medicare Advantage disponibles en su area:</p>
+                <div class="iframe-container">
+                    <iframe 
+                        src="https://www.medicare.gov/plan-compare/#/?year=2025&lang=es" 
+                        title="Comparador de Planes Medicare"
+                        width="100%" 
+                        height="600" 
+                        frameborder="0"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
         
         <a href="index.html" class="home-btn">Volver al Inicio</a>
     </div>
