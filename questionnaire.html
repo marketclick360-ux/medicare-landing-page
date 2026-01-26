@@ -90,6 +90,7 @@
     .answers input[type="text"],
     .answers input[type="email"],
     .answers input[type="tel"] {
+        color: #1f2937;
         width: 100%;
         padding: 12px 16px;
         border: 2px solid #e2e8f0;
@@ -423,7 +424,9 @@
       if (e.target.matches('[data-prev]')) {
         if (currentStepIndex > 0) {
           showStep(currentStepIndex - 1);
-        }
+        else {
+          window.location.href = 'index.html';
+        } }
       }
     });
 
