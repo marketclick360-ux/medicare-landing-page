@@ -186,30 +186,11 @@
 
             <!-- Seccion de Busqueda de Planes -->
             <div class="plan-search-section">
-                <div class="plan-header">
-                    <h2>Compare Planes Medicare Advantage en Su Área</h2>
-                    <p>Comparación de Medicare gratuita y sin compromiso. Encuentre planes con mejores beneficios y costos más bajos.</p>
-                </div>
-                <div class="plan-search-form">
-                    <label for="zipcode">Ingrese Su Código Postal</label>
-                    <div class="search-input-group">
-                        <input type="text" id="zipcode" placeholder="Código postal" maxlength="5" pattern="[0-9]{5}">
-                        <button type="button" onclick="searchPlans()">Ver Mis Opciones de Planes</button>
-                    </div>
-                </div>
+            <h2 style="color: white; text-align: center; margin-bottom: 20px; font-size: 1.5rem;">Mientras Espera, Explore Planes en Su Área</h2>
+            <div style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                <iframe src="https://medicare-plan-search.vercel.app/?unlocked=true" title="Búsqueda de Planes Medicare" style="width: 100%; height: 800px; border: none;"></iframe>
             </div>
-            
-            <script>
-            function searchPlans() {
-                var zip = document.getElementById('zipcode').value;
-                if (zip && zip.length === 5) {
-                    window.open('https://www.medicare.gov/plan-compare/#/?year=2025&lang=es&zipcode=' + zip, '_blank');
-                } else {
-                    alert('Por favor ingrese un Código postal valido de 5 dígitos.');
-                }
-            }
-            </script>        
-        <a href="index.html" class="home-btn">Volver al Inicio</a>
-    </div>
+        </div>
+        <a href="index.html" class="home-btn">Volver al Inicio</a>    </div>
 </body>
 </html>
