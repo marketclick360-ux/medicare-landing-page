@@ -248,6 +248,14 @@
         }
         
         function nextStep(step) {
+                    // Validate zip code on step 1
+        if (step === 1) {
+            const zipcode = document.getElementById('zipcode').value;
+            if (!zipcode || zipcode.length < 5) {
+                alert('Por favor ingrese su código postal');
+                return;
+            }
+        }
             if (step < totalSteps) {
                 currentStep = step + 1;
                 showStep(currentStep);
