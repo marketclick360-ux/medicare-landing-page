@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Agent Checklist | Edlando Insurance</title>
+    <style>
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none; }
+            @page { margin: 0.5in; }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.5; color: #333; padding: 40px; max-width: 850px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 30px; text-align: center; }
+        .header h1 { font-size: 28px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; }
+        .client-info { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .client-info label { font-weight: 600; display: block; margin-bottom: 5px; color: #1e3a5f; }
+        .client-info input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        .section { margin-bottom: 25px; }
+        .section-title { background: #1e3a5f; color: white; padding: 12px 20px; border-radius: 6px 6px 0 0; font-size: 18px; }
+        .section-content { border: 1px solid #ddd; border-top: none; padding: 20px; border-radius: 0 0 6px 6px; }
+        .checklist-item { display: flex; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checkbox { width: 22px; height: 22px; border: 2px solid #1e3a5f; border-radius: 4px; margin-right: 15px; flex-shrink: 0; }
+        .item-text { flex: 1; }
+        .item-text strong { color: #1e3a5f; }
+        .notes { margin-top: 8px; }
+        .notes input { width: 100%; padding: 6px; border: 1px dashed #ccc; border-radius: 4px; font-size: 12px; }
+        .footer { margin-top: 30px; text-align: center; color: #666; font-size: 14px; padding-top: 20px; border-top: 2px solid #1e3a5f; }
+        .print-btn { background: #f59e0b; color: white; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-bottom: 20px; }
+        .print-btn:hover { background: #d97706; }
+    </style>
+</head>
+<body>
+    <button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
+    
+    <div class="header">
+        <h1>Medicare Agent Checklist</h1>
+        <p>Edlando Insurance | Janet - Your Senior Care Advocate</p>
+        <p>Phone: (346) 454-5129</p>
+    </div>
+
+    <div class="client-info">
+        <div><label>Client Name:</label><input type="text" placeholder=""></div>
+        <div><label>Date:</label><input type="text" placeholder=""></div>
+        <div><label>Phone:</label><input type="text" placeholder=""></div>
+        <div><label>Medicare Number:</label><input type="text" placeholder=""></div>
+        <div><label>ZIP Code:</label><input type="text" placeholder=""></div>
+        <div><label>DOB:</label><input type="text" placeholder=""></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Initial Consultation</div>
+        <div class="section-content">
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Verify Medicare eligibility</strong> (65+, disability, ESRD)<div class="notes"><input type="text" placeholder="Notes:"></div></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Confirm enrollment period</strong> (IEP, AEP, SEP, OEP)<div class="notes"><input type="text" placeholder="Period:"></div></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Review current coverage</strong> (if any)</div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Assess healthcare needs</strong> (doctors, medications, hospitals)</div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Document preferred doctors</strong><div class="notes"><input type="text" placeholder="PCP:"></div></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>List current medications</strong><div class="notes"><input type="text" placeholder="Medications:"></div></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Plan Selection</div>
+        <div class="section-content">
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Compare Medicare Advantage plans</strong> in client's area</div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Compare Medicare Supplement (Medigap)</strong> options</div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Review Part D prescription drug plans</strong></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Verify doctors are in-network</strong></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Check medications on formulary</strong></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Calculate total costs</strong> (premiums + copays + deductibles)<div class="notes"><input type="text" placeholder="Estimated annual cost:"></div></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Recommended Plan:</strong><div class="notes"><input type="text" placeholder="Plan name:"></div></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Enrollment</div>
+        <div class="section-content">
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Complete enrollment application</strong></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Submit to carrier</strong><div class="notes"><input type="text" placeholder="Carrier:"></div></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Confirmation number received</strong><div class="notes"><input type="text" placeholder="Confirmation #:"></div></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Explain effective date</strong><div class="notes"><input type="text" placeholder="Effective:"></div></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Schedule welcome call</strong> after enrollment</div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Provide agent contact info</strong> for questions</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Annual Review (AEP: Oct 15 - Dec 7)</div>
+        <div class="section-content">
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Review current plan changes</strong> for next year</div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Check if doctors/medications still covered</strong></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Compare new plan options</strong></div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Re-enroll or switch</strong> if better option exists</div></div>
+            <div class="checklist-item"><div class="checkbox"></div><div class="item-text"><strong>Document decision:</strong><div class="notes"><input type="text" placeholder="Keep current plan / Switch to:"></div></div></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Edlando Insurance</strong> | Janet - Licensed Insurance Agent</p>
+        <p>Spring, TX | (346) 454-5129 | www.edlando.com</p>
+        <p style="margin-top: 10px; font-size: 12px;">Medicare enrollment assistance is always FREE</p>
+    </div>
+</body>
+</html>
