@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Client Intake Form | Edlando Insurance</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .form-card { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        h1 { color: #0891b2; text-align: center; margin-bottom: 10px; font-size: 2rem; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 1.1rem; }
+        .lang-toggle { text-align: right; margin-bottom: 20px; }
+        .lang-toggle a { color: #0891b2; text-decoration: none; font-weight: 500; }
+        .section { margin-bottom: 35px; }
+        .section-title { color: #0891b2; font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e0e0e0; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; color: #333; }
+        .required { color: #ef4444; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea {
+            width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #0891b2; }
+        textarea { min-height: 100px; resize: vertical; font-family: inherit; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
+        .radio-group { display: flex; flex-direction: column; gap: 10px; }
+        .radio-option { display: flex; align-items: center; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+        .radio-option:hover { border-color: #0891b2; background: #f0f9ff; }
+        .radio-option input[type="radio"] { margin-right: 12px; width: 20px; height: 20px; cursor: pointer; }
+        .submit-btn { background: #0891b2; color: white; padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 20px; transition: all 0.3s; }
+        .submit-btn:hover { background: #0e7490; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(8,145,178,0.3); }
+        .submit-btn:active { transform: translateY(0); }
+        .back-link { display: inline-block; margin-top: 20px; color: #0891b2; text-decoration: none; font-weight: 500; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <div class="lang-toggle">
+                <a href="spanish/intake-form.html">Español</a>
+            </div>
+            <h1>Client Intake Form</h1>
+            <p class="subtitle">Please complete all required fields marked with <span class="required">*</span></p>
+            
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                
+                <!-- Section 1: Basic Information -->
+                <div class="section">
+                    <h2 class="section-title">Basic Information</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name <span class="required">*</span></label>
+                            <input type="text" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name <span class="required">*</span></label>
+                            <input type="text" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Date of Birth <span class="required">*</span></label>
+                        <input type="date" name="dateOfBirth" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Street Address <span class="required">*</span></label>
+                        <input type="text" name="address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City <span class="required">*</span></label>
+                            <input type="text" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label>State <span class="required">*</span></label>
+                            <input type="text" name="state" value="TX" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>ZIP Code <span class="required">*</span></label>
+                        <input type="text" name="zipCode" maxlength="5" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number <span class="required">*</span></label>
+                            <input type="tel" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address <span class="required">*</span></label>
+                            <input type="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Preferred Contact Method</label>
+                            <select name="contactMethod">
+                                <option value="phone">Phone</option>
+                                <option value="email">Email</option>
+                                <option value="text">Text Message</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Best Time to Call</label>
+                            <select name="bestTime">
+                                <option value="morning">Morning (8am - 12pm)</option>
+                                <option value="afternoon">Afternoon (12pm - 5pm)</option>
+                                <option value="evening">Evening (5pm - 8pm)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 2: Medicare Information -->
+                <div class="section">
+                    <h2 class="section-title">Medicare Information</h2>
+                    
+                    <div class="form-group">
+                        <label>Do you currently have Medicare? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="hasMedicare" value="yes" required>
+                                Yes, I have Medicare
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="hasMedicare" value="no">
+                                No, but I will be eligible soon
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="hasMedicare" value="unsure">
+                                Not sure
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Medicare Number (optional)</label>
+                        <input type="text" name="medicareNumber">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Part A Effective Date</label>
+                            <input type="date" name="partADate">
+                        </div>
+                        <div class="form-group">
+                            <label>Part B Effective Date</label>
+                            <input type="date" name="partBDate">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Current Medicare Plan Type</label>
+                        <select name="planType">
+                            <option value="">-- Select --</option>
+                            <option value="original">Original Medicare Only</option>
+                            <option value="advantage">Medicare Advantage (Part C)</option>
+                            <option value="supplement">Medicare Supplement (Medigap)</option>
+                            <option value="partd">Part D Prescription Plan</option>
+                            <option value="unsure">Not Sure</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Current Insurance Company (if applicable)</label>
+                        <input type="text" name="currentInsurer">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Are you interested in changing plans?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="changePlans" value="yes">
+                                Yes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="changePlans" value="no">
+                                No
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="changePlans" value="exploring">
+                                Just exploring options
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Healthcare Information -->
+                <div class="section">
+                    <h2 class="section-title">Healthcare Information</h2>
+                    
+                    <div class="form-group">
+                        <label>Primary Care Physician Name</label>
+                        <input type="text" name="pcpName">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Primary Care Physician Phone</label>
+                        <input type="tel" name="pcpPhone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Do you see any specialists?</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="hasSpecialists" value="yes">
+                                Yes
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="hasSpecialists" value="no">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Specialists (please list names and specialties)</label>
+                        <textarea name="specialists" placeholder="Example: Dr. Smith - Cardiologist"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Current Medications</label>
+                        <textarea name="medications" placeholder="Please list all current medications"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Preferred Pharmacy Name & Location</label>
+                        <input type="text" name="pharmacy" placeholder="Example: CVS Pharmacy - 123 Main St, Spring TX">
+                    </div>
+                </div>
+                
+                <!-- Section 4: Emergency Contact -->
+                <div class="section">
+                    <h2 class="section-title">Emergency Contact</h2>
+                    
+                    <div class="form-group">
+                        <label>Emergency Contact Name <span class="required">*</span></label>
+                        <input type="text" name="emergencyName" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Relationship to You <span class="required">*</span></label>
+                            <input type="text" name="emergencyRelationship" placeholder="Example: Spouse, Son, Daughter" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Emergency Contact Phone <span class="required">*</span></label>
+                            <input type="tel" name="emergencyPhone" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Service Selection -->
+                <div class="section">
+                    <h2 class="section-title">Service Selection</h2>
+                    
+                    <div class="form-group">
+                        <label>Which service are you interested in? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="service" value="free" required>
+                                Free Medicare Plan Comparison & Assistance
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="service" value="concierge">
+                                Concierge Premium Service ($600/month)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Additional Comments or Questions</label>
+                        <textarea name="comments" placeholder="Is there anything else you'd like us to know?"></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Intake Form</button>
+                
+                <a href="index.html" class="back-link">← Back to Home</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
