@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Discovery | Edlando Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: linear-gradient(135deg, #0d4f5c 0%, #1a6b7a 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; }
+        .form-card { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .progress { background: #e5e7eb; height: 8px; border-radius: 10px; margin-bottom: 30px; overflow: hidden; }
+        .progress-fill { background: #0d9488; height: 100%; transition: width 0.3s; }
+        .step { display: none; }
+        .step.active { display: block; }
+        h1 { color: #0d9488; font-size: 1.5rem; margin-bottom: 8px; }
+        .subtitle { color: #6b7280; margin-bottom: 24px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; color: #374151; font-weight: 500; margin-bottom: 6px; }
+        input, select, textarea { width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #0d9488; }
+        .checkbox-group { margin: 15px 0; }
+        .checkbox-item { display: flex; align-items: center; margin-bottom: 10px; }
+        .checkbox-item input { width: auto; margin-right: 10px; }
+        .checkbox-item label { margin: 0; font-weight: normal; }
+        .btn-group { display: flex; gap: 12px; margin-top: 24px; }
+        .btn { padding: 14px 28px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; flex: 1; }
+        .btn-primary { background: #0d9488; color: white; }
+        .btn-primary:hover { background: #0f766e; }
+        .btn-secondary { background: #e5e7eb; color: #374151; }
+        .step-indicator { text-align: center; color: #6b7280; font-size: 0.9rem; margin-bottom: 16px; }
+        .required { color: #ef4444; }
+        .success-message { text-align: center; padding: 40px; }
+        .success-message h2 { color: #0d9488; margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <div class="progress"><div class="progress-fill" id="progress" style="width: 20%"></div></div>
+            
+            <form action="https://formspree.io/f/mkorqrrp" method="POST" id="discoveryForm">
+                <input type="hidden" name="_subject" value="New Client Discovery Form Submission">
+                
+                <!-- Step 1 -->
+                <div class="step active" id="step1">
+                    <div class="step-indicator">Step 1 of 5</div>
+                    <h1>Basic Information</h1>
+                    <p class="subtitle">Let's start with your contact details</p>
+                    <div class="form-group"><label>Full Name <span class="required">*</span></label><input type="text" name="fullName" required></div>
+                    <div class="form-group"><label>Date of Birth <span class="required">*</span></label><input type="date" name="dob" required></div>
+                    <div class="form-group"><label>Email <span class="required">*</span></label><input type="email" name="email" required></div>
+                    <div class="form-group"><label>Phone <span class="required">*</span></label><input type="tel" name="phone" required></div>
+                    <div class="form-group"><label>Preferred Language</label><select name="language"><option value="English">English</option><option value="Spanish">Espa&#241;ol</option></select></div>
+                    <div class="btn-group"><button type="button" class="btn btn-primary" onclick="nextStep(1)">Continue &rarr;</button></div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step" id="step2">
+                    <div class="step-indicator">Step 2 of 5</div>
+                    <h1>Current Situation</h1>
+                    <p class="subtitle">Tell us about your current coverage</p>
+                    <div class="form-group"><label>Current Health Coverage</label><select name="currentCoverage"><option value="">Select...</option><option>Original Medicare (A & B)</option><option>Medicare Advantage</option><option>Employer Coverage</option><option>Medicaid</option><option>No Coverage</option></select></div>
+                    <div class="form-group"><label>Employment Status</label><select name="employmentStatus"><option value="">Select...</option><option>Working Full-Time</option><option>Working Part-Time</option><option>Fully Retired</option><option>Planning to retire soon</option></select></div>
+                    <div class="form-group"><label>Spouse/Partner Name (if applicable)</label><input type="text" name="spouseName"></div>
+                    <div class="btn-group"><button type="button" class="btn btn-secondary" onclick="prevStep(2)">&larr; Back</button><button type="button" class="btn btn-primary" onclick="nextStep(2)">Continue &rarr;</button></div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step" id="step3">
+                    <div class="step-indicator">Step 3 of 5</div>
+                    <h1>What Concerns You Most?</h1>
+                    <p class="subtitle">Select all that apply</p>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item"><input type="checkbox" name="concerns" value="Rising medical costs" id="c1"><label for="c1">Rising medical costs</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="concerns" value="Prescription drug costs" id="c2"><label for="c2">Prescription drug costs</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="concerns" value="Long-term care costs" id="c3"><label for="c3">Long-term care / nursing home costs</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="concerns" value="Spouse financial security" id="c4"><label for="c4">Leaving spouse financially secure</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="concerns" value="Outliving savings" id="c5"><label for="c5">Outliving my savings</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="concerns" value="Business protection" id="c6"><label for="c6">Protecting my business assets</label></div>
+                        <div class="checkbox-item"><input type="checkbox" name="concerns" value="Estate planning" id="c7"><label for="c7">Estate planning & legacy</label></div>
+                    </div>
+                    <div class="btn-group"><button type="button" class="btn btn-secondary" onclick="prevStep(3)">&larr; Back</button><button type="button" class="btn btn-primary" onclick="nextStep(3)">Continue &rarr;</button></div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step" id="step4">
+                    <div class="step-indicator">Step 4 of 5</div>
+                    <h1>Business & Estate Planning</h1>
+                    <p class="subtitle">Understanding your financial picture</p>
+                    <div class="form-group"><label>Do you own a business?</label><select name="businessOwner"><option value="">Select...</option><option>Yes</option><option>No</option></select></div>
+                    <div class="form-group"><label>Do you have life insurance?</label><select name="hasLifeInsurance"><option value="">Select...</option><option>Yes</option><option>No</option><option>Unsure</option></select></div>
+                    <div class="form-group"><label>Primary income sources (select all)</label><select name="incomeSource"><option value="">Select primary...</option><option>Social Security</option><option>Pension</option><option>401k/IRA</option><option>Rental/Investments</option><option>Still Working</option></select></div>
+                    <div class="form-group"><label>Who depends on you financially?</label><select name="dependents"><option value="">Select...</option><option>Spouse/Partner</option><option>Children</option><option>Grandchildren</option><option>No one</option></select></div>
+                    <div class="btn-group"><button type="button" class="btn btn-secondary" onclick="prevStep(4)">&larr; Back</button><button type="button" class="btn btn-primary" onclick="nextStep(4)">Continue &rarr;</button></div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="step" id="step5">
+                    <div class="step-indicator">Step 5 of 5</div>
+                    <h1>Final Questions</h1>
+                    <p class="subtitle">Almost done!</p>
+                    <div class="form-group"><label>What's most important to you? (Rank 1-3)</label><select name="priority1"><option value="">1st Priority...</option><option>Lowest premium</option><option>Best doctor access</option><option>Lowest Rx costs</option><option>Extra benefits (dental, vision)</option></select></div>
+                    <div class="form-group"><label>How soon do you need to make a decision?</label><select name="timeline"><option value="">Select...</option><option>Immediately</option><option>Within 30 days</option><option>Just exploring</option><option>6+ months</option></select></div>
+                    <div class="form-group"><label>Any additional notes or questions?</label><textarea name="notes" rows="3" placeholder="Tell us anything else..."></textarea></div>
+                    <div class="btn-group"><button type="button" class="btn btn-secondary" onclick="prevStep(5)">&larr; Back</button><button type="submit" class="btn btn-primary">Submit &check;</button></div>
+                </div>
+            </form>
+        </div>
+        <p style="text-align: center; margin-top: 20px;"><a href="/" style="color: white;">Back to Home</a></p>
+    </div>
+    <script>
+        function nextStep(current) { document.getElementById('step'+current).classList.remove('active'); document.getElementById('step'+(current+1)).classList.add('active'); document.getElementById('progress').style.width = ((current+1)*20)+'%'; }
+        function prevStep(current) { document.getElementById('step'+current).classList.remove('active'); document.getElementById('step'+(current-1)).classList.add('active'); document.getElementById('progress').style.width = ((current-1)*20)+'%'; }
+    </script>
+</body>
+</html>
