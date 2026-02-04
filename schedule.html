@@ -4,89 +4,193 @@
   <meta charset="UTF-8">
   <title>Schedule an Appointment | Edlando Insurance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f7fb;
-      color: #1f2933;
-    }
-    .page-wrapper {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 32px 16px 48px;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 8px;
-      color: #0f172a;
-    }
-    .intro {
-      margin-bottom: 32px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
+      color: #333;
     }
-    .intro p {
-      margin: 4px 0;
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+      color: white;
+      padding: 60px 20px 40px;
+      text-align: center;
+      position: relative;
+      border-radius: 0 0 40px 40px;
     }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    .back-link-top {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+    }
+
+    .back-link-top a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .back-link-top a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #0891b2;
+      margin-bottom: 40px;
+    }
+
+    /* Appointment Grid */
     .appointment-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
     }
+
     .appt-card {
-      background: #ffffff;
-      border-radius: 8px;
-      padding: 16px 18px 18px;
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
-      border: 1px solid #e5e7eb;
+      background: #f0f9ff;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(8, 145, 178, 0.08);
+      border: 1px solid rgba(8, 145, 178, 0.1);
+      transition: all 0.3s ease;
     }
+
+    .appt-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(8, 145, 178, 0.15);
+    }
+
     .appt-card h2 {
-      font-size: 1.1rem;
-      margin: 0 0 6px;
-      color: #111827;
+      font-size: 1.25rem;
+      margin: 0 0 8px;
+      color: #0891b2;
     }
+
     .appt-card p {
-      font-size: 0.9rem;
-      margin: 0 0 10px;
+      font-size: 0.95rem;
+      margin: 0 0 15px;
       line-height: 1.5;
+      color: #555;
     }
+
     .appt-length {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #6b7280;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
+
     .appt-link {
       display: inline-block;
-      padding: 8px 14px;
-      font-size: 0.9rem;
-      border-radius: 999px;
+      background: white;
+      color: #0891b2;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
       text-decoration: none;
-      background: #0ea5e9;
-      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .appt-link.secondary {
-      background: #ffffff;
-      color: #0f172a;
-      border: 1px solid #d1d5db;
+
+    .appt-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
-    .back-link {
-      margin-top: 28px;
+
+    /* Footer */
+    footer {
+      background: #1e293b;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .footer-links {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      color: #cccccc;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    footer p {
+      opacity: 0.8;
       font-size: 0.9rem;
     }
-    .back-link a {
-      color: #0ea5e9;
-      text-decoration: none;
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 50px 15px 30px;
+      }
+
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .main-content {
+        padding: 30px 15px;
+      }
+
+      .appointment-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .back-link-top {
+        top: 10px;
+        left: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="page-wrapper">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="back-link-top"><a href="index.html">← Home</a></div>
     <h1>Schedule an Appointment</h1>
-    <div class="intro">
-      <p>Select the type of appointment you need below.</p>
-      <p>All calls are with a licensed insurance and tax professional, and there is no obligation.</p>
-    </div>
+    <p>Select the type of appointment you need below. All calls are free and no obligation.</p>
+  </section>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2 class="section-title">Choose Your Service</h2>
 
     <div class="appointment-grid">
       <div class="appt-card">
@@ -124,10 +228,20 @@
         <a href="tax-preparation.html" class="appt-link">Request Tax Appointment →</a>
       </div>
     </div>
-
-    <div class="back-link">
-      <a href="index.html">← Back to Home</a>
-    </div>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/about.html">About Us</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+    <p>Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+    <p>© 2026 Medicare Help Center. All rights reserved.</p>
+  </footer>
 </body>
 </html>
