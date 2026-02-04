@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Schedule an Appointment | Edlando Insurance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fb;
+      color: #1f2933;
+    }
+    .page-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+    .intro {
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .intro p {
+      margin: 4px 0;
+    }
+    .appointment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .appt-card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 16px 18px 18px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e5e7eb;
+    }
+    .appt-card h2 {
+      font-size: 1.1rem;
+      margin: 0 0 6px;
+      color: #111827;
+    }
+    .appt-card p {
+      font-size: 0.9rem;
+      margin: 0 0 10px;
+      line-height: 1.5;
+    }
+    .appt-length {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+    .appt-link {
+      display: inline-block;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      text-decoration: none;
+      background: #0ea5e9;
+      color: #ffffff;
+    }
+    .appt-link.secondary {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #d1d5db;
+    }
+    .back-link {
+      margin-top: 28px;
+      font-size: 0.9rem;
+    }
+    .back-link a {
+      color: #0ea5e9;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <h1>Schedule an Appointment</h1>
+    <div class="intro">
+      <p>Select the type of appointment you need below.</p>
+      <p>All calls are with a licensed insurance and tax professional, and there is no obligation.</p>
+    </div>
+
+    <div class="appointment-grid">
+      <div class="appt-card">
+        <h2>Medicare Review</h2>
+        <div class="appt-length">30 minutes · Phone or Zoom</div>
+        <p>Review your Medicare options, compare plans in your ZIP code, and check if your doctors and prescriptions are covered.</p>
+        <a href="questionnaire.html" class="appt-link">Start Medicare Review →</a>
+      </div>
+
+      <div class="appt-card">
+        <h2>Concierge Medicare Client</h2>
+        <div class="appt-length">45 minutes · Phone or Zoom</div>
+        <p>For clients interested in premium, ongoing support for Medicare, billing issues, and care coordination.</p>
+        <a href="concierge.html" class="appt-link">Learn About Concierge →</a>
+      </div>
+
+      <div class="appt-card">
+        <h2>Obamacare / ACA Help</h2>
+        <div class="appt-length">30 minutes · Phone or Zoom</div>
+        <p>Get help comparing Marketplace (Obamacare) plans, checking subsidies, and selecting coverage if you're under 65.</p>
+        <a href="aca.html" class="appt-link">Get ACA Help →</a>
+      </div>
+
+      <div class="appt-card">
+        <h2>Life Insurance Review</h2>
+        <div class="appt-length">30 minutes · Phone or Zoom</div>
+        <p>Discuss your goals and budget, then review life insurance options to protect your family.</p>
+        <a href="life-insurance.html" class="appt-link">Life Insurance Form →</a>
+      </div>
+
+      <div class="appt-card">
+        <h2>Tax Preparation / Tax Planning</h2>
+        <div class="appt-length">45 minutes · Phone or Zoom</div>
+        <p>Review your tax situation, deductions, and planning opportunities, especially if you're on Medicare or retired.</p>
+        <a href="tax-preparation.html" class="appt-link secondary">Request Tax Appointment →</a>
+      </div>
+    </div>
+
+    <div class="back-link">
+      <a href="index.html">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
