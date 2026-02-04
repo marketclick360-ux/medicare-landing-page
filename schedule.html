@@ -1,247 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Schedule an Appointment | Edlando Insurance</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <title>Schedule an Appointment | Edlando Insurance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Cal.com Embed Script -->
+    <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", {origin:"https://cal.com"});
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-      color: white;
-      padding: 60px 20px 40px;
-      text-align: center;
-      position: relative;
-      border-radius: 0 0 40px 40px;
-    }
+        /* Back Link */
+        .back-link {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+        }
+        .back-link a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .back-link a:hover {
+            background: rgba(255,255,255,0.1);
+        }
 
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 60px 20px 40px;
+            text-align: center;
+            position: relative;
+            border-radius: 0 0 40px 40px;
+        }
 
-    .hero p {
-      font-size: 1.1rem;
-      opacity: 0.95;
-    }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
 
-    .back-link-top {
-      position: absolute;
-      top: 15px;
-      left: 20px;
-    }
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .back-link-top a {
-      color: white;
-      text-decoration: none;
-      padding: 5px 10px;
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: 4px;
-      font-size: 0.9rem;
-    }
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0891b2;
+            margin-bottom: 30px;
+        }
 
-    .back-link-top a:hover {
-      background: rgba(255,255,255,0.1);
-    }
+        /* Embedded Calendar Section */
+        .calendar-section {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
 
-    /* Main Content */
-    .main-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 50px 20px;
-    }
+        .calendar-embed {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(8, 145, 178, 0.12);
+            overflow: hidden;
+            min-height: 650px;
+        }
 
-    .section-title {
-      text-align: center;
-      font-size: 1.8rem;
-      color: #0891b2;
-      margin-bottom: 40px;
-    }
+        /* Service selector tabs */
+        .service-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
 
-    /* Appointment Grid */
-    .appointment-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-    }
+        .service-tab {
+            padding: 12px 24px;
+            background: #f0f9ff;
+            border: 2px solid #0891b2;
+            border-radius: 50px;
+            color: #0891b2;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
 
-    .appt-card {
-      background: #f0f9ff;
-      border-radius: 20px;
-      padding: 25px;
-      box-shadow: 0 4px 20px rgba(8, 145, 178, 0.08);
-      border: 1px solid rgba(8, 145, 178, 0.1);
-      transition: all 0.3s ease;
-    }
+        .service-tab:hover, .service-tab.active {
+            background: #0891b2;
+            color: white;
+        }
 
-    .appt-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(8, 145, 178, 0.15);
-    }
+        /* Contact Fallback */
+        .contact-fallback {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
 
-    .appt-card h2 {
-      font-size: 1.25rem;
-      margin: 0 0 8px;
-      color: #0891b2;
-    }
+        .contact-fallback p {
+            margin-bottom: 15px;
+            color: #555;
+        }
 
-    .appt-card p {
-      font-size: 0.95rem;
-      margin: 0 0 15px;
-      line-height: 1.5;
-      color: #555;
-    }
+        .contact-fallback a {
+            color: #0891b2;
+            font-weight: 600;
+            text-decoration: none;
+        }
 
-    .appt-length {
-      font-size: 0.85rem;
-      color: #6b7280;
-      margin-bottom: 12px;
-    }
+        .contact-fallback a:hover {
+            text-decoration: underline;
+        }
 
-    .appt-link {
-      display: inline-block;
-      background: white;
-      color: #0891b2;
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
 
-    .appt-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
+        .footer-links {
+            margin-bottom: 15px;
+        }
 
-    /* Footer */
-    footer {
-      background: #1e293b;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-      margin-top: 40px;
-    }
+        .footer-links a {
+            color: #cccccc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
 
-    .footer-links {
-      margin-bottom: 15px;
-    }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
 
-    .footer-links a {
-      color: #cccccc;
-      text-decoration: none;
-      margin: 0 10px;
-    }
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
 
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-
-    footer p {
-      opacity: 0.8;
-      font-size: 0.9rem;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .hero {
-        padding: 50px 15px 30px;
-      }
-
-      .hero h1 {
-        font-size: 1.6rem;
-      }
-
-      .main-content {
-        padding: 30px 15px;
-      }
-
-      .appointment-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .back-link-top {
-        top: 10px;
-        left: 10px;
-      }
-    }
-  </style>
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 15px 35px;
+            }
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .service-tabs {
+                gap: 8px;
+            }
+            .service-tab {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            .calendar-embed {
+                min-height: 550px;
+            }
+            .back-link {
+                top: 10px;
+                left: 10px;
+            }
+            .back-link a {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="back-link-top"><a href="index.html">← Home</a></div>
-    <h1>Schedule an Appointment</h1>
-    <p>Select the type of appointment you need below. All calls are free and no obligation.</p>
-  </section>
+    <section class="hero">
+        <div class="back-link">
+            <a href="/">← Home</a>
+        </div>
+        <img src="Edlando__3_-removebg-preview.png" alt="Edlando Insurance" style="height: 55px; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto;">
+        <h1>Schedule an Appointment</h1>
+        <p>Select the type of appointment you need and book a convenient time with a licensed professional.</p>
+    </section>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <h2 class="section-title">Choose Your Service</h2>
+    <section class="calendar-section">
+        <h2 class="section-title">Choose Your Service & Book a Time</h2>
+        
+        <div class="service-tabs">
+            <a href="#" class="service-tab active" onclick="loadCalendar('medicare-consultation'); return false;">🏥 Medicare Review</a>
+            <a href="#" class="service-tab" onclick="loadCalendar('concierge-medicare'); return false;">⭐ Concierge Client</a>
+            <a href="#" class="service-tab" onclick="loadCalendar('aca-consultation'); return false;">🛡️ ACA / Obamacare</a>
+            <a href="#" class="service-tab" onclick="loadCalendar('life-insurance'); return false;">❤️ Life Insurance</a>
+            <a href="#" class="service-tab" onclick="loadCalendar('tax-preparation'); return false;">📊 Tax Preparation</a>
+        </div>
 
-    <div class="appointment-grid">
-      <div class="appt-card">
-        <h2>Medicare Review</h2>
-        <div class="appt-length">30 minutes · Phone or Zoom</div>
-        <p>Review your Medicare options, compare plans in your ZIP code, and check if your doctors and prescriptions are covered.</p>
-        <a href="https://cal.com/janet-murillo/medicare-consultation" class="appt-link">Start Medicare Review →</a>
-      </div>
+        <div class="calendar-embed" id="cal-embed">
+            <!-- Cal.com inline embed will load here -->
+        </div>
 
-      <div class="appt-card">
-        <h2>Concierge Medicare Client</h2>
-        <div class="appt-length">45 minutes · Phone or Zoom</div>
-        <p>For clients interested in premium, ongoing support for Medicare, billing issues, and care coordination.</p>
-        <a href="https://cal.com/janet-murillo/concierge-service" class="appt-link">Learn About Concierge →</a>
-      </div>
+        <div class="contact-fallback">
+            <p>Prefer to speak with us directly?</p>
+            <p>📞 <a href="tel:+13464545135">(346) 454-5135</a> &nbsp;|&nbsp; ✉️ <a href="mailto:edlandoinsurance@gmail.com">edlandoinsurance@gmail.com</a></p>
+        </div>
+    </section>
 
-      <div class="appt-card">
-        <h2>Obamacare / ACA Help</h2>
-        <div class="appt-length">30 minutes · Phone or Zoom</div>
-        <p>Get help comparing Marketplace (Obamacare) plans, checking subsidies, and selecting coverage if you're under 65.</p>
-        <a href="aca.html" class="appt-link">Get ACA Help →</a>
-      </div>
+    <footer>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/about.html">About Us</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms of Service</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <p>Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+        <p>© 2026 Medicare Help Center. All rights reserved.</p>
+    </footer>
 
-      <div class="appt-card">
-        <h2>Life Insurance Review</h2>
-        <div class="appt-length">30 minutes · Phone or Zoom</div>
-        <p>Discuss your goals and budget, then review life insurance options to protect your family.</p>
-        <a href="https://cal.com/janet-murillo/life-insurance-consultation" class="appt-link">Life Insurance Form →</a>
-      </div>
-
-      <div class="appt-card">
-        <h2>Tax Preparation / Tax Planning</h2>
-        <div class="appt-length">45 minutes · Phone or Zoom</div>
-        <p>Review your tax situation, deductions, and planning opportunities, especially if you're on Medicare or retired.</p>
-        <a href="https://cal.com/janet-murillo/tax-preparation-consultation" class="appt-link">Request Tax Appointment →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/about.html">About Us</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/privacy-policy.html">Privacy Policy</a>
-      <a href="/terms.html">Terms of Service</a>
-      <a href="/contact.html">Contact</a>
-    </div>
-    <p>Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
-    <p>© 2026 Medicare Help Center. All rights reserved.</p>
-  </footer>
+    <script>
+    // Load calendar based on service type
+    function loadCalendar(eventType) {
+        // Update active tab
+        document.querySelectorAll('.service-tab').forEach(tab => tab.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        // Clear previous embed
+        const embedContainer = document.getElementById('cal-embed');
+        embedContainer.innerHTML = '';
+        
+        // Load new calendar
+        Cal("inline", {
+            elementOrSelector: "#cal-embed",
+            calLink: "janet-murillo/" + eventType,
+            layout: "month_view",
+            config: {
+                theme: "light"
+            }
+        });
+    }
+    
+    // Load Medicare calendar by default on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        Cal("inline", {
+            elementOrSelector: "#cal-embed",
+            calLink: "janet-murillo/medicare-consultation",
+            layout: "month_view",
+            config: {
+                theme: "light"
+            }
+        });
+    });
+    </script>
 </body>
 </html>
