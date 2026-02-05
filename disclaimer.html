@@ -2,29 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Disclaimer | Edlando Medicare Services</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Important disclaimers and disclosures for Edlando Medicare insurance services in The Woodlands, TX.">
-    <title>Disclaimer | Edlando Medicare Services</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d4f5c 0%, #1a6b7a 50%, #0d4f5c 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #0d9488;
+            margin-top: 0;
+        }
+        h2 {
+            color: #1f2937;
+            margin-top: 30px;
+        }
+        p, li {
+            line-height: 1.7;
+            color: #4b5563;
+        }
+        a {
+            color: #0d9488;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .highlight-box {
+            background: #f0fdfa;
+            border-left: 4px solid #0d9488;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .site-footer {
+            padding: 40px 20px;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            background: #0a3d47;
+            margin-top: 40px;
+        }
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="disclaimer.html">Disclaimer</a>
-        </nav>
-    </header>
-    <main>
-        <h1>Disclaimer</h1>
-        <p>We do not offer every plan available in your area. Currently we represent 8 organizations which offer 62 products in your area. Please contact Medicare.gov, 1-800-MEDICARE, or your local State Health Insurance Program (SHIP) to get information on all of your options.</p>
-        <p>Not connected with or endorsed by the United States government or the federal Medicare program.</p>
-        <p>By calling the number above, you will be connected to a licensed insurance agent for further information about Medicare Advantage and Prescription Drug Plans. Medicare has neither reviewed nor endorsed this information.</p>
-        <p>This is a solicitation for insurance. A licensed agent or broker may contact you.</p>
-        <p>Edlando Insurance Services is licensed in the state of Texas.</p>
-    </main>
-    <footer>
-        <p>&copy; 2025 Edlando Insurance Services. All rights reserved.</p>
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+        <div class="card">
+            <h1>Disclaimer</h1>
+            
+            <h2>Plan Availability</h2>
+            <p>We do not offer every plan available in your area. Currently we represent 8 organizations which offer 62 products in your area. Please contact Medicare.gov, 1-800-MEDICARE, or your local State Health Insurance Program (SHIP) to get information on all of your options.</p>
+            
+            <h2>Government Affiliation</h2>
+            <p>Not connected with or endorsed by the United States government or the federal Medicare program.</p>
+            
+            <div class="highlight-box">
+                <strong>Important:</strong> By calling the number on this website, you will be connected to a licensed insurance agent for further information about Medicare Advantage and Prescription Drug Plans. Medicare has neither reviewed nor endorsed this information.
+            </div>
+            
+            <h2>Solicitation Notice</h2>
+            <p>This is a solicitation for insurance. A licensed agent or broker may contact you.</p>
+            
+            <h2>Licensing</h2>
+            <p>Edlando Insurance Services is licensed in the state of Texas.</p>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/about.html">About Us</a>
+            <a href="/disclaimer.html">Disclaimer</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <p>Edlando Insurance Services is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+        <p>© <span id="footer-year"></span> Edlando Insurance Services. All rights reserved.</p>
     </footer>
+    
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
