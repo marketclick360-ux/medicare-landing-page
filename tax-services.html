@@ -1,55 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tax Services | Edlando Insurance</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0d4f5c 0%, #1a6b7a 50%, #0d4f5c 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        .btn {
-            display: inline-block;
-            background: #f97316;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        .btn:hover {
-            background: #ea580c;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Services | Edlando Insurance</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d4f5c 0%, #1a6b7a 50%, #0d4f5c 100%);
+      padding: 40px 20px;
+    }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      color: #111827;
+    }
+    .page-header { text-align: center; margin-bottom: 32px; }
+    .page-header h1 { font-size: 2rem; color: #0d4f5c; margin-bottom: 8px; }
+    .subtitle { color: #6b7280; font-size: 1.1rem; }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 32px;
+      margin-bottom: 8px;
+      color: #0d4f5c;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-description { color: #6b7280; margin-bottom: 16px; font-size: 0.95rem; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px 24px;
+    }
+    label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; color: #374151; }
+    label span.required { color: #dc2626; margin-left: 2px; }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #0d4f5c;
+      box-shadow: 0 0 0 3px rgba(13, 79, 92, 0.15);
+    }
+    .note { font-size: 0.8rem; color: #6b7280; margin-top: 4px; }
+    .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 8px; }
+    .radio-item, .checkbox-item { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; color: #374151; }
+    .dependent-block {
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      margin-top: 12px;
+      background: #f9fafb;
+    }
+    .dependent-block h4 { margin: 0 0 12px 0; font-size: 0.95rem; color: #0d4f5c; }
+    .upload-section h4 { margin: 16px 0 4px 0; font-size: 0.95rem; color: #374151; }
+    .upload-section input[type="file"] { margin-top: 4px; }
+    .consent-text { font-size: 0.9rem; color: #4b5563; line-height: 1.5; margin-top: 8px; }
+    .submit-row { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .btn {
+      display: inline-block;
+      background: #f97316;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #ea580c; }
+    .security-text { font-size: 0.85rem; color: #10b981; margin-bottom: 8px; }
+    .back-link { text-align: center; margin-top: 24px; }
+    .back-link a { color: #6b7280; text-decoration: none; font-size: 0.95rem; }
+    .back-link a:hover { color: #0d4f5c; text-decoration: underline; }
+    @media (max-width: 600px) { body { padding: 16px; } .page { padding: 20px; } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📋 Tax Services</h1>
-        <p>Coming Soon! We're building our tax preparation intake form. Check back soon or contact us directly.</p>
-        <a href="/" class="btn">← Back to Home</a>
+  <div class="page">
+    <div class="page-header">
+      <h1>📋 Tax Filing Intake Form</h1>
+      <p class="subtitle">Secure document collection for your tax preparation</p>
     </div>
-</body>
-</html>
+
+    <form action="#" method="post" enctype="multipart/form-data">
+      <h2>👤 Personal Information (Taxpayer)</h2>
+      <p class="section-description">Enter information exactly as it appears on your Social Security card.</p>
+      <p class="security-text">🔒 Your information is encrypted and secure.</p>
+
+      <div class="form-grid">
+        <div><label>First Name<span class="required">*</span></label><input type="text" name="first_name" required /></div>
+        <div><label>Middle Initial</label><input type="text" name="middle_initial" maxlength="1" /></div>
+        <div><label>Last Name<span class="required">*</span></label><input type="text" name="last_name" required /></div>
+        <div><label>Social Security Number<span class="required">*</span></label><input type="text" name="ssn" placeholder="XXX-XX-XXXX" required /></div>
+        <div><label>Date of Birth<span class="required">*</span></label><input type="date" name="dob" required /></div>
+        <div><label>Email Address<span class="required">*</span></label><input type="email" name="email" required /></div>
+        <div><label>Phone Number<span class="required">*</span></label><input type="tel" name="phone" required /></div>
+        <div><label>Street Address<span class="required">*</span></label><input type="text" name="street" required /></div>
+        <div><label>City<span class="required">*</span></label><input type="text" name="city" required /></div>
+        <div><label>State<span class="required">*</span></label>
+          <select name="state" required>
+            <option value="">Select</option>
+            <option value="TX">Texas</option>
+            <option value="CA">California</option>
+            <option value="FL">Florida</option>
+            <option value="NY">New York</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div><label>ZIP Code<span class="required">*</span></label><input type="text" name="zip" required /></div>
+      </div>
+
+      <h2>💑 Spouse Information (If Filing Jointly)</h2>
+      <p class="section-description">Complete only if married filing jointly.</p>
+      <div class="form-grid">
+        <div><label>Spouse First Name</label><input type="text" name="spouse_first_name" /></div>
+        <div><label>Spouse Last Name</label><input type="text" name="spouse_last_name" /></div>
+        <div><label>Spouse SSN</label><input type="text" name="spouse_ssn" placeholder="XXX-XX-XXXX" /></div>
+        <div><label>Spouse Date of Birth</label><input type="date" name="spouse_dob" /></div>
+      </div>
+
+      <h2>📝 Filing Status</h2>
+      <p class="section-description">Select your filing status.</p>
+      <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="filing_status" value="Single" required /><span>Single</span></label>
+        <label class="radio-item"><input type="radio" name="filing_status" value="Married Filing Jointly" /><span>Married Filing Jointly</span></label>
+        <label class="radio-item"><input type="radio" name="filing_status" value="Married Filing Separately" /><span>Married Filing Separately</span></label>
+        <label class="radio-item"><input type="radio" name="filing_status" value="Head of Household" /><span>Head of Household</span></label>
+        <label class="radio-item"><input type="radio" name="filing_status" value="Qualifying Widow(er)" /><span>Qualifying Widow(er)</span></label>
+      </div>
+
+      <h2>👨‍👩‍👧‍👦 Dependents</h2>
+      <p class="section-description">List all dependents you will claim on your tax return.</p>
+
+      <div class="dependent-block">
+        <h4>Dependent 1</h4>
+        <div class="form-grid">
+          <div><label>Full Name</label><input type="text" name="dep1_name" /></div>
+          <div><label>SSN</label><input type="text" name="dep1_ssn" /></div>
+          <div><label>Date of Birth</label><input type="date" name="dep1_dob" /></div>
+          <div><label>Relationship</label><select name="dep1_relationship"><option value="">Select</option><option value="Son">Son</option><option value="Daughter">Daughter</option><option value="Stepchild">Stepchild</option><option value="Parent">Parent</option><option value="Other">Other</option></select></div>
+        </div>
+      </div>
+
+      <div class="dependent-block">
+        <h4>Dependent 2</h4>
+        <div class="form-grid">
+          <div><label>Full Name</label><input type="text" name="dep2_name" /></div>
+          <div><label>SSN</label><input type="text" name="dep2_ssn" /></div>
+          <div><label>Date of Birth</label><input type="date" name="dep2_dob" /></div>
+          <div><label>Relationship</label><select name="dep2_relationship"><option value="">Select</option><option value="Son">Son</option><option value="Daughter">Daughter</option><option value="Stepchild">Stepchild</option><option value="Parent">Parent</option><option value="Other">Other</option></select></div>
+        </div>
+      </div>
+
+      <div class="dependent-block">
+        <h4>Dependent 3</h4>
+        <div class="form-grid">
+          <div><label>Full Name</label><input type="text" name="dep3_name" /></div>
+          <div><label>SSN</label><input type="text" name="dep3_ssn" /></div>
+          <div><label>Date of Birth</label><input type="date" name="dep3_dob" /></div>
+          <div><label>Relationship</label><select name="dep3_relationship"><option value="">Select</option><option value="Son">Son</option><option value="Daughter">Daughter</option><option value="Stepchild">Stepchild</option><option value="Parent">Parent</option><option value="Other">Other</option></select></div>
+        </div>
+      </div>
+
+      <h2>💰 Income Sources</h2>
+      <p class="section-description">Check all that apply to your tax situation.</p>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox" name="income_w2" /><span>W-2 Employment</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_1099_nec" /><span>1099-NEC (Self-Employment)</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_1099_misc" /><span>1099-MISC</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_1099_int" /><span>1099-INT (Interest)</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_1099_div" /><span>1099-DIV (Dividends)</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_1099_b" /><span>1099-B (Stocks/Investments)</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_1099_r" /><span>1099-R (Retirement)</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_1099_g" /><span>1099-G (Unemployment)</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_ssa_1099" /><span>SSA-1099 (Social Security)</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_rental" /><span>Rental Income</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_crypto" /><span>Cryptocurrency</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="income_other" /><span>Other Income</span></label>
+      </div>
+
+      <h2>📋 Deductions &amp; Credits</h2>
+      <p class="section-description">Check all deductions and credits that may apply to you.</p>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox" name="ded_mortgage_interest" /><span>Mortgage Interest</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_property_taxes" /><span>Property Taxes</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_charity" /><span>Charitable Donations</span></label>
+        
