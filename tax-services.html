@@ -204,3 +204,82 @@
         <label class="checkbox-item"><input type="checkbox" name="ded_property_taxes" /><span>Property Taxes</span></label>
         <label class="checkbox-item"><input type="checkbox" name="ded_charity" /><span>Charitable Donations</span></label>
         
+        <label class="checkbox-item"><input type="checkbox" name="ded_medical" /><span>Medical Expenses</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_student_loan" /><span>Student Loan Interest</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_education" /><span>Education Expenses</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_child_care" /><span>Child Care Expenses</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_ev" /><span>Electric Vehicle Credit</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_solar" /><span>Solar/Energy Credits</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_hsa" /><span>HSA Contributions</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_ira" /><span>IRA Contributions</span></label>
+        <label class="checkbox-item"><input type="checkbox" name="ded_business_exp" /><span>Business Expenses</span></label>
+      </div>
+
+      <h2>📤 Upload Your Documents</h2>
+      <p class="section-description">Upload photos or PDFs of your tax documents. Max 25MB per file.</p>
+
+      <div class="upload-section">
+        <h4>📄 W-2 Forms</h4>
+        <p class="note">Upload all W-2 forms from your employer(s).</p>
+        <input type="file" name="w2_files" multiple />
+
+        <h4>📄 1099 Forms</h4>
+        <p class="note">Upload all 1099 forms (1099-NEC, 1099-MISC, 1099-INT, etc.).</p>
+        <input type="file" name="1099_files" multiple />
+
+        <h4>📄 Other Tax Documents</h4>
+        <p class="note">1098 (Mortgage), SSA-1099, 1095-A (Healthcare), prior year return, etc.</p>
+        <input type="file" name="other_tax_docs" multiple />
+
+        <h4>📄 Photo ID</h4>
+        <p class="note">Driver's license or state ID (required for e-filing).</p>
+        <input type="file" name="photo_id" />
+      </div>
+
+      <h2>📝 Additional Information</h2>
+      <div>
+        <label>Anything else we should know about your tax situation?</label>
+        <textarea name="additional_info" placeholder="Any special circumstances, questions, or notes for your tax preparer..."></textarea>
+      </div>
+
+      <div class="form-grid" style="margin-top: 16px;">
+        <div>
+          <label>Preferred Contact Method</label>
+          <select name="preferred_contact">
+            <option value="Phone Call" selected>Phone Call</option>
+            <option value="Text Message">Text Message</option>
+            <option value="Email">Email</option>
+          </select>
+        </div>
+        <div>
+          <label>Best Time to Contact</label>
+          <select name="best_time">
+            <option value="Morning (9am-12pm)" selected>Morning (9am-12pm)</option>
+            <option value="Afternoon (12pm-5pm)">Afternoon (12pm-5pm)</option>
+            <option value="Evening (5pm-8pm)">Evening (5pm-8pm)</option>
+          </select>
+        </div>
+      </div>
+
+      <h2>⚠️ Authorization &amp; Consent</h2>
+      <p class="consent-text">
+        By submitting this form, I authorize Edlando Tax Services to prepare my tax return and represent me
+        before the IRS if necessary. I confirm that all information provided is accurate and complete to
+        the best of my knowledge.
+      </p>
+
+      <div class="submit-row">
+        <label class="checkbox-item">
+          <input type="checkbox" name="consent" required />
+          <span>I agree to the terms above and authorize the preparation of my tax return.<span class="required">*</span></span>
+        </label>
+        <button type="submit" class="btn">✅ Submit Tax Information</button>
+      </div>
+    </form>
+
+    <div class="back-link">
+      <a href="/">← Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
