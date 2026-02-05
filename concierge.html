@@ -32,10 +32,25 @@
         .testimonial { background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin: 20px 0; }
         .testimonial-text { font-style: italic; font-size: 1.1rem; margin-bottom: 15px; }
         .testimonial-author { color: #f59e0b; font-weight: 600; }
+                /* Header Navigation Styles */
+        .site-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; margin-bottom: 20px; }
+        .header-left a { display: inline-flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; padding: 10px 20px; background: rgba(255,255,255,0.15); border-radius: 8px; transition: background 0.2s; }
+        .header-left a:hover { background: rgba(255,255,255,0.25); }
+        .header-right a { display: inline-flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; padding: 10px 20px; background: #f97316; border-radius: 8px; transition: background 0.2s; }
+        .header-right a:hover { background: #ea580c; }
     </style>
 </head>
 <body>
     <section class="hero" style="position: relative;">
+            <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="header-left">
+            <a href="index.html">🏠 Home</a>
+        </div>
+        <div class="header-right">
+            <a href="tel:+18326808257">📞 Call (832) 680-8257</a>
+        </div>
+    </header>
         <div class="lang-selector"><a href="spanish/concierge.html">Español</a></div>
         <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px;">EDLANDO INSURANCE</p>
         <h1>Premium Senior Care Concierge</h1>
