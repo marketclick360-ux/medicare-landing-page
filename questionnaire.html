@@ -144,10 +144,25 @@
     .progress { border-radius: 10px; }
     input[type="text"], input[type="email"], input[type="tel"], select { border-radius: 12px; transition: all 0.3s ease; }
     input:focus, select:focus { box-shadow: 0 0 0 3px rgba(13, 79, 92, 0.1); }
+            /* Header Navigation Styles */
+        .site-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; margin-bottom: 20px; }
+        .header-left a { display: inline-flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; padding: 10px 20px; background: rgba(255,255,255,0.15); border-radius: 8px; transition: background 0.2s; }
+        .header-left a:hover { background: rgba(255,255,255,0.25); }
+        .header-right a { display: inline-flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; padding: 10px 20px; background: #f97316; border-radius: 8px; transition: background 0.2s; }
+        .header-right a:hover { background: #ea580c; }
 </style>
  
 </head>
 <body>
+        <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="header-left">
+            <a href="index.html">🏠 Home</a>
+        </div>
+        <div class="header-right">
+            <a href="tel:+18326808257">📞 Call (832) 680-8257</a>
+        </div>
+    </header>
     <div style="text-align: center; padding: 15px 0;">
     <img src="Edlando__3_-removebg-preview.png" alt="Edlando Insurance" style="height: 50px;">
   </div>
