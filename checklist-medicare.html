@@ -31,9 +31,24 @@
         .footer { margin-top: 30px; text-align: center; color: #666; font-size: 14px; padding-top: 20px; border-top: 2px solid #1e3a5f; }
         .print-btn { background: #f59e0b; color: white; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-bottom: 20px; }
         .print-btn:hover { background: #d97706; }
+                /* Header Navigation Styles */
+        .site-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; margin-bottom: 20px; }
+        .header-left a { display: inline-flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; padding: 10px 20px; background: rgba(255,255,255,0.15); border-radius: 8px; transition: background 0.2s; }
+        .header-left a:hover { background: rgba(255,255,255,0.25); }
+        .header-right a { display: inline-flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; padding: 10px 20px; background: #f97316; border-radius: 8px; transition: background 0.2s; }
+        .header-right a:hover { background: #ea580c; }
     </style>
 </head>
 <body>
+        <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="header-left">
+            <a href="index.html">🏠 Home</a>
+        </div>
+        <div class="header-right">
+            <a href="tel:+18326808257">📞 Call (832) 680-8257</a>
+        </div>
+    </header>
     <button class="print-btn no-print" onclick="window.print()">Print / Save as PDF</button>
     
     <div class="header">
