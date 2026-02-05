@@ -34,9 +34,24 @@
         .submit-btn:active { transform: translateY(0); }
         .back-link { display: inline-block; margin-top: 20px; color: #0891b2; text-decoration: none; font-weight: 500; }
         .back-link:hover { text-decoration: underline; }
+                /* Header Navigation Styles */
+        .site-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; margin-bottom: 20px; }
+        .header-left a { display: inline-flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; padding: 10px 20px; background: rgba(255,255,255,0.15); border-radius: 8px; transition: background 0.2s; }
+        .header-left a:hover { background: rgba(255,255,255,0.25); }
+        .header-right a { display: inline-flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-weight: 600; font-size: 1rem; padding: 10px 20px; background: #f97316; border-radius: 8px; transition: background 0.2s; }
+        .header-right a:hover { background: #ea580c; }
     </style>
 </head>
 <body>
+        <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="header-left">
+            <a href="index.html">🏠 Home</a>
+        </div>
+        <div class="header-right">
+            <a href="tel:+18326808257">📞 Call (832) 680-8257</a>
+        </div>
+    </header>
     <div class="container">
         <div class="form-card">
             <div class="lang-toggle">
