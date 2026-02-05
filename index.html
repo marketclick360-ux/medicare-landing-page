@@ -104,6 +104,32 @@
         .header-call:hover {
             background: #0b7a6e;
         }
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                padding: 10px 15px;
+                gap: 10px;
+            }
+            .main-nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .main-nav a {
+                font-size: 0.85rem;
+            }
+            .header-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .header-call {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            .lang-selector, .header-phone {
+                display: none;
+            }
+        }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
