@@ -3,6 +3,8 @@ const crypto = require('crypto');
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const ENC_KEY = process.env.ENCRYPTION_KEY;
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const NOTIFICATION_EMAIL = 'marketclick360@gmail.com'; // Change to your email
 
 function encrypt(text) {
   const iv = crypto.randomBytes(16);
@@ -75,6 +77,40 @@ module.exports = async function handler(req, res) {
       const errText = await response.text();
       console.error('Supabase error:', errText);
       return res.status(500).json({ error: 'Database error' });
+    }
+
+    
+    // Send email notification
+    try {
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${RESEND_API_KEY}`
+        },
+        body: JSON.stringify({
+          from: 'Form Notifications <onboarding@resend.dev>',
+          to: [NOTIFICATION_EMAIL],
+          subject: 'New Medicare Client Discovery Form Submission',
+          html: `
+            <h2>New Form Submission</h2>
+            <p><strong>Name:</strong> ${d.fullName}</p>
+            <p><strong>DOB:</strong> ${d.dob}</p>
+            <p><strong>Email:</strong> ${d.email}</p>
+            <p><strong>Phone:</strong> ${d.phone}</p>
+            <p><strong>SSN (last 4):</strong> ${ssnLast4 || 'Not provided'}</p>
+            <p><strong>Current Coverage:</strong> ${d.currentCoverage || 'N/A'}</p>
+            <p><strong>Employment Status:</strong> ${d.employmentStatus || 'N/A'}</p>
+            <p><strong>Concerns:</strong> ${d.concerns?.join(', ') || 'None'}</p>
+            <p><strong>Timeline:</strong> ${d.timeline || 'N/A'}</p>
+            <hr>
+            <p><small>View full details in Supabase dashboard</small></p>
+          `
+        })
+      });
+    } catch (emailError) {
+      console.error('Failed to send email notification:', emailError);
+      // Don't fail the request if email fails
     }
 
     return res.status(200).json({ success: true });
