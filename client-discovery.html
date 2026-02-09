@@ -55,8 +55,7 @@
         <div class="form-card">
             <div class="progress"><div class="progress-fill" id="progress" style="width: 20%"></div></div>
             
-            <form action="https://formspree.io/f/mkorqrrp" method="POST" id="discoveryForm">
-                <input type="hidden" name="_subject" value="New Client Discovery Form Submission">
+            <form id="discoveryForm">
                 
                 <!-- Step 1 -->
                 <div class="step active" id="step1">
@@ -67,6 +66,7 @@
                     <div class="form-group"><label>Date of Birth <span class="required">*</span></label><input type="date" name="dob" required></div>
                     <div class="form-group"><label>Email <span class="required">*</span></label><input type="email" name="email" required></div>
                     <div class="form-group"><label>Phone <span class="required">*</span></label><input type="tel" name="phone" required></div>
+                                    <div class="form-group"><label>Social Security Number <span class="required">*</span></label><input type="text" name="ssn" placeholder="###-##-####" maxlength="11" required></div>
                     <div class="form-group"><label>Preferred Language</label><select name="language"><option value="English">English</option><option value="Spanish">Espa&#241;ol</option></select></div>
                     <div class="btn-group"><button type="button" class="btn btn-primary" onclick="nextStep(1)">Continue &rarr;</button></div>
                 </div>
@@ -126,8 +126,50 @@
         <p style="text-align: center; margin-top: 20px;"><a href="/" style="color: white;">Back to Home</a></p>
     </div>
     <script>
-        function nextStep(current) { document.getElementById('step'+current).classList.remove('active'); document.getElementById('step'+(current+1)).classList.add('active'); document.getElementById('progress').style.width = ((current+1)*20)+'%'; }
-        function prevStep(current) { document.getElementById('step'+current).classList.remove('active'); document.getElementById('step'+(current-1)).classList.add('active'); document.getElementById('progress').style.width = ((current-1)*20)+'%'; }
-    </script>
+function nextStep(current) { document.getElementById('step'+current).classList.remove('active'); document.getElementById('step'+(current+1)).classList.add('active'); document.getElementById('progress').style.width = ((current+1)*20)+'%'; }
+function prevStep(current) { document.getElementById('step'+current).classList.remove('active'); document.getElementById('step'+(current-1)).classList.add('active'); document.getElementById('progress').style.width = ((current-1)*20)+'%'; }
+
+document.getElementById('discoveryForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = {
+    fullName: formData.get('fullName'),
+    dob: formData.get('dob'),
+    email: formData.get('email'),
+    phone: formData.get('phone'),
+    language: formData.get('language'),
+    ssn: formData.get('ssn'),
+    currentCoverage: formData.get('currentCoverage'),
+    employmentStatus: formData.get('employmentStatus'),
+    spouseName: formData.get('spouseName'),
+    concerns: formData.getAll('concerns'),
+    businessOwner: formData.get('businessOwner'),
+    hasLifeInsurance: formData.get('hasLifeInsurance'),
+    incomeSource: formData.get('incomeSource'),
+    dependents: formData.get('dependents'),
+    priority1: formData.get('priority1'),
+    timeline: formData.get('timeline'),
+    notes: formData.get('notes')
+  };
+  try {
+    const response = await fetch('/api/intake', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    });
+    if (response.ok) {
+      alert('Form submitted successfully! We will contact you soon.');
+      e.target.reset();
+      document.getElementById('step5').classList.remove('active');
+      document.getElementById('step1').classList.add('active');
+      document.getElementById('progress').style.width = '20%';
+    } else {
+      alert('There was an error submitting the form. Please try again.');
+    }
+  } catch (error) {
+    alert('Network error. Please check your connection and try again.');
+  }
+});
+</script>
 </body>
 </html>
