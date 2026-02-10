@@ -15,11 +15,23 @@ export default async function handler(req, res) {
 
   try {
     const data = req.body;
-    
-    // Insert into Supabase
+
+    // Insert into Supabase aca_enrollment table
     const { error } = await supabase
       .from('aca_enrollment')
-      .insert([data]);
+      .insert([{
+        full_name: data.full_name,
+        dob: data.dob || null,
+        email: data.email,
+        phone: data.phone,
+        zip_code: data.zip_code || null,
+        state: data.state || null,
+        household_size: data.household_size ? parseInt(data.household_size) : null,
+        estimated_income: data.estimated_income || null,
+        current_insurance: data.current_insurance || null,
+        preferred_start_date: data.preferred_start_date || null,
+        notes: data.notes || null
+      }]);
 
     if (error) throw error;
 
@@ -27,17 +39,18 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: 'notifications@edlando.com',
       to: 'janet@edlando.com',
-      subject: `New ACA Enrollment: ${data.fullName}`,
+      subject: `New ACA Enrollment: ${data.full_name}`,
       html: `
         <h2>New ACA Enrollment Submission</h2>
-        <p><strong>Name:</strong> ${data.fullName}</p>
+        <p><strong>Name:</strong> ${data.full_name}</p>
+        <p><strong>DOB:</strong> ${data.dob || 'N/A'}</p>
         <p><strong>Email:</strong> ${data.email}</p>
         <p><strong>Phone:</strong> ${data.phone}</p>
-        <p><strong>State:</strong> ${data.state}</p>
-        <p><strong>Household Size:</strong> ${data.householdSize}</p>
-        <p><strong>Household Income:</strong> $${data.householdIncome}</p>
-        <p><strong>Current Coverage:</strong> ${data.currentCoverage || 'N/A'}</p>
-        <p><strong>Preferred Start Date:</strong> ${data.preferredStartDate || 'N/A'}</p>
+        <p><strong>ZIP Code:</strong> ${data.zip_code || 'N/A'}</p>
+        <p><strong>Household Size:</strong> ${data.household_size || 'N/A'}</p>
+        <p><strong>Income:</strong> ${data.estimated_income || 'N/A'}</p>
+        <p><strong>Current Insurance:</strong> ${data.current_insurance || 'N/A'}</p>
+        <p><strong>Preferred Start Date:</strong> ${data.preferred_start_date || 'N/A'}</p>
         <p><strong>Notes:</strong> ${data.notes || 'None'}</p>
       `
     });
