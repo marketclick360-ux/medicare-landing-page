@@ -146,7 +146,7 @@
       <p class="subtitle">Secure document collection for your tax preparation</p>
     </div>
 
-    <form action="https://formsubmit.co/marketclick360@gmail.com" method="post" enctype="multipart/form-data">
+    <form id="taxForm" onsubmit="return submitToSupabase(event)">
       <h2>👤 Personal Information (Taxpayer)</h2>
       <p class="section-description">Enter information exactly as it appears on your Social Security card.</p>
       <p class="security-text">🔒 Your information is encrypted and secure.</p>
@@ -327,5 +327,41 @@
       <a href="/">← Back to Home</a>
     </div>
   </div>
+  <script>
+const SUPABASE_URL = 'https://vqgratxiuwcxvelzgncl.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxZ3JhdHhpdXdjeHZlbHpnbmNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgzNjk1ODMsImV4cCI6MjA1Mzk0NTU4M30.gXuHPLiOmcTJi9MXXvXfKL1yZC4O8B3o_ST4SBa8OBs';
+
+async function submitToSupabase(event) {
+  event.preventDefault();
+  const form = event.target;
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => { data[key] = value; });
+  
+  try {
+    const response = await fetch(SUPABASE_URL + '/rest/v1/tax_form_submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ form_data: data })
+    });
+    
+    if (response.ok) {
+      alert('Thank you! Your information has been submitted successfully.');
+      form.reset();
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (error) {
+    alert('There was an error submitting your information. Please try again.');
+    console.error(error);
+  }
+  return false;
+}
+</script>
 </body>
 </html>
