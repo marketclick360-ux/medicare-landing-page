@@ -220,40 +220,45 @@
     </div>
   </div>
   <script>
-const SUPABASE_URL = 'https://vqgratxiuwcxvelzgncl.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxZ3JhdHhpdXdjeHZlbHpnbmNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgzNjk1ODMsImV4cCI6MjA1Mzk0NTU4M30.gXuHPLiOmcTJi9MXXvXfKL1yZC4O8B3o_ST4SBa8OBs';
+    async function submitToSupabase(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
 
-async function submitToSupabase(event) {
-  event.preventDefault();
-  const form = event.target;
-  const formData = new FormData(form);
-  const data = { form_source: 'aca' };
-  formData.forEach((value, key) => { data[key] = value; });
-  
-  try {
-    const response = await fetch(SUPABASE_URL + '/rest/v1/tax_form_submissions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({ form_data: data })
-    });
-    
-    if (response.ok) {
-      alert('Thank you! Your information has been submitted successfully.');
-      form.reset();
-    } else {
-      throw new Error('Submission failed');
+      const data = {
+        full_name: (formData.get('first_name') || '') + ' ' + (formData.get('last_name') || ''),
+        dob: formData.get('dob') || null,
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        zip_code: formData.get('zip') || null,
+        household_size: formData.get('household_size') || null,
+        estimated_income: formData.get('income') || null,
+        current_insurance: formData.get('current_insurance') || null,
+        preferred_start_date: formData.get('start_date') || null,
+        notes: formData.get('comments') || null
+      };
+
+      try {
+        const response = await fetch('/api/aca-enrollment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          alert('Thank you! Your information has been submitted successfully.');
+          form.reset();
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        alert('There was an error submitting your information. Please try again.');
+        console.error(error);
+      }
+      return false;
     }
-  } catch (error) {
-    alert('There was an error submitting your information. Please try again.');
-    console.error(error);
-  }
-  return false;
-}
-</script>
+  </script>
 </body>
 </html>
