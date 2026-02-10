@@ -16,6 +16,16 @@ export default async function handler(req, res) {
   try {
     const data = req.body;
 
+    // Parse household_size as integer, default null
+    const householdSize = data.household_size ? parseInt(data.household_size, 10) : null;
+
+    // Build notes with extra form data
+    const notesParts = [];
+    if (data.estimated_income) notesParts.push('Income: ' + data.estimated_income);
+    if (data.preferred_start_date) notesParts.push('Start date: ' + data.preferred_start_date);
+    if (data.notes) notesParts.push(data.notes);
+    const combinedNotes = notesParts.join(' | ') || null;
+
     // Insert into Supabase aca_enrollment table
     const { error } = await supabase
       .from('aca_enrollment')
@@ -25,35 +35,36 @@ export default async function handler(req, res) {
         email: data.email,
         phone: data.phone,
         zip_code: data.zip_code || null,
-        state: data.state || null,
-        household_size: data.household_size ? parseInt(data.household_size) : null,
-        estimated_income: data.estimated_income || null,
+        household_size: isNaN(householdSize) ? null : householdSize,
         current_insurance: data.current_insurance || null,
-        preferred_start_date: data.preferred_start_date || null,
-        notes: data.notes || null
+        notes: combinedNotes
       }]);
 
     if (error) throw error;
 
     // Send email notification
-    await resend.emails.send({
-      from: 'notifications@edlando.com',
-      to: 'janet@edlando.com',
-      subject: `New ACA Enrollment: ${data.full_name}`,
-      html: `
-        <h2>New ACA Enrollment Submission</h2>
-        <p><strong>Name:</strong> ${data.full_name}</p>
-        <p><strong>DOB:</strong> ${data.dob || 'N/A'}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Phone:</strong> ${data.phone}</p>
-        <p><strong>ZIP Code:</strong> ${data.zip_code || 'N/A'}</p>
-        <p><strong>Household Size:</strong> ${data.household_size || 'N/A'}</p>
-        <p><strong>Income:</strong> ${data.estimated_income || 'N/A'}</p>
-        <p><strong>Current Insurance:</strong> ${data.current_insurance || 'N/A'}</p>
-        <p><strong>Preferred Start Date:</strong> ${data.preferred_start_date || 'N/A'}</p>
-        <p><strong>Notes:</strong> ${data.notes || 'None'}</p>
-      `
-    });
+    try {
+      await resend.emails.send({
+        from: 'notifications@edlando.com',
+        to: 'janet@edlando.com',
+        subject: `New ACA Enrollment: ${data.full_name}`,
+        html: `
+          <h2>New ACA Enrollment Submission</h2>
+          <p><strong>Name:</strong> ${data.full_name}</p>
+          <p><strong>DOB:</strong> ${data.dob || 'N/A'}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Phone:</strong> ${data.phone}</p>
+          <p><strong>ZIP Code:</strong> ${data.zip_code || 'N/A'}</p>
+          <p><strong>Household Size:</strong> ${data.household_size || 'N/A'}</p>
+          <p><strong>Income:</strong> ${data.estimated_income || 'N/A'}</p>
+          <p><strong>Current Insurance:</strong> ${data.current_insurance || 'N/A'}</p>
+          <p><strong>Preferred Start:</strong> ${data.preferred_start_date || 'N/A'}</p>
+          <p><strong>Notes:</strong> ${data.notes || 'None'}</p>
+        `
+      });
+    } catch (emailErr) {
+      console.error('Email error (non-fatal):', emailErr);
+    }
 
     res.status(200).json({ success: true });
   } catch (error) {
