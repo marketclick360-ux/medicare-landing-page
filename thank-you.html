@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8">
   <title>Thank You - Medicare Help Center</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -176,5 +177,135 @@
     <p>Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
     <p>&copy; 2026 Medicare Help Center. All rights reserved.</p>
   </footer>
+=======
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Thank you for requesting insurance or tax consultation support.">
+  <title>Thank You | Medicare Help Center</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.GOOGLE_TAG_ID = '';
+    window.GOOGLE_ADS_ID = '';
+    window.GOOGLE_ADS_CONVERSION_LABEL = '';
+    window.CONTACT_PHONE_DISPLAY = '(800) 555-1234';
+    window.CONTACT_PHONE_TEL = '+18005551234';
+    window.CONTACT_SMS_TEL = '+18005551234';
+  </script>
+</head>
+<body>
+  <main class="how-it-works" id="main-content">
+    <h1 id="thank-you-title">Thank you. Your request was received.</h1>
+    <p id="thank-you-copy">A licensed specialist will contact you soon to review options in your area.</p>
+    <p><a id="service-checklist-link" href="medicare-checklist.txt" download>Download your checklist</a></p>
+    <p><a href="https://calendly.com/your-team/medicare-consult" target="_blank" rel="noopener noreferrer">Book a free Medicare consultation</a></p>
+    <p><a id="thankyou-call-link" href="tel:+18005551234">Call now</a> | <a id="thankyou-text-link" href="sms:+18005551234">Text now</a></p>
+    <p><a id="service-resource-link" href="https://www.medicare.gov/plan-compare/" target="_blank" rel="noopener noreferrer">Browse helpful resources</a></p>
+    <p><a id="referral-email-link" href="#">Share with family by email</a> | <a id="referral-text-link" href="#">Share by text</a></p>
+    <p><a href="index.html">Return to home</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">© <span id="footer-year"></span> Medicare Help Center. All rights reserved.</p>
+      <p class="footer-text"><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const SERVICE_CONTENT = {
+      medicare: {
+        title: 'Thank you. Your Medicare request was received.',
+        copy: 'A licensed Medicare specialist will contact you shortly.',
+        checklistFile: 'medicare-checklist.txt',
+        checklistText: 'Download the Medicare Checklist',
+        resourceUrl: 'https://www.medicare.gov/plan-compare/',
+        resourceText: 'Browse Medicare plans on Medicare.gov'
+      },
+      aca: {
+        title: 'Thank you. Your ACA request was received.',
+        copy: 'A Marketplace specialist will contact you shortly to review coverage options.',
+        checklistFile: 'aca-checklist.txt',
+        checklistText: 'Download the ACA Checklist',
+        resourceUrl: 'https://www.healthcare.gov/',
+        resourceText: 'Visit Healthcare.gov'
+      },
+      life: {
+        title: 'Thank you. Your life insurance request was received.',
+        copy: 'An advisor will contact you shortly to discuss policy options.',
+        checklistFile: 'life-insurance-checklist.txt',
+        checklistText: 'Download the Life Insurance Checklist',
+        resourceUrl: 'https://www.iii.org/article/how-much-life-insurance-do-you-need',
+        resourceText: 'Read life insurance basics'
+      },
+      tax: {
+        title: 'Thank you. Your tax filing request was received.',
+        copy: 'A tax support specialist will contact you shortly.',
+        checklistFile: 'tax-filing-checklist.txt',
+        checklistText: 'Download the Tax Filing Checklist',
+        resourceUrl: 'https://www.irs.gov/filing',
+        resourceText: 'Visit IRS filing resources'
+      }
+    };
+
+    function ensureGoogleTag() {
+      const tagId = (window.GOOGLE_TAG_ID || '').trim();
+      const adsId = (window.GOOGLE_ADS_ID || '').trim();
+      if (!tagId && !adsId) return;
+
+      const primaryId = tagId || adsId;
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(primaryId);
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      if (tagId) window.gtag('config', tagId);
+      if (adsId) window.gtag('config', adsId);
+    }
+
+    function fireConversion() {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', 'generate_lead', { currency: 'USD', value: 1 });
+
+      const adsId = (window.GOOGLE_ADS_ID || '').trim();
+      const label = (window.GOOGLE_ADS_CONVERSION_LABEL || '').trim();
+      if (adsId && label) {
+        window.gtag('event', 'conversion', { send_to: adsId + '/' + label, value: 1, currency: 'USD' });
+      }
+    }
+
+    const serviceRaw = localStorage.getItem('service_interest') || 'medicare';
+    const selectedService = SERVICE_CONTENT[serviceRaw] ? serviceRaw : 'medicare';
+    const content = SERVICE_CONTENT[selectedService];
+
+    document.getElementById('thank-you-title').textContent = content.title;
+    document.getElementById('thank-you-copy').textContent = content.copy;
+    const checklistLink = document.getElementById('service-checklist-link');
+    checklistLink.href = content.checklistFile;
+    checklistLink.textContent = content.checklistText;
+    checklistLink.setAttribute('download', content.checklistFile);
+    const resourceLink = document.getElementById('service-resource-link');
+    resourceLink.href = content.resourceUrl;
+    resourceLink.textContent = content.resourceText;
+
+    const callTel = (window.CONTACT_PHONE_TEL || '+18005551234').trim();
+    const smsTel = (window.CONTACT_SMS_TEL || callTel).trim();
+    const phoneDisplay = (window.CONTACT_PHONE_DISPLAY || callTel).trim();
+    const callLink = document.getElementById('thankyou-call-link');
+    const textLink = document.getElementById('thankyou-text-link');
+    callLink.href = 'tel:' + callTel;
+    callLink.textContent = 'Call ' + phoneDisplay;
+    textLink.href = 'sms:' + smsTel;
+    const referralMessage = encodeURIComponent('I found this planning resource helpful: https://example.com/');
+    document.getElementById('referral-email-link').href = 'mailto:?subject=Helpful Medicare Resource&body=' + referralMessage;
+    document.getElementById('referral-text-link').href = 'sms:?&body=' + referralMessage;
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+    ensureGoogleTag();
+    setTimeout(fireConversion, 500);
+  </script>
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
 </body>
 </html>

@@ -11,8 +11,10 @@
   </script>
         <!-- Cache refresh 2026-01-25-11pm -->
   <meta charset="UTF-8">
+  <meta name="description" content="Quick Medicare assessment to match your healthcare and budget preferences.">
   <title>Find Your Perfect Medicare Plan - Quick Assessment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -59,6 +61,20 @@
             color: #ffffff;        margin: 0 0 8px 0;
         font-size: 1.75rem;
     }
+=======
+  <script>
+    window.GOOGLE_TAG_ID = '';
+    window.GOOGLE_ADS_ID = '';
+    window.GOOGLE_ADS_CONVERSION_LABEL = '';
+    window.LEAD_API_BASE = '';
+    window.CONTACT_PHONE_DISPLAY = '(800) 555-1234';
+    window.CONTACT_PHONE_TEL = '+18005551234';
+    window.CONTACT_SMS_TEL = '+18005551234';
+  </script>
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; padding: 20px; }
+    .questionnaire-container { max-width: 640px; margin: 0 auto; }
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
     .question-step { display: none; }
     .question-step.active { display: block; }
     .answers { display: flex; flex-direction: column; gap: 12px; }
@@ -128,6 +144,7 @@
         background: #0a3d47;
     }
     .footer-inner { max-width: 640px; margin: 0 auto; }
+<<<<<<< HEAD
     .footer-text { margin: 0 0 12px; }
           .footer-links { margin-bottom: 15px; }
         .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 10px; }
@@ -152,6 +169,14 @@
         .header-right a:hover { background: #ea580c; }
 </style>
  
+=======
+    .footer-text { margin: 0 0 8px; }
+    .quick-contact { max-width: 640px; margin: 0 auto 16px; display: flex; gap: 12px; }
+    .quick-contact a { color: #0369a1; font-weight: 600; text-decoration: none; }
+    .sticky-contact { position: fixed; left: 10px; right: 10px; bottom: 10px; display: flex; gap: 8px; z-index: 1000; }
+    .sticky-contact a { flex: 1; text-align: center; background: #0369a1; color: #fff; text-decoration: none; border-radius: 999px; padding: 10px; }
+  </style>
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
 </head>
 <body>
         <!-- Header Navigation -->
@@ -172,6 +197,10 @@
 <div class="questionnaire-container">
 
   <div class="questionnaire-container">
+    <div class="quick-contact">
+      <a id="q-call-top" href="tel:+18005551234">Call (800) 555-1234</a>
+      <a id="q-text-top" href="sms:+18005551234">Text us</a>
+    </div>
     <form id="questionnaireForm">
       <!-- STEP 1 -->
       <div class="question-step active" data-step="1">
@@ -344,6 +373,7 @@
       <!-- STEP 7 -->
       <div class="question-step" data-step="7">
         <p>7 of 7</p>
+<<<<<<< HEAD
         <h2>Almost done! Enter your contact info</h2>
         <p>A licensed agent will reach out to discuss your options.</p>
 <div class="answers">
@@ -358,6 +388,37 @@
           </label>
           <label>
             <input type="text" id="zipCode" name="zipCode" placeholder="ZIP code" inputmode="numeric" required>
+=======
+        <h2>Where should we send your plan options?</h2>
+        <p>We’ll use this to share your personalized Medicare recommendations.</p>
+
+        <div class="answers">
+          <label for="fullName">Full name</label>
+          <input type="text" id="fullName" name="fullName" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" required>
+
+          <label for="zipCode">ZIP code</label>
+          <input type="text" id="zipCode" name="zipCode" inputmode="numeric" required>
+
+          <input type="hidden" name="utm_source" id="utm_source">
+          <input type="hidden" name="utm_medium" id="utm_medium">
+          <input type="hidden" name="utm_campaign" id="utm_campaign">
+          <input type="hidden" name="utm_term" id="utm_term">
+          <input type="hidden" name="utm_content" id="utm_content">
+          <input type="hidden" name="gclid" id="gclid">
+          <input type="hidden" name="fbclid" id="fbclid">
+          <input type="hidden" name="form_started_at" id="q_form_started_at">
+          <input type="text" name="honeypot" id="q_honeypot" style="position:absolute;left:-10000px;" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <label>
+            <input type="checkbox" id="contactConsent" name="contactConsent" required>
+            I agree to be contacted by phone, email, and text by a licensed insurance agent.
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
           </label>
         </div>
         <div id="planRecommendation" style="margin-top: 20px;"></div>
@@ -390,16 +451,115 @@
       <p class="footer-text">
         © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
       </p>
+      <p class="footer-text">
+        <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
+      </p>
     </div>
   </footer>
 
+  <div class="sticky-contact" aria-label="Call or text">
+    <a id="q-call-sticky" href="tel:+18005551234">Call Now</a>
+    <a id="q-text-sticky" href="sms:+18005551234">Text Now</a>
+  </div>
+
+  <script src="lead-api-config.js"></script>
   <script>
+    const TRACKING_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
+
+    function ensureGoogleTag() {
+      const tagId = (window.GOOGLE_TAG_ID || '').trim();
+      const adsId = (window.GOOGLE_ADS_ID || '').trim();
+      if (!tagId && !adsId) return;
+
+      const primaryId = tagId || adsId;
+      if (!document.querySelector('script[data-google-tag-loader="1"]')) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(primaryId);
+        script.setAttribute('data-google-tag-loader', '1');
+        document.head.appendChild(script);
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      if (tagId) window.gtag('config', tagId);
+      if (adsId) window.gtag('config', adsId);
+    }
+
+    function trackLeadConversion() {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', 'generate_lead', { currency: 'USD', value: 1 });
+      const adsId = (window.GOOGLE_ADS_ID || '').trim();
+      const label = (window.GOOGLE_ADS_CONVERSION_LABEL || '').trim();
+      if (adsId && label) {
+        window.gtag('event', 'conversion', { send_to: adsId + '/' + label, value: 1, currency: 'USD' });
+      }
+    }
+
+    function getStoredTracking() {
+      const raw = localStorage.getItem('tracking_params');
+      if (!raw) return {};
+      try {
+        return JSON.parse(raw);
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function applyTracking(form, tracking) {
+      TRACKING_KEYS.forEach(function (key) {
+        const input = form.querySelector('#' + key);
+        if (input) input.value = tracking[key] || '';
+      });
+    }
+
+    function buildRecommendation(formData) {
+      let recommendation = 'Medicare Advantage';
+      if (formData.travel === 'frequent' || formData.travel === 'snowbird' || formData.doctors === 'pcp-specialists') {
+        recommendation = 'Medicare Supplement (Medigap)';
+      }
+      return recommendation;
+    }
+
     // Set footer year
     document.getElementById('footer-year').textContent = new Date().getFullYear();
+    ensureGoogleTag();
 
-    // Multi-step logic
+    const callTel = (window.CONTACT_PHONE_TEL || '+18005551234').trim();
+    const smsTel = (window.CONTACT_SMS_TEL || callTel).trim();
+    const phoneDisplay = (window.CONTACT_PHONE_DISPLAY || callTel).trim();
+    ['q-call-top', 'q-call-sticky'].forEach(function (id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.href = 'tel:' + callTel;
+      if (id === 'q-call-top') el.textContent = 'Call ' + phoneDisplay;
+    });
+    ['q-text-top', 'q-text-sticky'].forEach(function (id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.href = 'sms:' + smsTel;
+    });
+
+    const form = document.getElementById('questionnaireForm');
     const steps = Array.from(document.querySelectorAll('.question-step'));
     let currentStepIndex = 0;
+    localStorage.setItem('service_interest', 'medicare');
+    const startInput = document.getElementById('q_form_started_at');
+    if (startInput) startInput.value = String(Date.now());
+
+    const prequalRaw = localStorage.getItem('lead_prequal');
+    if (prequalRaw) {
+      try {
+        const prequal = JSON.parse(prequalRaw);
+        if (prequal.zip && !document.getElementById('zipCode').value) {
+          document.getElementById('zipCode').value = prequal.zip;
+        }
+      } catch (error) {
+        // Ignore invalid localStorage data.
+      }
+    }
+    applyTracking(form, getStoredTracking());
 
     function showStep(index) {
       steps.forEach((step, i) => {
@@ -410,8 +570,6 @@
 
     function validateCurrentStep() {
       const activeStep = steps[currentStepIndex];
-
-      // If step contains radios, require one checked
       const firstRadio = activeStep.querySelector('input[type="radio"]');
       if (firstRadio) {
         const groupName = firstRadio.name;
@@ -421,20 +579,17 @@
           return false;
         }
       }
-
-      // For the last step, basic HTML5 validation will run on submit
       return true;
     }
 
     document.addEventListener('click', function (e) {
       if (e.target.matches('[data-next]')) {
         if (!validateCurrentStep()) return;
-        if (currentStepIndex < steps.length - 1) {
-          showStep(currentStepIndex + 1);
-        }
+        if (currentStepIndex < steps.length - 1) showStep(currentStepIndex + 1);
       }
 
       if (e.target.matches('[data-prev]')) {
+<<<<<<< HEAD
         if (currentStepIndex > 0) {
           showStep(currentStepIndex - 1);
                         }
@@ -482,6 +637,59 @@ e.preventDefault();
         window.location.href = 'thank-you.html';
       });
           });
+=======
+        if (currentStepIndex > 0) showStep(currentStepIndex - 1);
+      }
+    });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        alert('Please complete all required fields and consent checkbox.');
+        return;
+      }
+
+      const formData = {
+        service_interest: 'medicare',
+        health: form.health.value,
+        doctors: form.doctors.value,
+        budget: form.budget.value,
+        travel: form.travel.value,
+        prescriptions: form.prescriptions.value,
+        extras: Array.from(form.querySelectorAll('input[name="extras"]:checked')).map(function (item) { return item.value; }),
+        fullName: form.fullName.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        zipCode: form.zipCode.value.trim(),
+        contactConsent: form.contactConsent.checked ? 'yes' : 'no',
+        tracking: getStoredTracking(),
+        honeypot: form.q_honeypot ? form.q_honeypot.value : '',
+        form_started_at: Number(form.q_form_started_at?.value || Date.now()),
+        timestamp: new Date().toISOString()
+      };
+      formData.recommendation = buildRecommendation(formData);
+
+      document.getElementById('planRecommendation').innerHTML =
+        '<h3>Recommended: ' + formData.recommendation + '</h3>';
+      document.getElementById('plans-results').innerHTML =
+        '<p><a href="https://www.medicare.gov/plan-compare/?zip=' + encodeURIComponent(formData.zipCode) + '" target="_blank" rel="noopener noreferrer">View Plans on Medicare.gov</a></p>';
+
+      try {
+        const apiBase = window.resolveLeadApiBase ? window.resolveLeadApiBase() : (window.LEAD_API_BASE || '').trim();
+        await fetch(apiBase + '/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      } catch (error) {
+        console.error('Lead submit failed:', error);
+      }
+
+      trackLeadConversion();
+      localStorage.setItem('lead_submission', JSON.stringify(formData));
+      window.location.href = 'thank-you.html';
+    });
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
   </script>
 </body>
 </html>

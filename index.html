@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
         <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R14QLLE39K"></script>
     <script>
@@ -48,6 +49,35 @@
 
     }
     </script>
+=======
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Get matched with licensed agents for Medicare, tax filing support, life insurance, and ACA/Obamacare plans.">
+  <title>Get Help with Medicare, Tax, Life Insurance, and ACA</title>
+  <link rel="canonical" href="https://example.com/">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.GOOGLE_TAG_ID = '';
+    window.GOOGLE_ADS_ID = '';
+    window.GOOGLE_ADS_CONVERSION_LABEL = '';
+    window.LEAD_API_BASE = '';
+    window.CONTACT_PHONE_DISPLAY = '(800) 555-1234';
+    window.CONTACT_PHONE_TEL = '+18005551234';
+    window.CONTACT_SMS_TEL = '+18005551234';
+  </script>
+</head>
+
+<body>
+<div class="quick-contact" role="region" aria-label="Quick contact">
+  <div class="quick-contact-inner">
+    <span>Talk to a licensed agent now:</span>
+    <a id="call-now-link-top" href="tel:+18005551234">Call (800) 555-1234</a>
+    <a id="text-now-link-top" href="sms:+18005551234">Text Us</a>
+  </div>
+</div>
+<header class="site-header">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
 
 
   
@@ -131,6 +161,7 @@
             }
         }
 
+<<<<<<< HEAD
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -585,6 +616,113 @@
     <div class="header-actions">
         <a href="tel:+13464545129" class="header-call">📞 (346) 454-5129</a>
         <a href="spanish/index.html" style="color: #1f2937; text-decoration: none;">Español</a>
+=======
+<main id="main-content">
+  <!-- Hero & lead form -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 id="hero-heading">Get matched with the right coverage and tax support</h1>
+        <p>
+          One quick form gets you connected with licensed help for Medicare, ACA/Obamacare, life insurance, or tax filing.
+        </p>
+        <div class="service-pills" role="list" aria-label="Services">
+          <button type="button" class="service-pill is-active" data-service="medicare">Medicare</button>
+          <button type="button" class="service-pill" data-service="aca">ACA / Obamacare</button>
+          <button type="button" class="service-pill" data-service="life">Life Insurance</button>
+          <button type="button" class="service-pill" data-service="tax">Tax Filing</button>
+        </div>
+        <ul class="hero-points">
+          <li>Licensed agents and specialists</li>
+          <li>Fast call-back options</li>
+          <li>No obligation to enroll or file</li>
+        </ul>
+      </div>
+
+      <aside class="hero-form" aria-label="Start Medicare questionnaire">
+        <h2 id="lead-form-heading">Start your free consultation</h2>
+        <p class="form-helper">Choose a service and get matched in minutes.</p>
+
+        <form id="lead-form" novalidate>
+          <div class="form-group">
+            <label for="service_interest">Service you need help with</label>
+            <select id="service_interest" name="service_interest" required>
+              <option value="medicare">Medicare</option>
+              <option value="aca">ACA / Obamacare</option>
+              <option value="life">Life Insurance</option>
+              <option value="tax">Tax Filing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="zip">ZIP code</label>
+            <input
+              id="zip"
+              name="zip"
+              type="text"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="dob">Date of birth</label>
+            <input
+              id="dob"
+              name="dob"
+              type="date"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <fieldset>
+              <legend>Are you currently enrolled in Medicare?</legend>
+              <label>
+                <input type="radio" name="enrolled" value="yes" required >
+                Yes
+              </label>
+              <label>
+                <input type="radio" name="enrolled" value="no" >
+                No
+              </label>
+            </fieldset>
+          </div>
+
+          <input type="hidden" name="utm_source" id="utm_source">
+          <input type="hidden" name="utm_medium" id="utm_medium">
+          <input type="hidden" name="utm_campaign" id="utm_campaign">
+          <input type="hidden" name="utm_term" id="utm_term">
+          <input type="hidden" name="utm_content" id="utm_content">
+          <input type="hidden" name="gclid" id="gclid">
+          <input type="hidden" name="fbclid" id="fbclid">
+          <input type="hidden" name="landing_page" id="landing_page">
+          <input type="hidden" name="form_started_at" id="lead_form_started_at">
+          <input type="text" name="honeypot" id="lead_honeypot" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <label class="consent-check">
+            <input type="checkbox" id="contactConsent" name="contactConsent" required>
+            I agree to be contacted by phone, email, and text by a licensed insurance agent. I have read the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.
+          </label>
+
+          <button type="submit" class="btn-primary">
+            See my Medicare options
+          </button>
+
+          <p class="form-disclaimer">
+            By clicking submit, you agree to be contacted by phone, SMS, and email regarding your selected service.
+          </p>
+
+          <div
+            id="form-status"
+            class="status"
+            role="status"
+            aria-live="polite"
+            tabindex="-1"
+          ></div>
+        </form>
+      </aside>
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
     </div>
 </header>
   
@@ -607,6 +745,7 @@
     <div class="hero-buttons"><a href="questionnaire.html" class="cta-button cta-schedule">Search Plans →</a></div>
 </section>
 
+<<<<<<< HEAD
  
     <!-- Benefits Section -->
     <section class="benefits">
@@ -671,6 +810,94 @@
             </div>
         </div>
     </section>
+=======
+  <!-- How it works -->
+  <section class="how-it-works" aria-labelledby="how-it-works-heading">
+    <h2 id="how-it-works-heading">How it works</h2>
+    <ol class="steps-list">
+      <li>Select your service and share your location details.</li>
+      <li>A licensed specialist reviews options that fit your needs.</li>
+      <li>You decide whether to move forward.</li>
+    </ol>
+  </section>
+
+  <section class="service-grid" aria-labelledby="services-heading">
+    <h2 id="services-heading">Services We Help With</h2>
+    <div class="reviews-grid">
+      <article class="review-card">
+        <h3><a href="medicare.html">Medicare</a></h3>
+        <p>Advantage, Supplement, and Part D comparison with licensed support.</p>
+      </article>
+      <article class="review-card">
+        <h3><a href="aca.html">ACA / Obamacare</a></h3>
+        <p>Marketplace plan matching, subsidy checks, and enrollment guidance.</p>
+      </article>
+      <article class="review-card">
+        <h3><a href="life.html">Life Insurance</a></h3>
+        <p>Term and permanent options matched to your family and budget goals.</p>
+      </article>
+      <article class="review-card">
+        <h3><a href="tax.html">Tax Filing</a></h3>
+        <p>Basic filing support and help preparing documents for seasonal deadlines.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Reviews / trust -->
+  <section class="reviews" aria-labelledby="reviews-heading">
+    <h2 id="reviews-heading">What people say</h2>
+    <div class="reviews-grid">
+      <article class="review-card">
+        <h3 class="review-name">Maria, 67</h3>
+        <p>
+          “They made Medicare simple and I felt zero pressure.”
+        </p>
+      </article>
+      <article class="review-card">
+        <h3 class="review-name">Ana, 44</h3>
+        <p>
+          “I got quick help for ACA enrollment and taxes in one place.”
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="lead-magnet" aria-labelledby="checklist-heading">
+    <h2 id="checklist-heading">Get a Free Planning Checklist</h2>
+    <p>Choose your service and get a simple prep checklist instantly.</p>
+    <form id="checklist-form" novalidate>
+      <div class="form-group">
+        <label for="checklistService">Checklist type</label>
+        <select id="checklistService" name="checklistService" required>
+          <option value="medicare">Medicare</option>
+          <option value="aca">ACA / Obamacare</option>
+          <option value="life">Life Insurance</option>
+          <option value="tax">Tax Filing</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="checklistName">Name</label>
+        <input id="checklistName" name="checklistName" type="text" required>
+      </div>
+      <div class="form-group">
+        <label for="checklistEmail">Email</label>
+        <input id="checklistEmail" name="checklistEmail" type="email" required>
+      </div>
+      <label class="consent-check">
+        <input type="checkbox" id="checklistConsent" name="checklistConsent" required>
+        I agree to receive Medicare planning resources by email.
+      </label>
+      <input type="hidden" name="form_started_at" id="checklist_form_started_at">
+      <input type="text" name="honeypot" id="checklist_honeypot" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button type="submit" class="btn-primary">Email Me the Checklist</button>
+      <div id="checklist-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
+    </form>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">Common questions</h2>
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
 
     <!-- Footer CTA -->
     <section class="footer-cta">
@@ -679,6 +906,7 @@
         <a href="questionnaire.html" class="cta-button">Start Your Free Medicare Check</a>
     </section>
 
+<<<<<<< HEAD
     <!-- Footer -->
     <footer>
         <div class="footer-links">
@@ -693,5 +921,89 @@
         <p>&copy; 2026 Medicare Help Center. All rights reserved.</p>
     </footer>
       </main>
+=======
+    <details>
+      <summary>Do I have to enroll after getting information?</summary>
+      <p>
+        No. You can review your options and decide if any plan is right for you.
+      </p>
+    </details>
+
+    <details>
+      <summary>Can I request help for more than one service?</summary>
+      <p>
+        Yes. Start with the service that matters most and your advisor can help you with additional needs.
+      </p>
+    </details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-text">
+      Medicare Help Center is operated by a licensed insurance agency. Not connected with or endorsed by the U.S. government or the federal Medicare program.
+    </p>
+    <p class="footer-text">
+      For accommodation of persons with special needs at meetings, please call the number provided in your plan information.
+    </p>
+    <p class="footer-text">
+      © <span id="footer-year"></span> Medicare Help Center. All rights reserved.
+    </p>
+    <p class="footer-text">
+      <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
+    </p>
+  </div>
+</footer>
+
+<div class="sticky-contact" aria-label="Call or text">
+  <a id="call-now-link-sticky" href="tel:+18005551234">Call Now</a>
+  <a id="text-now-link-sticky" href="sms:+18005551234">Text Now</a>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  "name": "Medicare Help Center",
+  "url": "https://example.com/",
+  "telephone": "+1-800-555-1234",
+  "description": "Licensed consultation support for Medicare, ACA/Obamacare, and life insurance."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this cost anything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no cost to request consultation. If you enroll in insurance coverage, plan costs are set by the carrier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I have to enroll or file after getting information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You can review your options and decide if you want to move forward."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I request help for more than one service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Start with the service that matters most and your advisor can help with additional needs."
+      }
+    }
+  ]
+}
+</script>
+<script src="lead-api-config.js" defer></script>
+<script src="script.js" defer></script>
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
 </body>
 </html>

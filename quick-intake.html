@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quick intake for ACA, life insurance, and tax filing support.">
+  <title>Quick Intake | Medicare Help Center</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.GOOGLE_TAG_ID = '';
+    window.GOOGLE_ADS_ID = '';
+    window.GOOGLE_ADS_CONVERSION_LABEL = '';
+    window.LEAD_API_BASE = '';
+    window.CONTACT_PHONE_DISPLAY = '(800) 555-1234';
+    window.CONTACT_PHONE_TEL = '+18005551234';
+    window.CONTACT_SMS_TEL = '+18005551234';
+  </script>
+</head>
+<body>
+  <main class="how-it-works" id="main-content">
+    <h1 id="intake-heading">Quick Service Intake</h1>
+    <p id="intake-helper">Share a few details and a specialist will contact you shortly.</p>
+
+    <form id="quick-intake-form" class="intake-form" novalidate>
+      <input type="hidden" id="service_interest" name="service_interest" value="aca">
+      <input type="hidden" id="quick_form_started_at" name="form_started_at">
+      <input type="text" id="quick_honeypot" name="honeypot" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="form-group">
+        <label for="fullName">Full name</label>
+        <input id="fullName" name="fullName" type="text" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" required>
+      </div>
+      <div class="form-group">
+        <label for="zip">ZIP code</label>
+        <input id="zip" name="zip" type="text" inputmode="numeric" required>
+      </div>
+      <div class="form-group">
+        <label for="bestTime">Best time to contact you</label>
+        <select id="bestTime" name="bestTime" required>
+          <option value="morning">Morning</option>
+          <option value="afternoon">Afternoon</option>
+          <option value="evening">Evening</option>
+        </select>
+      </div>
+
+      <label class="consent-check">
+        <input type="checkbox" id="contactConsent" name="contactConsent" required>
+        I agree to be contacted by phone, SMS, and email regarding my selected service.
+      </label>
+
+      <button class="btn-primary" type="submit">Submit My Request</button>
+      <div id="intake-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
+    </form>
+
+    <p><a id="quick-intake-call" href="tel:+18005551234">Call now</a> | <a id="quick-intake-text" href="sms:+18005551234">Text now</a></p>
+  </main>
+
+  <script src="lead-api-config.js"></script>
+  <script>
+    const SERVICE_META = {
+      aca: {
+        title: 'ACA / Obamacare Intake',
+        helper: 'Get help reviewing Marketplace plans and subsidy options.'
+      },
+      life: {
+        title: 'Life Insurance Intake',
+        helper: 'Get matched with options that fit your family and budget goals.'
+      },
+      tax: {
+        title: 'Tax Filing Intake',
+        helper: 'Get help preparing documents and filing your taxes correctly.'
+      }
+    };
+
+    function ensureGoogleTag() {
+      const tagId = (window.GOOGLE_TAG_ID || '').trim();
+      const adsId = (window.GOOGLE_ADS_ID || '').trim();
+      if (!tagId && !adsId) return;
+
+      const primaryId = tagId || adsId;
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(primaryId);
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      if (tagId) window.gtag('config', tagId);
+      if (adsId) window.gtag('config', adsId);
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get('service') || localStorage.getItem('service_interest') || 'aca';
+    const safeService = SERVICE_META[service] ? service : 'aca';
+
+    localStorage.setItem('service_interest', safeService);
+    document.getElementById('service_interest').value = safeService;
+    document.getElementById('intake-heading').textContent = SERVICE_META[safeService].title;
+    document.getElementById('intake-helper').textContent = SERVICE_META[safeService].helper;
+
+    const callTel = (window.CONTACT_PHONE_TEL || '+18005551234').trim();
+    const smsTel = (window.CONTACT_SMS_TEL || callTel).trim();
+    const display = (window.CONTACT_PHONE_DISPLAY || callTel).trim();
+    const callLink = document.getElementById('quick-intake-call');
+    const textLink = document.getElementById('quick-intake-text');
+    callLink.href = 'tel:' + callTel;
+    callLink.textContent = 'Call ' + display;
+    textLink.href = 'sms:' + smsTel;
+
+    const form = document.getElementById('quick-intake-form');
+    const status = document.getElementById('intake-status');
+    const formStarted = document.getElementById('quick_form_started_at');
+    if (formStarted) formStarted.value = String(Date.now());
+
+    ensureGoogleTag();
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        status.textContent = 'Please complete all required fields.';
+        status.focus();
+        return;
+      }
+
+      const payload = {
+        type: 'service_intake',
+        service_interest: safeService,
+        fullName: form.fullName.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        zip: form.zip.value.trim(),
+        bestTime: form.bestTime.value,
+        contactConsent: form.contactConsent.checked ? 'yes' : 'no',
+        honeypot: form.quick_honeypot ? form.quick_honeypot.value : '',
+        form_started_at: Number(form.quick_form_started_at?.value || Date.now()),
+        tracking: JSON.parse(localStorage.getItem('tracking_params') || '{}'),
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        const apiBase = window.resolveLeadApiBase ? window.resolveLeadApiBase() : (window.LEAD_API_BASE || '').trim();
+        const response = await fetch(apiBase + '/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) {
+          status.textContent = 'Unable to submit right now. Please call us directly.';
+          status.focus();
+          return;
+        }
+      } catch (error) {
+        console.error('Intake submit failed:', error);
+        status.textContent = 'Network issue while submitting. Please call us directly.';
+        status.focus();
+        return;
+      }
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', { service_interest: safeService, value: 1, currency: 'USD' });
+      }
+
+      localStorage.setItem('lead_submission', JSON.stringify(payload));
+      window.location.href = 'thank-you.html';
+    });
+  </script>
+</body>
+</html>

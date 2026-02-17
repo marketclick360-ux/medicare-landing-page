@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+<<<<<<< HEAD
     <loc>https://edlando.com/</loc>
     <lastmod>2026-01-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -42,4 +43,44 @@
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
+=======
+    <loc>https://example.com/</loc>
+  </url>
+  <url>
+    <loc>https://example.com/questionnaire.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/medicare.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/aca.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/life.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/tax.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/quick-intake.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/privacy-policy.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/terms.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/thank-you.html</loc>
+  </url>
+  <url>
+    <loc>https://example.com/aca-checklist.txt</loc>
+  </url>
+  <url>
+    <loc>https://example.com/life-insurance-checklist.txt</loc>
+  </url>
+  <url>
+    <loc>https://example.com/tax-filing-checklist.txt</loc>
+  </url>
+>>>>>>> 9b1dec2 (Apply redirect and deployment fixes)
 </urlset>

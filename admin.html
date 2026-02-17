@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lead Admin Dashboard</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-wrap { width: min(1200px, 94vw); margin: 24px auto; }
+    .admin-controls { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto auto; gap: 10px; align-items: end; }
+    .admin-table { width: 100%; border-collapse: collapse; margin-top: 16px; background: #fff; }
+    .admin-table th, .admin-table td { border: 1px solid #e2e8f0; padding: 8px; text-align: left; font-size: 0.9rem; }
+    .admin-table th { background: #f8fafc; }
+    .admin-note { color: #475569; margin-top: 8px; }
+    .status-cell { min-width: 180px; }
+    .status-cell select, .status-cell input { width: 100%; margin-bottom: 4px; }
+    .status-cell button { width: 100%; margin-top: 0; padding: 8px; font-size: 0.85rem; }
+    @media (max-width: 900px) { .admin-controls { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="admin-wrap">
+    <h1>Lead Dashboard</h1>
+    <p class="admin-note">Use your admin token or basic credentials. Do not share this page publicly.</p>
+
+    <div class="admin-controls">
+      <div class="form-group">
+        <label for="adminApiBase">API base URL</label>
+        <input id="adminApiBase" type="text" value="">
+      </div>
+      <div class="form-group">
+        <label for="adminToken">Bearer token</label>
+        <input id="adminToken" type="password" placeholder="ADMIN_TOKEN">
+      </div>
+      <div class="form-group">
+        <label for="adminUser">Basic user</label>
+        <input id="adminUser" type="text" placeholder="ADMIN_USER">
+      </div>
+      <div class="form-group">
+        <label for="adminPass">Basic pass</label>
+        <input id="adminPass" type="password" placeholder="ADMIN_PASS">
+      </div>
+      <div class="form-group">
+        <label for="adminServiceFilter">Service filter</label>
+        <select id="adminServiceFilter">
+          <option value="all">All services</option>
+          <option value="medicare">Medicare</option>
+          <option value="aca">ACA</option>
+          <option value="life">Life</option>
+          <option value="tax">Tax</option>
+        </select>
+      </div>
+      <button id="adminRefresh" class="btn-primary" type="button">Refresh</button>
+      <button id="adminExport" class="btn-primary" type="button">Export CSV</button>
+    </div>
+
+    <p id="adminStatus" class="status" role="status" aria-live="polite"></p>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Created</th>
+          <th>Type</th>
+          <th>Service</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>ZIP</th>
+          <th>Status</th>
+          <th>Source</th>
+          <th>Campaign</th>
+        </tr>
+      </thead>
+      <tbody id="adminRows"></tbody>
+    </table>
+  </main>
+
+  <script src="lead-api-config.js"></script>
+  <script>
+    const apiBaseInput = document.getElementById('adminApiBase');
+    const tokenInput = document.getElementById('adminToken');
+    const userInput = document.getElementById('adminUser');
+    const passInput = document.getElementById('adminPass');
+    const serviceFilter = document.getElementById('adminServiceFilter');
+    const refreshBtn = document.getElementById('adminRefresh');
+    const exportBtn = document.getElementById('adminExport');
+    const statusEl = document.getElementById('adminStatus');
+    const rowsEl = document.getElementById('adminRows');
+
+    const savedApi = localStorage.getItem('admin_api_base');
+    const savedToken = localStorage.getItem('admin_token');
+    const savedUser = localStorage.getItem('admin_user');
+    const savedPass = localStorage.getItem('admin_pass');
+    if (savedApi) {
+      apiBaseInput.value = savedApi;
+    } else if (window.resolveLeadApiBase) {
+      apiBaseInput.value = window.resolveLeadApiBase();
+    }
+    if (savedToken) tokenInput.value = savedToken;
+    if (savedUser) userInput.value = savedUser;
+    if (savedPass) passInput.value = savedPass;
+
+    function authHeaders() {
+      const token = tokenInput.value.trim();
+      const user = userInput.value.trim();
+      const pass = passInput.value;
+      const headers = { 'Accept': 'application/json' };
+      if (token) {
+        headers.Authorization = 'Bearer ' + token;
+      } else if (user && pass) {
+        headers.Authorization = 'Basic ' + btoa(user + ':' + pass);
+      }
+      return headers;
+    }
+
+    function normalizeRows(rows, kind) {
+      return rows.map((row) => {
+        const payload = row.payload || {};
+        return {
+          id: row.id || '',
+          createdAt: row.createdAt || '',
+          kind: kind,
+          service: payload.service_interest || '',
+          name: payload.fullName || payload.name || '',
+          email: payload.email || '',
+          phone: payload.phone || '',
+          zip: payload.zip || payload.zipCode || '',
+          status: row.status || 'new',
+          statusNote: row.statusNote || '',
+          source: payload.tracking?.utm_source || '',
+          campaign: payload.tracking?.utm_campaign || ''
+        };
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/\"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderRows(rows) {
+      rowsEl.innerHTML = '';
+      rows.forEach((row) => {
+        const tr = document.createElement('tr');
+        const statusOptions = ['new', 'contacted', 'qualified', 'closed']
+          .map((opt) => '<option value=\"' + opt + '\"' + (opt === row.status ? ' selected' : '') + '>' + opt + '</option>')
+          .join('');
+        tr.innerHTML = [
+          '<td>' + escapeHtml(row.createdAt) + '</td>',
+          '<td>' + escapeHtml(row.kind) + '</td>',
+          '<td>' + escapeHtml(row.service) + '</td>',
+          '<td>' + escapeHtml(row.name) + '</td>',
+          '<td>' + escapeHtml(row.email) + '</td>',
+          '<td>' + escapeHtml(row.phone) + '</td>',
+          '<td>' + escapeHtml(row.zip) + '</td>',
+          '<td class=\"status-cell\" data-id=\"' + escapeHtml(row.id) + '\"><select data-role=\"status-select\">' + statusOptions + '</select><input data-role=\"status-note\" placeholder=\"note\" value=\"' + escapeHtml(row.statusNote) + '\"><button data-role=\"status-save\" class=\"btn-primary\" type=\"button\">Save</button></td>',
+          '<td>' + escapeHtml(row.source) + '</td>',
+          '<td>' + escapeHtml(row.campaign) + '</td>'
+        ].join('');
+        rowsEl.appendChild(tr);
+      });
+
+      rowsEl.querySelectorAll('button[data-role=\"status-save\"]').forEach((button) => {
+        button.addEventListener('click', async function () {
+          const cell = button.closest('.status-cell');
+          const id = cell.getAttribute('data-id');
+          const status = cell.querySelector('[data-role=\"status-select\"]').value;
+          const note = cell.querySelector('[data-role=\"status-note\"]').value;
+          await saveStatus(id, status, note);
+        });
+      });
+    }
+
+    async function saveStatus(id, status, note) {
+      const apiBase = apiBaseInput.value.trim().replace(/\/$/, '');
+      try {
+        const response = await fetch(apiBase + '/api/admin/status', {
+          method: 'POST',
+          headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
+          body: JSON.stringify({ id, status, note })
+        });
+        if (!response.ok) {
+          statusEl.textContent = 'Status update failed.';
+          return;
+        }
+        statusEl.textContent = 'Status updated.';
+      } catch (error) {
+        statusEl.textContent = 'Status update error.';
+      }
+    }
+
+    async function loadRows() {
+      const apiBase = apiBaseInput.value.trim().replace(/\/$/, '');
+      const service = serviceFilter.value;
+      localStorage.setItem('admin_api_base', apiBase);
+      localStorage.setItem('admin_token', tokenInput.value.trim());
+      localStorage.setItem('admin_user', userInput.value.trim());
+      localStorage.setItem('admin_pass', passInput.value);
+
+      statusEl.textContent = 'Loading...';
+      try {
+        const [leadsRes, checksRes] = await Promise.all([
+          fetch(apiBase + '/api/admin/leads', { headers: authHeaders() }),
+          fetch(apiBase + '/api/admin/checklists', { headers: authHeaders() })
+        ]);
+
+        if (!leadsRes.ok || !checksRes.ok) {
+          statusEl.textContent = 'Auth failed or API unavailable.';
+          return;
+        }
+
+        const leadsData = await leadsRes.json();
+        const checksData = await checksRes.json();
+        let rows = [
+          ...normalizeRows(leadsData.rows || [], 'lead'),
+          ...normalizeRows(checksData.rows || [], 'checklist')
+        ];
+        rows.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        if (service !== 'all') rows = rows.filter((row) => row.service === service);
+
+        renderRows(rows);
+        statusEl.textContent = 'Loaded ' + rows.length + ' rows.';
+      } catch (error) {
+        statusEl.textContent = 'Error loading rows.';
+      }
+    }
+
+    function exportCsv() {
+      const apiBase = apiBaseInput.value.trim().replace(/\/$/, '');
+      const token = tokenInput.value.trim();
+      const user = userInput.value.trim();
+      const pass = passInput.value;
+      let authorization = '';
+      if (token) authorization = 'Bearer ' + token;
+      if (!authorization && user && pass) authorization = 'Basic ' + btoa(user + ':' + pass);
+      if (!authorization) {
+        statusEl.textContent = 'Provide token or basic credentials for export.';
+        return;
+      }
+      const url = apiBase + '/api/admin/export.csv';
+      fetch(url, { headers: { Authorization: authorization } })
+        .then((res) => {
+          if (!res.ok) throw new Error('Export failed');
+          return res.blob();
+        })
+        .then((blob) => {
+          const objectUrl = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = objectUrl;
+          a.download = 'lead-export.csv';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(objectUrl);
+          statusEl.textContent = 'CSV exported.';
+        })
+        .catch(() => {
+          statusEl.textContent = 'Export failed.';
+        });
+    }
+
+    refreshBtn.addEventListener('click', loadRows);
+    serviceFilter.addEventListener('change', loadRows);
+    exportBtn.addEventListener('click', exportCsv);
+    loadRows();
+  </script>
+</body>
+</html>

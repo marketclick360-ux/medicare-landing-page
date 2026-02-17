@@ -1,0 +1,23 @@
+name = "lead-notify-worker"
+main = "cloudflare-worker.js"
+compatibility_date = "2026-02-17"
+
+# Configure secrets with `wrangler secret put ...`
+# Required:
+# - WEBHOOK_SECRET
+# - EMAIL_PROVIDER (resend or relay-webhook)
+# If EMAIL_PROVIDER=resend:
+# - RESEND_API_KEY
+# - RESEND_FROM
+# - RESEND_TO
+# If EMAIL_PROVIDER=relay-webhook:
+# - RELAY_WEBHOOK_URL
+# Optional SMS:
+# - SMS_PROVIDER (twilio or relay-webhook)
+# If SMS_PROVIDER=twilio:
+# - TWILIO_ACCOUNT_SID
+# - TWILIO_AUTH_TOKEN
+# - TWILIO_FROM
+# - TWILIO_TO
+# If SMS_PROVIDER=relay-webhook:
+# - SMS_RELAY_WEBHOOK_URL

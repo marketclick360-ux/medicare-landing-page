@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         saveCurrentAnswer();
+        generateRecommendation();
             
     // Get form data
     const formData = {
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         phone: document.getElementById('phone').value,
         zipCode: document.getElementById('zipCode').value,
         answers: userAnswers,
-        recommendation: userAnswers.recommendation,
+        recommendation: userAnswers.recommendedPlan,
         timestamp: new Date().toISOString()
     };
     
@@ -68,30 +69,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     </a>
                 </div>
             `;
-        }}
+        }
     
-    // Send lead to your email/CRM
-    // Option 1: FormSubmit.co (free email forwarding)
-    fetch('https://formsubmit.co/ajax/marketclick360@gmail.com', {
+    // Send lead to your backend API
+    const apiBase = (window.LEAD_API_BASE || '').trim();
+    fetch(apiBase + '/api/lead', {
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
         body: JSON.stringify({
-            name: formData.fullName,
+            service_interest: 'medicare',
+            fullName: formData.fullName,
             email: formData.email,
             phone: formData.phone,
             zip: formData.zipCode,
+            contactConsent: 'yes',
+            honeypot: '',
+            form_started_at: Date.now() - 4000,
             recommendation: formData.recommendation,
-            _subject: 'New Medicare Lead from ' + formData.fullName,
-            _template: 'table'
+            timestamp: formData.timestamp
         })
     }).then(response => console.log('Lead sent successfully'))
       .catch(error => console.error('Error sending lead:', error));
     
     alert('Thank you! We\'ll contact you soon with personalized plan options.');
     console.log('User data:', formData)
+});
 });
 
 function showStep(step) {
